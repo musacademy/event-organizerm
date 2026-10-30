@@ -1,0 +1,94 @@
+---
+import { businessInfo } from '../data/business';
+---
+
+<section class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 pt-4 pb-8">
+  <!-- Outer Hero Card with rounded corners, notch aesthetic, and entrance reveal animation -->
+  <div class="relative bg-white rounded-[2rem] sm:rounded-[2.75rem] border border-[#e2ece4] overflow-hidden shadow-sm p-3 sm:p-5 animate-hero-reveal">
+    
+    <!-- Hero Image Banner with Curved Notch Profile -->
+    <div class="relative w-full h-[520px] sm:h-[580px] lg:h-[620px] rounded-[1.75rem] sm:rounded-[2.25rem] overflow-hidden group">
+      <!-- Background Image -->
+      <img
+        src="/images/hero-stage.jpg"
+        alt="Panggung Acara Modern Aethel Event Organizer di Malang dan Kediri"
+        class="w-full h-full object-cover object-center transform transition-transform duration-700 group-hover:scale-105"
+        loading="eager"
+      />
+
+      <!-- Soft Sage Gradient Overlay -->
+      <div class="absolute inset-0 bg-gradient-to-t from-[#13271a]/90 via-[#1a3825]/50 to-transparent sm:bg-gradient-to-r sm:from-[#13271a]/95 sm:via-[#1a3825]/60 sm:to-transparent"></div>
+
+      <!-- Hero Content Overlay -->
+      <div class="absolute inset-0 p-6 sm:p-12 lg:p-16 flex flex-col justify-end sm:justify-center max-w-2xl text-white">
+        
+        <!-- Badge Tag matching reference green pill -->
+        <div class="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-[#387049]/90 border border-white/20 text-xs font-semibold tracking-wide text-emerald-100 backdrop-blur-md mb-4 w-fit shadow-xs">
+          <span class="w-2 h-2 rounded-full bg-emerald-300 animate-pulse"></span>
+          <span>Event Organizer Profesional Malang & Kediri</span>
+        </div>
+
+        <!-- Main Headline -->
+        <h1 class="text-3xl sm:text-5xl lg:text-6xl font-extrabold font-sans tracking-tight leading-[1.12] mb-4 text-white">
+          Discover Your <br class="hidden sm:inline" />
+          <span class="text-emerald-300 font-sans italic font-medium">Extraordinary</span> Event.
+        </h1>
+
+        <!-- Subheadline / Value Proposition -->
+        <p class="text-sm sm:text-base text-[#d8ebd9] font-normal leading-relaxed mb-8 max-w-lg">
+          Wujudkan momen berharga tanpa rasa cemas. Dari Corporate Gathering di Kota Wisata Batu, Konferensi Nasional di Malang, hingga Wedding & Gala Dinner megah di Kediri.
+        </p>
+
+        <!-- CTA Buttons -->
+        <div class="flex flex-wrap items-center gap-3">
+          <a
+            href="/kontak"
+            class="inline-flex items-center gap-2 px-6 py-3.5 rounded-full bg-[#2d553b] hover:bg-[#203f2b] text-white text-sm font-semibold transition-all shadow-md hover:shadow-lg hover:scale-102 border border-emerald-400/30"
+          >
+            <span>Ajukan Rencana Acara</span>
+            <svg class="w-4 h-4 text-emerald-200" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+              <path stroke-linecap="round" stroke-linejoin="round" d="M14 5l7 7m0 0l-7 7m7-7H3" />
+            </svg>
+          </a>
+
+          <a
+            href="/portofolio"
+            class="inline-flex items-center gap-2 px-6 py-3.5 rounded-full bg-white/90 hover:bg-white text-[#1b3825] text-sm font-semibold transition-all backdrop-blur-md shadow-xs hover:scale-102"
+          >
+            <span>Lihat Portofolio</span>
+          </a>
+        </div>
+
+      </div>
+
+      <!-- Bottom Right Organic Notch Badge (inspired by reference image curved tab) -->
+      <div class="hidden sm:flex absolute bottom-6 right-6 bg-white/95 backdrop-blur-md p-4 rounded-3xl border border-[#e1eae2] shadow-lg items-center gap-6">
+        <div class="flex items-center gap-3 pr-4 border-r border-gray-200">
+          <div class="w-10 h-10 rounded-2xl bg-[#eaf2eb] flex items-center justify-center text-[#2d553b]">
+            <svg class="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+              <path stroke-linecap="round" stroke-linejoin="round" d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z" />
+            </svg>
+          </div>
+          <div>
+            <div class="text-lg font-bold text-[#1b3825] leading-none">150+</div>
+            <div class="text-[11px] text-[#556d5c] mt-0.5 font-medium">Acara Terselenggara</div>
+          </div>
+        </div>
+
+        <div class="flex items-center gap-3">
+          <div class="w-10 h-10 rounded-2xl bg-[#eaf2eb] flex items-center justify-center text-[#2d553b]">
+            <svg class="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+              <path stroke-linecap="round" stroke-linejoin="round" d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z" />
+            </svg>
+          </div>
+          <div>
+            <div class="text-lg font-bold text-[#1b3825] leading-none">2 Hub</div>
+            <div class="text-[11px] text-[#556d5c] mt-0.5 font-medium">Malang & Kediri</div>
+          </div>
+        </div>
+      </div>
+
+    </div>
+
+  </div>
+</section>

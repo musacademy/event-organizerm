@@ -1,0 +1,122 @@
+---
+import Layout from '../../layouts/Layout.astro';
+import { blogPosts, type BlogPost } from '../../data/blog';
+import { businessInfo } from '../../data/business';
+
+export function getStaticPaths() {
+  return blogPosts.map((post) => ({
+    params: { slug: post.slug },
+    props: { post },
+  }));
+}
+
+interface Props {
+  post: BlogPost;
+}
+
+const { post } = Astro.props;
+---
+
+<Layout
+  title={`${post.title} | Blog Aethel Event Organizer`}
+  description={post.excerpt}
+  image={post.image}
+  currentPath={`/blog/${post.slug}`}
+  pageType="article"
+  breadcrumbs={[
+    { name: 'Beranda', url: '/' },
+    { name: 'Blog', url: '/blog' },
+    { name: post.title, url: `/blog/${post.slug}` },
+  ]}
+>
+  <article class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 py-8 sm:py-12">
+    
+    <!-- Back Link -->
+    <div class="mb-6">
+      <a href="/blog" class="text-xs font-bold text-[#2d553b] hover:underline inline-flex items-center gap-1">
+        <span>&larr;</span>
+        <span>Kembali ke Indeks Blog</span>
+      </a>
+    </div>
+
+    <!-- Article Header -->
+    <header class="mb-8">
+      <div class="flex items-center gap-2 mb-3">
+        <span class="px-3 py-1 bg-[#2d553b] text-white text-[11px] font-bold rounded-full">
+          {post.category}
+        </span>
+        {post.cityTag && (
+          <span class="px-3 py-1 bg-[#eaf2eb] text-[#2d553b] text-[11px] font-semibold rounded-full">
+            {post.cityTag}
+          </span>
+        )}
+      </div>
+
+      <h1 class="text-2xl sm:text-4xl font-sans font-extrabold text-[#1b3825] leading-tight mb-4">
+        {post.title}
+      </h1>
+
+      <div class="flex items-center gap-4 text-xs text-[#526a58] pt-3 border-t border-[#e2ece4]">
+        <span><strong>Penulis:</strong> {post.author}</span>
+        <span>&bull;</span>
+        <span><strong>Tanggal:</strong> {post.date}</span>
+        <span>&bull;</span>
+        <span><strong>Waktu Baca:</strong> {post.readTime}</span>
+      </div>
+    </header>
+
+    <!-- Featured Image -->
+    <div class="rounded-3xl overflow-hidden border border-[#e2ece4] shadow-sm mb-10 max-h-[480px]">
+      <img
+        src={post.image}
+        alt={post.title}
+        class="w-full h-full object-cover"
+      />
+    </div>
+
+    <!-- Article Body -->
+    <div class="prose max-w-none text-[#2d3b31] text-sm sm:text-base leading-relaxed space-y-5">
+      {post.content.map((paragraph) => (
+        <p class="leading-relaxed text-[#354839]">
+          {paragraph}
+        </p>
+      ))}
+    </div>
+
+    <!-- Contextual Local SEO Links matching PRD Section 7 -->
+    <div class="mt-10 p-6 bg-[#edf5ef] rounded-3xl border border-[#d5e6d9]">
+      <h3 class="text-sm font-bold text-[#1b3825] mb-2">Perlu Bantuan Penyelenggaraan Acara Terpadu?</h3>
+      <p class="text-xs text-[#526a58] leading-relaxed mb-4">
+        Diskusikan langsung konsep, penataan venue, perizinan, dan anggaran bersama tim Aethel Events.
+      </p>
+      <div class="flex flex-wrap items-center gap-3">
+        {post.cityTag === 'Malang' ? (
+          <a href="/event-organizer-malang" class="text-xs font-bold px-4 py-2 bg-[#2d553b] text-white rounded-full hover:bg-[#1a3825] transition-all">
+            Lihat Layanan Event Organizer Malang &rarr;
+          </a>
+        ) : post.cityTag === 'Kediri' ? (
+          <a href="/event-organizer-kediri" class="text-xs font-bold px-4 py-2 bg-[#2d553b] text-white rounded-full hover:bg-[#1a3825] transition-all">
+            Lihat Layanan Event Organizer Kediri &rarr;
+          </a>
+        ) : (
+          <>
+            <a href="/event-organizer-malang" class="text-xs font-bold px-4 py-2 bg-[#2d553b] text-white rounded-full hover:bg-[#1a3825] transition-all">
+              EO Malang &rarr;
+            </a>
+            <a href="/event-organizer-kediri" class="text-xs font-bold px-4 py-2 bg-white text-[#2d553b] border border-[#2d553b] rounded-full hover:bg-[#edf4ee] transition-all">
+              EO Kediri &rarr;
+            </a>
+          </>
+        )}
+        <a
+          href={`https://wa.me/${businessInfo.whatsapp}?text=Halo%20Aethel%20Events,%20saya%20membaca%20artikel%20${encodeURIComponent(post.title)}%20dan%20ingin%20konsultasi.`}
+          target="_blank"
+          class="text-xs font-bold px-4 py-2 bg-white text-[#2d553b] rounded-full border border-[#d0e0d3] hover:bg-gray-50 transition-all inline-flex items-center gap-1.5"
+        >
+          <span>Chat WhatsApp Konsultan</span>
+        </a>
+      </div>
+    </div>
+
+  </article>
+</Layout>

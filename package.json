@@ -1,0 +1,27 @@
+{
+  "name": "event-organizer",
+  "version": "1.0.0",
+  "description": "Event Organizer Malang & Kediri - Penyelenggara Acara Profesional",
+  "type": "module",
+  "scripts": {
+    "dev": "astro dev --host",
+    "start": "astro dev --host",
+    "build": "astro build",
+    "preview": "astro preview"
+  },
+  "keywords": [
+    "event organizer",
+    "malang",
+    "kediri",
+    "corporate event",
+    "wedding organizer"
+  ],
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "@astrojs/sitemap": "^3.7.4",
+    "@tailwindcss/vite": "^4.3.3",
+    "astro": "^7.4.4",
+    "tailwindcss": "^4.3.3"
+  }
+}

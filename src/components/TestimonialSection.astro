@@ -1,0 +1,91 @@
+---
+const testimonials = [
+  {
+    quote: 'Aethel Event mengelola annual corporate gathering perusahaan kami di Batu dengan sangat rapi. Dari perizinan, sound system outdoor, hingga rundown acara 220 peserta berjalan tanpa kendala sedikitpun. Tim sangat sigap dan komunikatif!',
+    name: 'Nilo Jiti Kusuma',
+    role: 'HR & General Affair Manager',
+    company: 'PT Citra Sejahtera Logistik',
+    location: 'Acara di Batu, Malang Raya',
+    image: '/images/client-portrait.jpg'
+  },
+  {
+    quote: 'Malam penganugerahan Kediri Business Excellence Awards dihadiri para pimpinan korporasi dan forkopimda. Tata panggung p3.9 LED dan orkestra kamar dikelola dengan standar setara event nasional.',
+    name: 'Drs. H. Hendra Wicaksono',
+    role: 'Ketua Panitia Pengarah',
+    company: 'Asosiasi Industri Kediri Bersatu',
+    location: 'Acara di Grand Surya Ballroom Kediri',
+    image: '/images/client-portrait.jpg'
+  }
+];
+---
+
+<section class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12 reveal-on-scroll">
+  <div class="mb-6 flex items-end justify-between">
+    <div>
+      <span class="text-xs font-bold tracking-widest uppercase text-[#3f724f] bg-[#eaf2eb] px-3.5 py-1.5 rounded-full inline-block mb-2">
+        Testimoni Klien
+      </span>
+      <h2 class="text-2xl sm:text-3xl font-sans font-extrabold text-[#1b3825]">
+        Our Clients' Beautiful Words
+      </h2>
+    </div>
+  </div>
+
+  <!-- Featured Green Testimonial Card matching bottom card in reference design -->
+  <div class="bg-gradient-to-r from-[#20422d] via-[#2d553b] to-[#1c3825] rounded-[2.25rem] p-6 sm:p-10 border border-[#3f724f] shadow-lg text-white relative overflow-hidden">
+    
+    <div class="grid grid-cols-1 md:grid-cols-12 gap-8 items-center">
+      
+      <!-- Client Portrait cutout matching the reference image framing -->
+      <div class="md:col-span-4 flex justify-center">
+        <div class="relative w-48 h-56 sm:w-56 sm:h-64 rounded-3xl overflow-hidden border-2 border-emerald-400/40 shadow-xl bg-[#264c33]">
+          <img
+            src="/images/client-portrait.jpg"
+            alt="Nilo Jiti Kusuma - Klien Event Organizer Malang"
+            class="w-full h-full object-cover object-top"
+          />
+          <div class="absolute inset-0 bg-gradient-to-t from-black/40 via-transparent to-transparent"></div>
+        </div>
+      </div>
+
+      <!-- Testimonial Quote & Info -->
+      <div class="md:col-span-8">
+        <div class="flex items-center gap-1 text-emerald-300 mb-4">
+          {Array(5).fill(0).map(() => (
+            <svg class="w-5 h-5 fill-current" viewBox="0 0 20 20">
+              <path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"/>
+            </svg>
+          ))}
+          <span class="text-xs font-semibold text-emerald-200 ml-2">5.0 / 5.0 Penilaian Klien</span>
+        </div>
+
+        <blockquote class="text-sm sm:text-base lg:text-lg text-[#e5f1e8] font-normal leading-relaxed italic mb-6">
+          "{testimonials[0].quote}"
+        </blockquote>
+
+        <div class="pt-4 border-t border-emerald-500/30 flex flex-wrap items-center justify-between gap-4">
+          <div>
+            <h4 class="text-base sm:text-lg font-bold text-white leading-tight">
+              {testimonials[0].name}
+            </h4>
+            <p class="text-xs text-emerald-300 font-medium">
+              {testimonials[0].role} &bull; {testimonials[0].company}
+            </p>
+            <span class="text-[11px] text-[#a9c9b1] block mt-0.5">
+              {testimonials[0].location}
+            </span>
+          </div>
+
+          <a
+            href="/portofolio/annual-leadership-retreat-gathering-batu"
+            class="px-4 py-2 rounded-full bg-white/10 hover:bg-white text-xs font-semibold text-white hover:text-[#1b3825] transition-all border border-white/20"
+          >
+            Baca Studi Kasus Acara &rarr;
+          </a>
+        </div>
+      </div>
+
+    </div>
+
+  </div>
+</section>

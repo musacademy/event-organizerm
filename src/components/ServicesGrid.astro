@@ -1,0 +1,139 @@
+---
+import { servicesData } from '../data/services';
+---
+
+<section id="layanan" class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12 reveal-on-scroll">
+  <div class="text-center max-w-2xl mx-auto mb-8">
+    <span class="text-xs font-bold tracking-widest uppercase text-[#3f724f] bg-[#eaf2eb] px-3.5 py-1.5 rounded-full inline-block mb-3">
+      Kategori Penyelenggaraan Acara
+    </span>
+    <h2 class="text-2xl sm:text-3xl font-sans font-extrabold text-[#1b3825]">
+      Layanan Event Organizer Terintegrasi
+    </h2>
+    <p class="text-xs sm:text-sm text-[#546b5a] mt-2">
+      Kami mengelola seluruh kebutuhan produksi dari perencanaan konsep hingga eksekusi panggung di wilayah Malang dan Kediri.
+    </p>
+  </div>
+
+  <!-- Category Filter Pills matching top tabs in reference -->
+  <div class="flex items-center justify-center gap-2 overflow-x-auto pb-4 custom-scrollbar mb-8">
+    <button class="filter-tab-btn active px-4 py-2 rounded-full text-xs font-semibold bg-[#2d553b] text-white transition-all shadow-xs" data-category="all">
+      Semua Layanan
+    </button>
+    <button class="filter-tab-btn px-4 py-2 rounded-full text-xs font-semibold bg-white text-[#415446] hover:bg-[#eaf1ec] border border-[#e1eae2] transition-all" data-category="corporate">
+      Corporate & Gala
+    </button>
+    <button class="filter-tab-btn px-4 py-2 rounded-full text-xs font-semibold bg-white text-[#415446] hover:bg-[#eaf1ec] border border-[#e1eae2] transition-all" data-category="wedding">
+      Wedding Organizer
+    </button>
+    <button class="filter-tab-btn px-4 py-2 rounded-full text-xs font-semibold bg-white text-[#415446] hover:bg-[#eaf1ec] border border-[#e1eae2] transition-all" data-category="gathering">
+      Gathering & Outbound
+    </button>
+    <button class="filter-tab-btn px-4 py-2 rounded-full text-xs font-semibold bg-white text-[#415446] hover:bg-[#eaf1ec] border border-[#e1eae2] transition-all" data-category="seminar">
+      Seminar & Conf
+    </button>
+    <button class="filter-tab-btn px-4 py-2 rounded-full text-xs font-semibold bg-white text-[#415446] hover:bg-[#eaf1ec] border border-[#e1eae2] transition-all" data-category="festival">
+      Festival Musik
+    </button>
+  </div>
+
+  <!-- Cards Grid matching the 6 cards in reference design -->
+  <div id="services-grid" class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
+    {servicesData.map((service) => (
+      <div 
+        class="service-card group bg-white rounded-3xl p-4 border border-[#e2ece4] shadow-xs hover:shadow-lg transition-all duration-300 flex flex-col justify-between"
+        data-cat={service.category}
+      >
+        <div>
+          <!-- Card Image Container with Top-Left Green Badge and Rounded Frame -->
+          <div class="relative w-full h-56 rounded-2xl overflow-hidden bg-[#eef4ef] mb-4">
+            <img
+              src={service.image}
+              alt={service.title}
+              class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
+              loading="lazy"
+            />
+            
+            <!-- Category Pill Badge at top-left matching reference image -->
+            <span class="absolute top-3 left-3 px-3 py-1 bg-[#2d553b] text-white text-[10px] font-bold uppercase tracking-wider rounded-full shadow-xs">
+              {service.tag}
+            </span>
+
+            <!-- Locations Badge -->
+            <div class="absolute bottom-3 left-3 bg-white/90 backdrop-blur-xs px-2.5 py-1 rounded-full text-[10px] font-medium text-[#2d553b] flex items-center gap-1">
+              <svg class="w-3 h-3" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z" />
+              </svg>
+              <span>{service.locations.join(' & ')}</span>
+            </div>
+          </div>
+
+          <!-- Title and Description -->
+          <h3 class="text-base font-bold text-[#1b3825] group-hover:text-[#2d553b] transition-colors line-clamp-1 mb-1">
+            {service.title}
+          </h3>
+          <p class="text-xs text-[#526a58] leading-relaxed mb-4 line-clamp-2">
+            {service.description}
+          </p>
+
+          <!-- Key Features Bullet preview -->
+          <ul class="space-y-1 mb-5">
+            {service.features.slice(0, 2).map((feat) => (
+              <li class="flex items-center gap-1.5 text-[11px] text-[#3e5645]">
+                <svg class="w-3.5 h-3.5 text-[#2d553b] shrink-0" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7" />
+                </svg>
+                <span class="truncate">{feat}</span>
+              </li>
+            ))}
+          </ul>
+        </div>
+
+        <!-- Price and Action Pill matching the reference card bottom -->
+        <div class="pt-3 border-t border-[#edf4ee] flex items-center justify-between">
+          <div>
+            <span class="text-[10px] uppercase text-[#698570] block font-medium">Estimasi Biaya</span>
+            <span class="text-xs font-bold text-[#1b3825]">{service.startingPrice}</span>
+          </div>
+
+          <a
+            href={`/kontak?service=${service.id}`}
+            title={`Konsultasi ${service.title}`}
+            class="w-10 h-10 rounded-full bg-[#2d553b] text-white flex items-center justify-center hover:bg-[#1a3825] transition-transform hover:scale-110 shadow-xs"
+          >
+            <svg class="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+              <path stroke-linecap="round" stroke-linejoin="round" d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z" />
+            </svg>
+          </a>
+        </div>
+
+      </div>
+    ))}
+  </div>
+</section>
+
+<script>
+  const filterBtns = document.querySelectorAll('.filter-tab-btn');
+  const cards = document.querySelectorAll<HTMLElement>('.service-card');
+
+  filterBtns.forEach((btn) => {
+    btn.addEventListener('click', () => {
+      filterBtns.forEach((b) => {
+        b.classList.remove('bg-[#2d553b]', 'text-white', 'shadow-xs');
+        b.classList.add('bg-white', 'text-[#415446]');
+      });
+      btn.classList.add('bg-[#2d553b]', 'text-white', 'shadow-xs');
+      btn.classList.remove('bg-white', 'text-[#415446]');
+
+      const category = btn.getAttribute('data-category');
+      cards.forEach((card) => {
+        const cardCat = card.getAttribute('data-cat');
+        if (category === 'all' || cardCat === category) {
+          card.style.display = 'flex';
+        } else {
+          card.style.display = 'none';
+        }
+      });
+    });
+  });
+</script>

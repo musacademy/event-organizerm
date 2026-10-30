@@ -1,0 +1,262 @@
+---
+import Layout from '../layouts/Layout.astro';
+import ContactForm from '../components/ContactForm.astro';
+import FAQAccordion from '../components/FAQAccordion.astro';
+import { portfolioData } from '../data/portfolio';
+import { blogPosts } from '../data/blog';
+
+const malangPortfolio = portfolioData.filter((p) => p.city === 'malang');
+const malangPosts = blogPosts.filter((p) => p.cityTag === 'Malang');
+
+const malangFaqs = [
+  {
+    question: 'Apakah Aethel melayani acara di Kota Wisata Batu dan Kabupaten Malang?',
+    answer: 'Ya, operasional kami mencakup seluruh kawasan Malang Raya: Kota Malang, Kota Wisata Batu, dan Kabupaten Malang (Kepanjen, Singosari, Lawang, dsb). Kami sangat berpengalaman menangani gathering outdoor di perbukitan Batu maupun seminar di pusat Kota Malang.'
+  },
+  {
+    question: 'Venue mana saja di Malang Raya yang menjadi rekanan Aethel Events?',
+    answer: 'Kami bekerja sama dengan berbagai venue terkemuka, seperti Grand Mercure Malang Mirama, Hotel Savana, The Singhasari Resort Batu, Kusuma Agrowisata, Golden Tulip Holland Resort, serta convention hall kampus di Kota Malang.'
+  },
+  {
+    question: 'Berapa lama persiapan yang dibutuhkan untuk mengadakan event korporasi di Malang?',
+    answer: 'Untuk acara berskala 50-200 orang, waktu persiapan ideal berkisar antara 3 hingga 6 minggu. Untuk event skala besar (>500 peserta) atau festival terbuka, kami sarankan konsultasi dilakukan 2-3 bulan sebelumnya untuk memastikan perizinan dan ketersediaan venue.'
+  },
+  {
+    question: 'Apakah ada paket hemat untuk company gathering dan outbound di Batu?',
+    answer: 'Tentu saja. Kami memiliki bundling all-in-one yang mencakup venue retreat di Batu, fasilitator outbound bersertifikat, perlengkapan games, sound outdoor, hingga malam keakraban dengan live music.'
+  }
+];
+---
+
+<Layout
+  title="Event Organizer Malang | Jasa EO Profesional"
+  description="Butuh Event Organizer di Malang? Konsultasikan kebutuhan acara Anda bersama tim kami untuk perencanaan dan pelaksanaan acara sesuai kebutuhan."
+  keywords="Event Organizer Malang, Jasa EO Malang, EO Malang, Jasa EO di Malang, Event Organizer Malang untuk perusahaan, Jasa penyelenggara acara Malang, EO Batu Malang"
+  currentPath="/event-organizer-malang"
+  citySpecific="malang"
+  breadcrumbs={[
+    { name: 'Beranda', url: '/' },
+    { name: 'Event Organizer Malang', url: '/event-organizer-malang' }
+  ]}
+>
+  <!-- Hero Section Malang -->
+  <section class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 pt-4 pb-8">
+    <div class="relative bg-white rounded-[2rem] sm:rounded-[2.75rem] border border-[#e2ece4] overflow-hidden shadow-sm p-3 sm:p-5">
+      <div class="relative w-full h-[460px] sm:h-[520px] rounded-[1.75rem] sm:rounded-[2.25rem] overflow-hidden">
+        <img
+          src="/images/corporate-malang.jpg"
+          alt="Event Organizer Malang - Konferensi dan Corporate Event"
+          class="w-full h-full object-cover object-center"
+        />
+        <div class="absolute inset-0 bg-gradient-to-t from-[#13271a]/95 via-[#1a3825]/60 to-black/30"></div>
+
+        <div class="absolute inset-0 p-6 sm:p-12 lg:p-16 flex flex-col justify-end max-w-2xl text-white">
+          <div class="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-[#387049]/90 border border-white/20 text-xs font-semibold tracking-wide text-emerald-100 backdrop-blur-md mb-4 w-fit">
+            <span class="w-2 h-2 rounded-full bg-emerald-300"></span>
+            <span>Kantor Pusat: Jl. Besar Ijen No. 42, Kota Malang</span>
+          </div>
+
+          <h1 class="text-3xl sm:text-5xl font-extrabold font-sans tracking-tight leading-tight mb-4 text-white">
+            Event Organizer Malang untuk Berbagai Kebutuhan Acara.
+          </h1>
+
+          <p class="text-xs sm:text-sm text-[#d8ebd9] font-normal leading-relaxed mb-6 max-w-lg">
+            Rencanakan acara Anda bersama tim Event Organizer yang membantu mengelola konsep, persiapan, dan pelaksanaan acara sesuai kebutuhan Anda di Malang dan sekitarnya.
+          </p>
+
+          <div class="flex flex-wrap items-center gap-3">
+            <a
+              href="#konsultasi-malang"
+              class="px-6 py-3 rounded-full bg-[#2d553b] hover:bg-[#1a3825] text-white text-xs sm:text-sm font-semibold transition-all shadow-md border border-emerald-400/30"
+            >
+              Konsultasi Acara di Malang
+            </a>
+            <a
+              href="/event-organizer-kediri"
+              class="px-5 py-3 rounded-full bg-white/90 hover:bg-white text-[#1b3825] text-xs font-semibold transition-all"
+            >
+              Lihat Layanan Kediri &rarr;
+            </a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Explanation & Scope of Services in Malang -->
+  <section class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-10">
+    <div class="grid grid-cols-1 lg:grid-cols-12 gap-8 items-center">
+      <div class="lg:col-span-7">
+        <span class="text-xs font-bold tracking-widest uppercase text-[#3f724f] bg-[#eaf2eb] px-3.5 py-1.5 rounded-full inline-block mb-3">
+          Layanan Spesifik Malang Raya
+        </span>
+        <h2 class="text-2xl sm:text-3xl font-sans font-extrabold text-[#1b3825] leading-tight mb-4">
+          Solusi Event Organizer Terpercaya di Malang & Kota Wisata Batu
+        </h2>
+        <div class="space-y-3 text-xs sm:text-sm text-[#4e6654] leading-relaxed">
+          <p>
+            Malang dikenal sebagai barometer kota pendidikan, pusat industri kreatif, dan destinasi pariwisata berudara sejuk. Karakteristik ini membuat Malang dan Batu menjadi lokasi strategis untuk menyelenggarakan konferensi akademis, gathering perusahaan, retreat keluarga, hingga perayaan pernikahan berkonsep alam.
+          </p>
+          <p>
+            Dengan kantor pusat yang berlokasi di kawasan Ijen Kota Malang, tim Aethel memiliki kedekatan geografis dan jaringan rekanan langsung dengan pengelola venue perhotelan bintang 4 & 5, vendor sound & lighting lokal, katering higienis, serta instansi perizinan wilayah Malang Raya.
+          </p>
+        </div>
+
+        <div class="grid grid-cols-2 sm:grid-cols-3 gap-3 mt-6">
+          <div class="bg-white p-3 rounded-2xl border border-[#e2ece4] text-center">
+            <span class="block text-lg font-bold text-[#2d553b]">80+</span>
+            <span class="text-[11px] text-[#607966]">Acara di Malang & Batu</span>
+          </div>
+          <div class="bg-white p-3 rounded-2xl border border-[#e2ece4] text-center">
+            <span class="block text-lg font-bold text-[#2d553b]">25+</span>
+            <span class="text-[11px] text-[#607966]">Venue Rekanan Resmi</span>
+          </div>
+          <div class="bg-white p-3 rounded-2xl border border-[#e2ece4] text-center col-span-2 sm:col-span-1">
+            <span class="block text-lg font-bold text-[#2d553b]">100%</span>
+            <span class="text-[11px] text-[#607966]">Legalitas Bisnis Jelas</span>
+          </div>
+        </div>
+      </div>
+
+      <div class="lg:col-span-5 grid grid-cols-2 gap-3">
+        <div class="rounded-3xl overflow-hidden border border-[#e2ece4] h-52 sm:h-64 shadow-xs">
+          <img src="/images/gathering-batu.jpg" alt="Outbound di Batu Malang" class="w-full h-full object-cover" />
+        </div>
+        <div class="rounded-3xl overflow-hidden border border-[#e2ece4] h-52 sm:h-64 shadow-xs translate-y-3">
+          <img src="/images/hero-stage.jpg" alt="Stage seminar Malang" class="w-full h-full object-cover" />
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Jenis Acara yang Ditangani di Malang -->
+  <section class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
+    <div class="bg-[#edf4ee] rounded-[2.5rem] p-6 sm:p-10 border border-[#d6e5d9]">
+      <div class="max-w-2xl mb-8">
+        <h3 class="text-xl sm:text-2xl font-sans font-extrabold text-[#1b3825] mb-2">
+          Kategori Acara Utama yang Kami Tangani di Malang
+        </h3>
+        <p class="text-xs sm:text-sm text-[#546e5a]">
+          Menyesuaikan skala dan sasaran acara dengan alokasi sumber daya yang optimal.
+        </p>
+      </div>
+
+      <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4">
+        <div class="bg-white p-5 rounded-3xl border border-[#dce8df]">
+          <div class="w-10 h-10 rounded-2xl bg-[#e3efe5] flex items-center justify-center text-[#2d553b] mb-3">
+            <svg class="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 21V5a2 2 0 00-2-2H7a2 2 0 00-2 2v16m14 0h2m-2 0h-5m-9 0H3m2 0h5M9 7h1m-1 4h1m4-4h1m-1 4h1m-5 10v-5a1 1 0 011-1h2a1 1 0 011 1v5m-4 0h4" />
+            </svg>
+          </div>
+          <h4 class="text-sm font-bold text-[#1b3825] mb-1">Corporate Gathering & Retreat</h4>
+          <p class="text-xs text-[#526a58] leading-relaxed">
+            Paket outbound fun games, malam keakraban, dan gala dinner di resort sejuk kawasan Kota Batu.
+          </p>
+        </div>
+
+        <div class="bg-white p-5 rounded-3xl border border-[#dce8df]">
+          <div class="w-10 h-10 rounded-2xl bg-[#e3efe5] flex items-center justify-center text-[#2d553b] mb-3">
+            <svg class="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 6.253v13m0-13C10.832 5.477 9.246 5 7.5 5S4.168 5.477 3 6.253v13C4.168 18.477 5.754 18 7.5 18s3.332.477 4.5 1.253m0-13C13.168 5.477 14.754 5 16.5 5c1.747 0 3.332.477 4.5 1.253v13C19.832 18.477 18.247 18 16.5 18c-1.746 0-3.332.477-4.5 1.253" />
+            </svg>
+          </div>
+          <h4 class="text-sm font-bold text-[#1b3825] mb-1">Seminar & Conference</h4>
+          <p class="text-xs text-[#526a58] leading-relaxed">
+            Konferensi nasional akademis dan simposium profesional dengan barcode check-in & LED screen modern.
+          </p>
+        </div>
+
+        <div class="bg-white p-5 rounded-3xl border border-[#dce8df]">
+          <div class="w-10 h-10 rounded-2xl bg-[#e3efe5] flex items-center justify-center text-[#2d553b] mb-3">
+            <svg class="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4.318 6.318a4.5 4.5 0 000 6.364L12 20.364l7.682-7.682a4.5 4.5 0 00-6.364-6.364L12 7.636l-1.318-1.318a4.5 4.5 0 00-6.364 0z" />
+            </svg>
+          </div>
+          <h4 class="text-sm font-bold text-[#1b3825] mb-1">Intimate Wedding Botanical</h4>
+          <p class="text-xs text-[#526a58] leading-relaxed">
+            Pernikahan elegan bernuansa alam terbuka dengan instalasi bunga lokal dan pendampingan keluarga terpadu.
+          </p>
+        </div>
+
+        <div class="bg-white p-5 rounded-3xl border border-[#dce8df]">
+          <div class="w-10 h-10 rounded-2xl bg-[#e3efe5] flex items-center justify-center text-[#2d553b] mb-3">
+            <svg class="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 19V6l12-3v13M9 19c0 1.105-1.343 2-3 2s-3-.895-3-2 1.343-2 3-2 3 .895 3 2zm12-3c0 1.105-1.343 2-3 2s-3-.895-3-2 1.343-2 3-2 3 .895 3 2zM9 10l12-3" />
+            </svg>
+          </div>
+          <h4 class="text-sm font-bold text-[#1b3825] mb-1">Festival Musik & Pameran</h4>
+          <p class="text-xs text-[#526a58] leading-relaxed">
+            Produksi pertunjukan panggung truss rigging, line array sound, perizinan, dan ticketing aman terkendali.
+          </p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Portofolio Khusus Acara di Malang -->
+  <section class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-10">
+    <div class="flex items-center justify-between mb-6">
+      <div>
+        <h3 class="text-xl sm:text-2xl font-sans font-extrabold text-[#1b3825]">
+          Portofolio Penyelenggaraan Acara di Malang
+        </h3>
+        <p class="text-xs text-[#526a58] mt-1">Dokumentasi nyata kegiatan yang telah dipercayakan kepada Aethel Events.</p>
+      </div>
+      <a href="/portofolio" class="text-xs font-bold text-[#2d553b] hover:underline">Semua Portofolio &rarr;</a>
+    </div>
+
+    <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+      {malangPortfolio.map((item) => (
+        <div class="bg-white rounded-3xl overflow-hidden border border-[#e2ece4] shadow-xs group flex flex-col justify-between">
+          <div>
+            <div class="relative w-full h-48 overflow-hidden bg-gray-100">
+              <img src={item.featuredImage} alt={item.title} class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500" />
+              <span class="absolute top-3 left-3 px-3 py-1 bg-[#2d553b] text-white text-[10px] font-bold rounded-full">
+                {item.category}
+              </span>
+            </div>
+            <div class="p-5">
+              <span class="text-[11px] text-[#55755d] font-semibold block mb-1">{item.location}</span>
+              <h4 class="text-sm font-bold text-[#1b3825] line-clamp-1 mb-2">{item.title}</h4>
+              <p class="text-xs text-[#526a58] leading-relaxed line-clamp-2">{item.description}</p>
+            </div>
+          </div>
+          <div class="p-5 pt-0">
+            <a href={`/portofolio/${item.slug}`} class="text-xs font-bold text-[#2d553b] hover:underline inline-flex items-center gap-1">
+              <span>Detail Dokumentasi</span>
+              <span>&rarr;</span>
+            </a>
+          </div>
+        </div>
+      ))}
+    </div>
+  </section>
+
+  <!-- FAQ Khusus Malang -->
+  <FAQAccordion
+    faqs={malangFaqs}
+    title="FAQ Seputar Event Organizer Malang"
+    subtitle="Pertanyaan umum calon klien korporasi, institusi, dan personal di wilayah Malang & Kota Batu."
+  />
+
+  <!-- Form Pengajuan Acara Malang -->
+  <div id="konsultasi-malang">
+    <ContactForm
+      defaultLocation="Malang"
+      headline="Konsultasi & Pengajuan Acara di Malang"
+      subheadline="Dapatkan rancangan proposal dan estimasi anggaran khusus untuk acara Anda di Malang atau Kota Batu."
+    />
+  </div>
+
+  <!-- Internal Link to Kediri -->
+  <section class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-6 text-center">
+    <div class="bg-white rounded-2xl p-6 border border-[#e2ece4] inline-block max-w-xl">
+      <span class="text-xs text-[#526a58]">Merencanakan acara di wilayah Kediri dan sekitarnya?</span>
+      <div class="mt-2">
+        <a href="/event-organizer-kediri" class="text-xs font-bold text-[#2d553b] hover:underline">
+          Kunjungi Halaman Layanan Event Organizer Kediri &rarr;
+        </a>
+      </div>
+    </div>
+  </section>
+</Layout>

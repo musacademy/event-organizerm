@@ -1,0 +1,145 @@
+---
+import Layout from '../layouts/Layout.astro';
+import { businessInfo } from '../data/business';
+---
+
+<Layout
+  title="Tentang Kami | Aethel Event Organizer Malang & Kediri"
+  description="Profil Aethel Event Studio (CV Aethel Karya Kreasi). Penyelenggara acara profesional dengan tim berpengalaman di Malang dan Kediri."
+  currentPath="/tentang-kami"
+  breadcrumbs={[
+    { name: 'Beranda', url: '/' },
+    { name: 'Tentang Kami', url: '/tentang-kami' }
+  ]}
+>
+  <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8 sm:py-12">
+    
+    <!-- Hero / Profile Header -->
+    <div class="bg-white rounded-[2.5rem] p-6 sm:p-12 border border-[#e2ece4] shadow-xs mb-10">
+      <div class="max-w-3xl">
+        <span class="text-xs font-bold tracking-widest uppercase text-[#3f724f] bg-[#eaf2eb] px-3.5 py-1.5 rounded-full inline-block mb-3">
+          Profil Perusahaan
+        </span>
+        <h1 class="text-3xl sm:text-5xl font-extrabold font-sans text-[#1b3825] leading-tight mb-4">
+          Mewujudkan Acara Berkesan dengan Presisi & Dedikasi.
+        </h1>
+        <p class="text-sm sm:text-base text-[#4d6653] leading-relaxed">
+          {businessInfo.legalName} didirikan dengan komitmen menghadirkan standar penyelenggaraan acara berkualitas tinggi di Jawa Timur, khususnya wilayah Malang Raya dan Kediri. Kami memadukan kreativitas konsep visual, manajemen waktu presisi, dan transparansi anggaran penuh.
+        </p>
+      </div>
+
+      <!-- Quick Metrics Grid -->
+      <div class="grid grid-cols-2 sm:grid-cols-4 gap-4 mt-8 pt-8 border-t border-[#edf4ee]">
+        <div>
+          <span class="text-2xl sm:text-3xl font-extrabold text-[#2d553b] block">150+</span>
+          <span class="text-xs text-[#526a58] font-medium">Acara Terselenggara</span>
+        </div>
+        <div>
+          <span class="text-2xl sm:text-3xl font-extrabold text-[#2d553b] block">2 Hub</span>
+          <span class="text-xs text-[#526a58] font-medium">Malang & Kediri</span>
+        </div>
+        <div>
+          <span class="text-2xl sm:text-3xl font-extrabold text-[#2d553b] block">99.2%</span>
+          <span class="text-xs text-[#526a58] font-medium">Kepuasan Klien</span>
+        </div>
+        <div>
+          <span class="text-2xl sm:text-3xl font-extrabold text-[#2d553b] block">24/7</span>
+          <span class="text-xs text-[#526a58] font-medium">Dukungan Siaga Acara</span>
+        </div>
+      </div>
+    </div>
+
+    <!-- Visi, Misi & Nilai -->
+    <div class="grid grid-cols-1 md:grid-cols-3 gap-6 mb-12">
+      <div class="bg-white rounded-3xl p-6 border border-[#e2ece4] shadow-xs">
+        <div class="w-10 h-10 rounded-2xl bg-[#edf4ee] flex items-center justify-center text-[#2d553b] mb-4">
+          <svg class="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 12a3 3 0 11-6 0 3 3 0 016 0z" />
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M2.458 12C3.732 7.943 7.523 5 12 5c4.478 0 8.268 2.943 9.542 7-1.274 4.057-5.064 7-9.542 7-4.477 0-8.268-2.943-9.542-7z" />
+          </svg>
+        </div>
+        <h3 class="text-base font-bold text-[#1b3825] mb-2">Visi Kami</h3>
+        <p class="text-xs text-[#526a58] leading-relaxed">
+          Menjadi mitra Event Organizer paling terpercaya dan berdaya saing tinggi di Jawa Timur yang unggul dalam tata kelola produksi modern, estetika ruang, dan kepuasan klien.
+        </p>
+      </div>
+
+      <div class="bg-white rounded-3xl p-6 border border-[#e2ece4] shadow-xs">
+        <div class="w-10 h-10 rounded-2xl bg-[#edf4ee] flex items-center justify-center text-[#2d553b] mb-4">
+          <svg class="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z" />
+          </svg>
+        </div>
+        <h3 class="text-base font-bold text-[#1b3825] mb-2">Misi Utama</h3>
+        <p class="text-xs text-[#526a58] leading-relaxed">
+          Mengintegrasikan kebutuhan konsep, logistik, panggung audio-visual, dan protokoler dengan standar SOP ketat, serta memberikan nilai tambah nyata bagi setiap pemangku kepentingan.
+        </p>
+      </div>
+
+      <div class="bg-white rounded-3xl p-6 border border-[#e2ece4] shadow-xs">
+        <div class="w-10 h-10 rounded-2xl bg-[#edf4ee] flex items-center justify-center text-[#2d553b] mb-4">
+          <svg class="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8c-1.657 0-3 .895-3 2s1.343 2 3 2 3 .895 3 2-1.343 2-3 2m0-8c1.11 0 2.08.402 2.599 1M12 8V7m0 1v8m0 0v1m0-1c-1.11 0-2.08-.402-2.599-1M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />
+          </svg>
+        </div>
+        <h3 class="text-base font-bold text-[#1b3825] mb-2">Transparansi Anggaran</h3>
+        <p class="text-xs text-[#526a58] leading-relaxed">
+          Kami menjamin tidak ada biaya siluman atau mark-up tersembunyi. Setiap rupiah anggaran klien dipertanggungjawabkan dalam laporan rincian kerja yang transparan.
+        </p>
+      </div>
+    </div>
+
+    <!-- Kantor & Operasional Fisik PRD Section 5 -->
+    <div class="bg-gradient-to-r from-[#20422d] to-[#1c3825] rounded-[2.5rem] p-6 sm:p-10 text-white shadow-lg mb-12">
+      <div class="max-w-2xl mb-8">
+        <span class="text-xs font-bold tracking-widest uppercase text-emerald-300 bg-white/10 px-3 py-1 rounded-full mb-2 inline-block">
+          Kantor & Jangkauan Layanan Nyata
+        </span>
+        <h2 class="text-2xl sm:text-3xl font-sans font-extrabold text-white">
+          Dua Hub Operasional di Jawa Timur
+        </h2>
+        <p class="text-xs sm:text-sm text-[#cde4d2] mt-2">
+          Kami membedakan secara tegas alamat kantor fisik dengan cakupan area layanan untuk menjamin kredibilitas dan kemudahan koordinasi Anda.
+        </p>
+      </div>
+
+      <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+        <div class="bg-white/10 rounded-2xl p-6 border border-white/10 backdrop-blur-xs">
+          <div class="flex items-center justify-between mb-3">
+            <h4 class="text-base font-bold text-white">Kantor Pusat Malang</h4>
+            <span class="text-[10px] bg-emerald-500/30 text-emerald-200 px-2 py-0.5 rounded-full">Head Office</span>
+          </div>
+          <p class="text-xs text-[#dbece0] leading-relaxed mb-4">
+            Jl. Besar Ijen No. 42, Kel. Gading Kasri, Kec. Klojen, Kota Malang, Jawa Timur 65115
+          </p>
+          <span class="text-[11px] text-[#9fc7a6] block">Fasilitas: Studio Desain, Ruang Kickoff Meeting Klien, Workshop Dekorasi.</span>
+        </div>
+
+        <div class="bg-white/10 rounded-2xl p-6 border border-white/10 backdrop-blur-xs">
+          <div class="flex items-center justify-between mb-3">
+            <h4 class="text-base font-bold text-white">Hub Operasional Kediri</h4>
+            <span class="text-[10px] bg-emerald-500/30 text-emerald-200 px-2 py-0.5 rounded-full">Logistics Hub</span>
+          </div>
+          <p class="text-xs text-[#dbece0] leading-relaxed mb-4">
+            Jl. Dhoho No. 88, Kel. Pakelan, Kota Kediri, Jawa Timur 64129
+          </p>
+          <span class="text-[11px] text-[#9fc7a6] block">Fasilitas: Gudang Rigging Panggung, Inventaris Sound & Lighting, Tim Koordinasi Lapangan.</span>
+        </div>
+      </div>
+    </div>
+
+    <!-- CTA -->
+    <div class="text-center py-6">
+      <h3 class="text-xl font-bold font-sans text-[#1b3825] mb-2">Ingin Berdiskusi Langsung dengan Tim Kami?</h3>
+      <p class="text-xs text-[#526a58] mb-4">Kami menyambut sesi kickoff tatap muka di kantor Malang maupun Kediri.</p>
+      <a
+        href="/kontak"
+        class="inline-flex items-center gap-2 px-6 py-3 rounded-full bg-[#2d553b] hover:bg-[#1a3825] text-white text-xs sm:text-sm font-semibold transition-all shadow-md"
+      >
+        <span>Hubungi Kami & Jadwalkan Pertemuan</span>
+        <span>&rarr;</span>
+      </a>
+    </div>
+
+  </div>
+</Layout>

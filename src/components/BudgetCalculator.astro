@@ -1,0 +1,161 @@
+---
+import { businessInfo } from '../data/business';
+---
+
+<section class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-10 reveal-on-scroll">
+  <div class="bg-gradient-to-br from-[#23452f] via-[#2d553b] to-[#1c3926] rounded-[2.5rem] p-6 sm:p-10 lg:p-12 text-white shadow-xl relative overflow-hidden border border-[#3e724f]">
+    
+    <!-- Background subtle botanical motif -->
+    <div class="absolute -right-20 -bottom-20 w-96 h-96 rounded-full bg-emerald-500/10 blur-3xl pointer-events-none"></div>
+
+    <div class="relative z-10 grid grid-cols-1 lg:grid-cols-12 gap-8 items-center">
+      
+      <!-- Left Explanation -->
+      <div class="lg:col-span-5">
+        <span class="inline-block text-xs font-bold tracking-widest text-emerald-300 bg-white/10 px-3 py-1 rounded-full mb-3 backdrop-blur-xs">
+          Kalkulator & Estimasi Acara
+        </span>
+        <h2 class="text-2xl sm:text-3xl font-sans font-extrabold text-white leading-tight mb-3">
+          Simulasikan Kebutuhan & Anggaran Acara Anda
+        </h2>
+        <p class="text-xs sm:text-sm text-[#c8e2cd] leading-relaxed mb-6">
+          Dapatkan gambaran alokasi biaya transparan untuk acara di Malang, Kediri, atau wilayah sekitarnya tanpa biaya tersembunyi.
+        </p>
+
+        <div class="space-y-3">
+          <div class="flex items-center gap-3">
+            <div class="w-8 h-8 rounded-full bg-emerald-500/20 flex items-center justify-center text-emerald-300 shrink-0">
+              <svg class="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7" />
+              </svg>
+            </div>
+            <span class="text-xs text-[#dbece0]">Harga kompetitif sesuai jangkauan vendor lokal</span>
+          </div>
+          <div class="flex items-center gap-3">
+            <div class="w-8 h-8 rounded-full bg-emerald-500/20 flex items-center justify-center text-emerald-300 shrink-0">
+              <svg class="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7" />
+              </svg>
+            </div>
+            <span class="text-xs text-[#dbece0]">Konsultasi & survey venue gratis untuk Malang & Kediri</span>
+          </div>
+        </div>
+      </div>
+
+      <!-- Right Interactive Calculator Form -->
+      <div class="lg:col-span-7 bg-white text-[#1a251e] rounded-3xl p-6 sm:p-8 shadow-2xl">
+        <div class="grid grid-cols-1 sm:grid-cols-2 gap-4 mb-5">
+          
+          <!-- Kota Lokasi Acara -->
+          <div>
+            <label class="block text-xs font-bold text-[#1b3825] mb-1.5">Lokasi Kota Acara</label>
+            <select id="calc-city" class="w-full text-xs font-medium rounded-xl border border-[#d6e3d8] bg-[#f9fbf9] p-2.5 focus:border-[#2d553b] focus:ring-1 focus:ring-[#2d553b] outline-none">
+              <option value="Malang">Malang Raya (Kota / Kab)</option>
+              <option value="Batu">Kota Wisata Batu</option>
+              <option value="Kediri">Kediri (Kota / Kab)</option>
+              <option value="Wilayah Lain">Wilayah Lain di Jatim</option>
+              <option value="Belum Ditentukan">Belum Ditentukan</option>
+            </select>
+          </div>
+
+          <!-- Jenis Acara -->
+          <div>
+            <label class="block text-xs font-bold text-[#1b3825] mb-1.5">Jenis Acara</label>
+            <select id="calc-type" class="w-full text-xs font-medium rounded-xl border border-[#d6e3d8] bg-[#f9fbf9] p-2.5 focus:border-[#2d553b] focus:ring-1 focus:ring-[#2d553b] outline-none">
+              <option value="Corporate Event" data-base="18">Corporate Event / Gala Dinner</option>
+              <option value="Gathering Perusahaan" data-base="15">Gathering & Outbound Perusahaan</option>
+              <option value="Wedding Organizer" data-base="22">Wedding Organizer & Resepsi</option>
+              <option value="Seminar & Conference" data-base="12">Seminar & Conference</option>
+              <option value="Concert & Festival" data-base="35">Concert & Festival Musik</option>
+              <option value="Private Event" data-base="8.5">Private Event / Birthday / Graduation</option>
+              <option value="Custom Event" data-base="10">Custom Event Khusus</option>
+            </select>
+          </div>
+
+          <!-- Jumlah Tamu / Peserta -->
+          <div>
+            <label class="block text-xs font-bold text-[#1b3825] mb-1.5">Estimasi Peserta / Tamu</label>
+            <select id="calc-guests" class="w-full text-xs font-medium rounded-xl border border-[#d6e3d8] bg-[#f9fbf9] p-2.5 focus:border-[#2d553b] focus:ring-1 focus:ring-[#2d553b] outline-none">
+              <option value="Intimate (< 50 orang)" data-mult="1">Intimate (&lt; 50 orang)</option>
+              <option value="Medium (50 - 150 orang)" data-mult="1.35">Medium (50 - 150 orang)</option>
+              <option value="Large (150 - 350 orang)" data-mult="1.8" selected>Large (150 - 350 orang)</option>
+              <option value="Grand (350 - 700 orang)" data-mult="2.6">Grand (350 - 700 orang)</option>
+              <option value="Mega (> 700 orang)" data-mult="3.8">Mega (&gt; 700 orang / Festival)</option>
+            </select>
+          </div>
+
+          <!-- Status Venue -->
+          <div>
+            <label class="block text-xs font-bold text-[#1b3825] mb-1.5">Status Venue / Tempat</label>
+            <select id="calc-venue" class="w-full text-xs font-medium rounded-xl border border-[#d6e3d8] bg-[#f9fbf9] p-2.5 focus:border-[#2d553b] focus:ring-1 focus:ring-[#2d553b] outline-none">
+              <option value="Sudah Ada Venue Sendiri">Sudah ada venue sendiri</option>
+              <option value="Butuh Rekomendasi Venue dari EO" selected>Butuh rekomendasi & booking EO</option>
+            </select>
+          </div>
+
+        </div>
+
+        <!-- Calculated Summary Box -->
+        <div class="bg-[#f0f6f1] rounded-2xl p-4 border border-[#d7e6da] mb-5">
+          <div class="flex items-center justify-between mb-2">
+            <span class="text-xs font-bold text-[#1b3825]">Perkiraan Rentang Anggaran:</span>
+            <span id="calc-total" class="text-base sm:text-lg font-black text-[#2d553b]">
+              Rp 24,0 - 32,0 Juta
+            </span>
+          </div>
+          <p class="text-[11px] text-[#556e5a] leading-relaxed">
+            *Estimasi meliputi tim koordinasi, stage lighting & audio visual, rundown control, dan koordinasi vendor. Rincian final disesuaikan dengan kebutuhan venue dan menu katering.
+          </p>
+        </div>
+
+        <!-- WhatsApp CTA -->
+        <a
+          id="calc-wa-btn"
+          href={`https://wa.me/${businessInfo.whatsapp}`}
+          target="_blank"
+          class="w-full py-3.5 px-6 rounded-full bg-[#2d553b] hover:bg-[#1a3825] text-white text-xs sm:text-sm font-bold flex items-center justify-center gap-2 transition-all shadow-md hover:scale-[1.01]"
+        >
+          <svg class="w-4 h-4 text-emerald-300 fill-current" viewBox="0 0 24 24">
+            <path d="M12.04 2c-5.46 0-9.91 4.45-9.91 9.91 0 1.75.46 3.45 1.32 4.95L2.05 22l5.25-1.38c1.45.79 3.08 1.21 4.74 1.21 5.46 0 9.91-4.45 9.91-9.91 0-2.65-1.03-5.14-2.9-7.01A9.816 9.816 0 0012.04 2z" />
+          </svg>
+          <span>Kirim Simulasi Ini ke WhatsApp Tim EO</span>
+        </a>
+
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<script>
+  function updateCalculator() {
+    const city = (document.getElementById('calc-city') as HTMLSelectElement)?.value || 'Malang';
+    const typeSelect = document.getElementById('calc-type') as HTMLSelectElement;
+    const guestSelect = document.getElementById('calc-guests') as HTMLSelectElement;
+    const venue = (document.getElementById('calc-venue') as HTMLSelectElement)?.value || '';
+
+    const baseVal = parseFloat(typeSelect?.selectedOptions[0]?.getAttribute('data-base') || '18');
+    const multVal = parseFloat(guestSelect?.selectedOptions[0]?.getAttribute('data-mult') || '1.5');
+
+    const lowEst = (baseVal * multVal).toFixed(1);
+    const highEst = (baseVal * multVal * 1.35).toFixed(1);
+
+    const totalEl = document.getElementById('calc-total');
+    if (totalEl) {
+      totalEl.innerText = `Rp ${lowEst} - ${highEst} Juta`;
+    }
+
+    const waBtn = document.getElementById('calc-wa-btn') as HTMLAnchorElement;
+    if (waBtn) {
+      const typeText = typeSelect?.value;
+      const guestText = guestSelect?.value;
+      const msg = `Halo Aethel Events, saya ingin konsultasi acara dengan simulasi kalkulator:\n- Lokasi: ${city}\n- Jenis Acara: ${typeText}\n- Jumlah Tamu: ${guestText}\n- Kebutuhan Venue: ${venue}\n- Estimasi Awal: Rp ${lowEst} - ${highEst} Juta.\nMohon info ketersediaan tanggal & proposal rincinya. Terima kasih!`;
+      waBtn.href = `https://wa.me/6281234567890?text=${encodeURIComponent(msg)}`;
+    }
+  }
+
+  ['calc-city', 'calc-type', 'calc-guests', 'calc-venue'].forEach((id) => {
+    document.getElementById(id)?.addEventListener('change', updateCalculator);
+  });
+  updateCalculator();
+</script>

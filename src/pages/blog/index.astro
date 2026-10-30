@@ -1,0 +1,124 @@
+---
+import Layout from '../../layouts/Layout.astro';
+import { blogPosts } from '../../data/blog';
+---
+
+<Layout
+  title="Blog & Panduan Acara | Aethel Event Organizer"
+  description="Kumpulan artikel, tips praktis, panduan anggaran, dan referensi venue untuk acara di Malang dan Kediri."
+  currentPath="/blog"
+  breadcrumbs={[
+    { name: 'Beranda', url: '/' },
+    { name: 'Blog & Panduan', url: '/blog' }
+  ]}
+>
+  <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8 sm:py-12">
+    
+    <!-- Header -->
+    <div class="max-w-3xl mb-8">
+      <span class="text-xs font-bold tracking-widest uppercase text-[#3f724f] bg-[#eaf2eb] px-3.5 py-1.5 rounded-full inline-block mb-3">
+        Wawasan & Edukasi Acara
+      </span>
+      <h1 class="text-3xl sm:text-4xl font-sans font-extrabold text-[#1b3825] leading-tight mb-3">
+        Blog & Panduan Penyelenggaraan Acara
+      </h1>
+      <p class="text-xs sm:text-sm text-[#546b5a] leading-relaxed">
+        Artikel informatif dan panduan praktis untuk membantu Anda merencanakan acara korporat, gathering, seminar, pernikahan, dan festival di wilayah Malang & Kediri.
+      </p>
+    </div>
+
+    <!-- Filter Buttons -->
+    <div class="flex flex-wrap items-center gap-2 mb-8 pb-3 border-b border-[#e2ece4]">
+      <button class="blog-filter active px-4 py-1.5 rounded-full text-xs font-semibold bg-[#2d553b] text-white transition-all shadow-xs" data-tag="all">
+        Semua Artikel ({blogPosts.length})
+      </button>
+      <button class="blog-filter px-4 py-1.5 rounded-full text-xs font-semibold bg-white text-[#415446] hover:bg-[#eaf1ec] border border-[#e1eae2] transition-all" data-tag="Malang">
+        Panduan Malang & Batu
+      </button>
+      <button class="blog-filter px-4 py-1.5 rounded-full text-xs font-semibold bg-white text-[#415446] hover:bg-[#eaf1ec] border border-[#e1eae2] transition-all" data-tag="Kediri">
+        Panduan Kediri
+      </button>
+      <button class="blog-filter px-4 py-1.5 rounded-full text-xs font-semibold bg-white text-[#415446] hover:bg-[#eaf1ec] border border-[#e1eae2] transition-all" data-tag="Umum">
+        Tips Anggaran & Manajemen
+      </button>
+    </div>
+
+    <!-- Articles Grid -->
+    <div id="blog-grid" class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+      {blogPosts.map((post) => (
+        <article
+          class="blog-card bg-white rounded-3xl overflow-hidden border border-[#e2ece4] shadow-xs hover:shadow-lg transition-all duration-300 flex flex-col justify-between group"
+          data-city={post.cityTag || 'Umum'}
+        >
+          <div>
+            <div class="relative w-full h-48 overflow-hidden bg-gray-100">
+              <img
+                src={post.image}
+                alt={post.title}
+                class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
+                loading="lazy"
+              />
+              <span class="absolute top-3 left-3 px-3 py-1 bg-[#2d553b] text-white text-[10px] font-bold rounded-full">
+                {post.cityTag || post.category}
+              </span>
+            </div>
+
+            <div class="p-6">
+              <div class="flex items-center gap-2 text-[11px] text-[#63806b] mb-2 font-medium">
+                <span>{post.date}</span>
+                <span>&bull;</span>
+                <span>{post.readTime}</span>
+              </div>
+              <h2 class="text-base font-bold text-[#1b3825] group-hover:text-[#2d553b] transition-colors leading-snug line-clamp-2 mb-2">
+                <a href={`/blog/${post.slug}`}>
+                  {post.title}
+                </a>
+              </h2>
+              <p class="text-xs text-[#526a58] leading-relaxed line-clamp-3 mb-4">
+                {post.excerpt}
+              </p>
+            </div>
+          </div>
+
+          <div class="p-6 pt-0 border-t border-[#edf4ee] flex items-center justify-between">
+            <span class="text-[11px] text-[#698570]">Oleh: {post.author}</span>
+            <a
+              href={`/blog/${post.slug}`}
+              class="text-xs font-bold text-[#2d553b] hover:underline inline-flex items-center gap-1"
+            >
+              <span>Baca Artikel</span>
+              <span>&rarr;</span>
+            </a>
+          </div>
+        </article>
+      ))}
+    </div>
+
+  </div>
+</Layout>
+
+<script>
+  const filterBtns = document.querySelectorAll('.blog-filter');
+  const cards = document.querySelectorAll<HTMLElement>('.blog-card');
+
+  filterBtns.forEach((btn) => {
+    btn.addEventListener('click', () => {
+      filterBtns.forEach((b) => {
+        b.classList.remove('bg-[#2d553b]', 'text-white', 'shadow-xs');
+        b.classList.add('bg-white', 'text-[#415446]');
+      });
+      btn.classList.add('bg-[#2d553b]', 'text-white', 'shadow-xs');
+      btn.classList.remove('bg-white', 'text-[#415446]');
+
+      const tagVal = btn.getAttribute('data-tag');
+      cards.forEach((card) => {
+        const city = card.getAttribute('data-city');
+        if (tagVal === 'all' || city === tagVal) {
+          card.style.display = 'flex';
+        } else {
+          card.style.display = 'none';
+        }
+      });
+    });
+  });
+</script>

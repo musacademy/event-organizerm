@@ -1,0 +1,153 @@
+---
+import Layout from '../../layouts/Layout.astro';
+import { portfolioData, type PortfolioItem } from '../../data/portfolio';
+import { businessInfo } from '../../data/business';
+
+export function getStaticPaths() {
+  return portfolioData.map((item) => ({
+    params: { slug: item.slug },
+    props: { item },
+  }));
+}
+
+interface Props {
+  item: PortfolioItem;
+}
+
+const { item } = Astro.props;
+---
+
+<Layout
+  title={`${item.title} | Portofolio Aethel Events`}
+  description={item.description}
+  image={item.featuredImage}
+  currentPath={`/portofolio/${item.slug}`}
+  breadcrumbs={[
+    { name: 'Beranda', url: '/' },
+    { name: 'Portofolio', url: '/portofolio' },
+    { name: item.title, url: `/portofolio/${item.slug}` },
+  ]}
+>
+  <article class="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8 py-8 sm:py-12">
+    
+    <!-- Breadcrumb & Back -->
+    <div class="mb-6">
+      <a href="/portofolio" class="text-xs font-bold text-[#2d553b] hover:underline inline-flex items-center gap-1">
+        <span>&larr;</span>
+        <span>Kembali ke Semua Portofolio</span>
+      </a>
+    </div>
+
+    <!-- Title Header -->
+    <div class="mb-8">
+      <div class="flex flex-wrap items-center gap-2 mb-3">
+        <span class="px-3 py-1 bg-[#2d553b] text-white text-xs font-bold rounded-full">
+          {item.category}
+        </span>
+        <span class="px-3 py-1 bg-[#eaf2eb] text-[#2d553b] text-xs font-semibold rounded-full">
+          {item.location}
+        </span>
+      </div>
+      <h1 class="text-2xl sm:text-4xl font-sans font-extrabold text-[#1b3825] leading-tight mb-4">
+        {item.title}
+      </h1>
+      <div class="flex flex-wrap items-center gap-4 text-xs text-[#526a58] pt-2 border-t border-[#e2ece4]">
+        <span><strong>Tanggal:</strong> {item.date}</span>
+        <span>&bull;</span>
+        <span><strong>Klien:</strong> {item.client}</span>
+        <span>&bull;</span>
+        <span><strong>Peserta:</strong> {item.attendees}</span>
+      </div>
+    </div>
+
+    <!-- Featured Image -->
+    <div class="rounded-3xl overflow-hidden border border-[#e2ece4] shadow-sm mb-10 max-h-[500px]">
+      <img
+        src={item.featuredImage}
+        alt={item.title}
+        class="w-full h-full object-cover"
+      />
+    </div>
+
+    <!-- Content & Highlights -->
+    <div class="grid grid-cols-1 lg:grid-cols-12 gap-10">
+      
+      <!-- Main Story -->
+      <div class="lg:col-span-8">
+        <h2 class="text-xl font-bold font-sans text-[#1b3825] mb-4">Deskripsi & Tantangan Acara</h2>
+        <p class="text-sm text-[#3e5645] leading-relaxed mb-6">
+          {item.description}
+        </p>
+
+        <!-- Services Provided Checklist -->
+        <h3 class="text-base font-bold text-[#1b3825] mb-3">Cakupan Layanan yang Diberikan:</h3>
+        <ul class="space-y-2 mb-8">
+          {item.servicesProvided.map((svc) => (
+            <li class="flex items-center gap-2 text-xs sm:text-sm text-[#2f4937]">
+              <div class="w-5 h-5 rounded-full bg-[#e3efe5] flex items-center justify-center text-[#2d553b] shrink-0">
+                <svg class="w-3 h-3" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7" />
+                </svg>
+              </div>
+              <span>{svc}</span>
+            </li>
+          ))}
+        </ul>
+
+        <!-- Testimonial Quote if available -->
+        {item.testimonial && (
+          <div class="bg-gradient-to-r from-[#20422d] to-[#2d553b] text-white rounded-3xl p-6 sm:p-8 mb-8 shadow-md">
+            <div class="text-emerald-300 text-xs font-bold uppercase tracking-wider mb-2">Testimoni Klien</div>
+            <blockquote class="text-sm sm:text-base italic leading-relaxed mb-4 text-[#e3efe6]">
+              "{item.testimonial.quote}"
+            </blockquote>
+            <div>
+              <span class="text-sm font-bold text-white block">{item.testimonial.author}</span>
+              <span class="text-xs text-emerald-200">{item.testimonial.role}</span>
+            </div>
+          </div>
+        )}
+
+        <!-- Photo Gallery -->
+        <h3 class="text-base font-bold text-[#1b3825] mb-3">Galeri Foto Pelaksanaan:</h3>
+        <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+          {item.gallery.map((imgUrl, i) => (
+            <div class="rounded-2xl overflow-hidden border border-[#e2ece4] h-48 shadow-xs">
+              <img src={imgUrl} alt={`${item.title} photo ${i + 1}`} class="w-full h-full object-cover" />
+            </div>
+          ))}
+        </div>
+      </div>
+
+      <!-- Sidebar Action Box -->
+      <div class="lg:col-span-4">
+        <div class="bg-white rounded-3xl p-6 border border-[#e2ece4] shadow-xs sticky top-28">
+          <h3 class="text-sm font-bold text-[#1b3825] mb-2">Tertarik Mengadakan Acara Serupa?</h3>
+          <p class="text-xs text-[#526a58] leading-relaxed mb-6">
+            Tim perencana kami siap membantu Anda menyusun rundown, kalkulasi anggaran, dan survey lokasi di Malang atau Kediri.
+          </p>
+
+          <a
+            href={`https://wa.me/${businessInfo.whatsapp}?text=Halo%20Aethel%20Events,%20saya%20tertarik%20dengan%20portofolio%20${encodeURIComponent(item.title)}.%20Bisa%20konsultasi%20untuk%20rencana%20acara%20kami?`}
+            target="_blank"
+            class="w-full py-3 rounded-full bg-[#2d553b] hover:bg-[#1a3825] text-white text-xs font-bold flex items-center justify-center gap-2 transition-all shadow-xs mb-3"
+          >
+            <svg class="w-4 h-4 fill-current text-white" viewBox="0 0 24 24">
+              <path d="M12.04 2c-5.46 0-9.91 4.45-9.91 9.91 0 1.75.46 3.45 1.32 4.95L2.05 22l5.25-1.38c1.45.79 3.08 1.21 4.74 1.21 5.46 0 9.91-4.45 9.91-9.91 0-2.65-1.03-5.14-2.9-7.01A9.816 9.816 0 0012.04 2z" />
+            </svg>
+            <span>Konsultasi Proyek Ini</span>
+          </a>
+
+          <a
+            href="/kontak"
+            class="w-full py-3 rounded-full bg-[#edf4ee] hover:bg-[#dce9df] text-[#2d553b] text-xs font-bold flex items-center justify-center transition-all"
+          >
+            Formulir Pengajuan Acara
+          </a>
+        </div>
+      </div>
+
+    </div>
+
+  </article>
+</Layout>

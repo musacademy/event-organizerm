@@ -1,0 +1,201 @@
+---
+import Header from '../components/Header.astro';
+import Footer from '../components/Footer.astro';
+import { ClientRouter } from 'astro:transitions';
+import { businessInfo } from '../data/business';
+import '../styles/global.css';
+
+interface Props {
+  title?: string;
+  description?: string;
+  keywords?: string;
+  image?: string;
+  currentPath?: string;
+  pageType?: 'website' | 'article' | 'localBusiness';
+  breadcrumbs?: { name: string; url: string }[];
+  citySpecific?: 'malang' | 'kediri';
+}
+
+const {
+  title = 'Event Organizer Malang & Kediri | Aethel Event Studio',
+  description = 'Jasa Event Organizer profesional di Malang & Kediri untuk Corporate Event, Wedding, Seminar, Gathering, dan Festival musik dengan manajemen terpadu.',
+  keywords = 'Event Organizer Malang, Jasa EO Malang, Event Organizer Kediri, Jasa EO di Kediri, EO Corporate Malang, Wedding Organizer Malang',
+  image = '/images/hero-stage.jpg',
+  currentPath = Astro.url.pathname,
+  breadcrumbs = [],
+  citySpecific,
+} = Astro.props;
+
+const siteUrl = 'https://eventorganizermalang-kediri.com';
+const canonicalURL = new URL(currentPath, siteUrl).href;
+const fullImageUrl = new URL(image, siteUrl).href;
+
+// JSON-LD Structured Data
+const organizationSchema = {
+  '@context': 'https://schema.org',
+  '@type': 'Organization',
+  name: businessInfo.name,
+  legalName: businessInfo.legalName,
+  url: siteUrl,
+  logo: `${siteUrl}/images/client-portrait.jpg`,
+  description: businessInfo.shortDesc,
+  email: businessInfo.email,
+  telephone: businessInfo.phone,
+  areaServed: businessInfo.areasServed.map((area) => ({
+    '@type': 'Place',
+    name: area,
+  })),
+  sameAs: [
+    businessInfo.socials.instagram,
+    businessInfo.socials.tiktok,
+    businessInfo.socials.youtube,
+    businessInfo.socials.linkedin,
+  ],
+};
+
+const localBusinessSchema = {
+  '@context': 'https://schema.org',
+  '@type': 'LocalBusiness',
+  name: `${businessInfo.name} ${citySpecific ? (citySpecific === 'malang' ? 'Malang' : 'Kediri') : 'Malang & Kediri'}`,
+  description: description,
+  url: canonicalURL,
+  telephone: businessInfo.phone,
+  email: businessInfo.email,
+  priceRange: '$$',
+  address: {
+    '@type': 'PostalAddress',
+    streetAddress: citySpecific === 'kediri' 
+      ? 'Jl. Dhoho No. 88, Pakelan' 
+      : 'Jl. Besar Ijen No. 42, Klojen',
+    addressLocality: citySpecific === 'kediri' ? 'Kediri' : 'Malang',
+    addressRegion: 'Jawa Timur',
+    postalCode: citySpecific === 'kediri' ? '64129' : '65115',
+    addressCountry: 'ID',
+  },
+  openingHoursSpecification: [
+    {
+      '@type': 'OpeningHoursSpecification',
+      dayOfWeek: ['Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday'],
+      opens: '08:00',
+      closes: '18:00',
+    },
+  ],
+};
+
+const breadcrumbSchema = breadcrumbs.length > 0 ? {
+  '@context': 'https://schema.org',
+  '@type': 'BreadcrumbList',
+  itemListElement: breadcrumbs.map((bc, index) => ({
+    '@type': 'ListItem',
+    position: index + 1,
+    name: bc.name,
+    item: new URL(bc.url, siteUrl).href,
+  })),
+} : null;
+---
+
+<!doctype html>
+<html lang="id">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="canonical" href={canonicalURL} />
+    
+    <!-- Primary Meta Tags -->
+    <title>{title}</title>
+    <meta name="title" content={title} />
+    <meta name="description" content={description} />
+    <meta name="keywords" content={keywords} />
+    <meta name="author" content={businessInfo.name} />
+    <meta name="robots" content="index, follow" />
+
+    <!-- Open Graph / Facebook -->
+    <meta property="og:type" content="website" />
+    <meta property="og:url" content={canonicalURL} />
+    <meta property="og:title" content={title} />
+    <meta property="og:description" content={description} />
+    <meta property="og:image" content={fullImageUrl} />
+    <meta property="og:locale" content="id_ID" />
+    <meta property="og:site_name" content={businessInfo.name} />
+
+    <!-- Twitter -->
+    <meta property="twitter:card" content="summary_large_image" />
+    <meta property="twitter:url" content={canonicalURL} />
+    <meta property="twitter:title" content={title} />
+    <meta property="twitter:description" content={description} />
+    <meta property="twitter:image" content={fullImageUrl} />
+
+    <!-- Structured Data JSON-LD -->
+    <script type="application/ld+json" set:html={JSON.stringify(organizationSchema)} />
+    <script type="application/ld+json" set:html={JSON.stringify(localBusinessSchema)} />
+    {breadcrumbSchema && (
+      <script type="application/ld+json" set:html={JSON.stringify(breadcrumbSchema)} />
+    )}
+
+    <!-- Favicon -->
+    <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><rect width='100' height='100' rx='25' fill='%232d553b'/><path d='M30 20 L50 75 L70 20' stroke='%23e8f0e9' stroke-width='10' fill='none'/></svg>" />
+
+    <!-- Astro View Transitions for Buttery Smooth Page Navigation -->
+    <ClientRouter />
+  </head>
+  
+  <body class="bg-[#f7f9f7] text-[#1a251e] flex flex-col min-h-screen selection:bg-[#396947] selection:text-white overflow-x-hidden">
+    <div class="animate-header-enter">
+      <Header currentPath={currentPath} />
+    </div>
+
+    <main class="flex-grow animate-page-enter">
+      <slot />
+    </main>
+
+    <!-- Floating Quick Consultation WhatsApp Button -->
+    <aside aria-label="Konsultasi Cepat" class="fixed bottom-6 right-6 z-40 animate-float">
+      <a
+        href={`https://wa.me/${businessInfo.whatsapp}?text=Halo%20Aethel%20Events,%20saya%20ingin%20berkonsultasi%20tentang%20rencana%20acara.`}
+        target="_blank"
+        rel="noopener noreferrer"
+        aria-label="Konsultasi Langsung via WhatsApp"
+        class="flex items-center gap-2.5 px-4 py-3 bg-[#2d553b] hover:bg-[#1b3825] text-white rounded-full shadow-xl hover:shadow-2xl transition-all duration-300 group border border-white/20 hover:scale-105"
+      >
+        <span class="relative flex h-3 w-3">
+          <span class="animate-ping absolute inline-flex h-full w-full rounded-full bg-emerald-400 opacity-75"></span>
+          <span class="relative inline-flex rounded-full h-3 w-3 bg-emerald-400"></span>
+        </span>
+        <svg class="w-5 h-5 text-emerald-200 fill-current" viewBox="0 0 24 24">
+          <path d="M12.04 2c-5.46 0-9.91 4.45-9.91 9.91 0 1.75.46 3.45 1.32 4.95L2.05 22l5.25-1.38c1.45.79 3.08 1.21 4.74 1.21 5.46 0 9.91-4.45 9.91-9.91 0-2.65-1.03-5.14-2.9-7.01A9.816 9.816 0 0012.04 2z" />
+        </svg>
+        <span class="text-xs font-semibold tracking-wide pr-1">Konsultasi Acara</span>
+      </a>
+    </aside>
+
+    <Footer />
+
+    <!-- Scroll Reveal Observer Script -->
+    <script>
+      function setupScrollReveal() {
+        const reveals = document.querySelectorAll('.reveal-on-scroll');
+        if ('IntersectionObserver' in window) {
+          const observer = new IntersectionObserver((entries, obs) => {
+            entries.forEach(entry => {
+              if (entry.isIntersecting) {
+                entry.target.classList.add('is-revealed');
+                obs.unobserve(entry.target);
+              }
+            });
+          }, {
+            threshold: 0.12,
+            rootMargin: '0px 0px -40px 0px'
+          });
+
+          reveals.forEach(el => observer.observe(el));
+        } else {
+          reveals.forEach(el => el.classList.add('is-revealed'));
+        }
+      }
+
+      // Initial run & re-run after view transitions
+      document.addEventListener('DOMContentLoaded', setupScrollReveal);
+      document.addEventListener('astro:page-load', setupScrollReveal);
+    </script>
+  </body>
+</html>

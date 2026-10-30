@@ -1,0 +1,110 @@
+---
+import Layout from '../layouts/Layout.astro';
+import Hero from '../components/Hero.astro';
+import FeatureBadges from '../components/FeatureBadges.astro';
+import ServicesGrid from '../components/ServicesGrid.astro';
+import SpecialPackageBanner from '../components/SpecialPackageBanner.astro';
+import BudgetCalculator from '../components/BudgetCalculator.astro';
+import InspirationShowcase from '../components/InspirationShowcase.astro';
+import TestimonialSection from '../components/TestimonialSection.astro';
+import LocationBanners from '../components/LocationBanners.astro';
+import ContactForm from '../components/ContactForm.astro';
+import FAQAccordion from '../components/FAQAccordion.astro';
+import { blogPosts } from '../data/blog';
+---
+
+<Layout
+  title="Event Organizer Malang & Kediri | Jasa EO Profesional - Aethel Events"
+  description="Penyelenggara acara terpercaya di Malang & Kediri untuk Corporate Gathering, Wedding, Seminar, Conference, dan Festival. Eksekusi profesional & transparan."
+  keywords="Event Organizer Malang, Jasa EO Malang, Event Organizer Kediri, Jasa EO di Kediri, EO Corporate Malang, EO Gathering Batu Malang, Wedding Organizer Kediri"
+  currentPath="/"
+>
+  <!-- Hero Section matching reference style -->
+  <Hero />
+
+  <!-- 4 Feature Pills Row right under hero -->
+  <FeatureBadges />
+
+  <!-- Filterable Services Grid with Top Pills -->
+  <ServicesGrid />
+
+  <!-- Special Package Spotlight with Live Countdown -->
+  <SpecialPackageBanner />
+
+  <!-- Interactive Budget & Event Simulation Calculator -->
+  <BudgetCalculator />
+
+  <!-- 3 Tall Rounded Photos Inspiration Showcase -->
+  <InspirationShowcase />
+
+  <!-- Client Testimonial with Photo Cutout Frame -->
+  <TestimonialSection />
+
+  <!-- Dedicated Malang & Kediri Regional Hubs -->
+  <LocationBanners />
+
+  <!-- Latest Local Blog Insights (PRD Section 7) -->
+  <section class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12 reveal-on-scroll">
+    <div class="flex flex-col sm:flex-row sm:items-end justify-between mb-8 gap-4">
+      <div>
+        <span class="text-xs font-bold tracking-widest uppercase text-[#3f724f] bg-[#eaf2eb] px-3.5 py-1.5 rounded-full inline-block mb-2">
+          Wawasan & Panduan Acara
+        </span>
+        <h2 class="text-2xl sm:text-3xl font-sans font-extrabold text-[#1b3825]">
+          Artikel & Tips Penyelenggaraan Acara
+        </h2>
+      </div>
+      <a href="/blog" class="text-xs font-bold text-[#2d553b] hover:underline flex items-center gap-1">
+        <span>Lihat Semua Artikel</span>
+        <span>&rarr;</span>
+      </a>
+    </div>
+
+    <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+      {blogPosts.slice(0, 3).map((post) => (
+        <article class="bg-white rounded-3xl overflow-hidden border border-[#e2ece4] shadow-xs hover:shadow-md transition-all group flex flex-col justify-between">
+          <div>
+            <div class="relative w-full h-44 overflow-hidden bg-[#eef4ef]">
+              <img
+                src={post.image}
+                alt={post.title}
+                class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
+                loading="lazy"
+              />
+              <span class="absolute top-3 left-3 px-3 py-1 bg-[#2d553b] text-white text-[10px] font-bold rounded-full">
+                {post.cityTag || 'Tips'}
+              </span>
+            </div>
+            <div class="p-5">
+              <div class="flex items-center gap-3 text-[11px] text-[#698570] mb-2 font-medium">
+                <span>{post.date}</span>
+                <span>&bull;</span>
+                <span>{post.readTime}</span>
+              </div>
+              <h3 class="text-sm font-bold text-[#1b3825] group-hover:text-[#2d553b] transition-colors leading-snug line-clamp-2 mb-2">
+                <a href={`/blog/${post.slug}`}>
+                  {post.title}
+                </a>
+              </h3>
+              <p class="text-xs text-[#526a58] leading-relaxed line-clamp-2">
+                {post.excerpt}
+              </p>
+            </div>
+          </div>
+          <div class="px-5 pb-5 pt-0">
+            <a href={`/blog/${post.slug}`} class="text-xs font-bold text-[#2d553b] hover:underline inline-flex items-center gap-1">
+              <span>Baca Selengkapnya</span>
+              <span>&rarr;</span>
+            </a>
+          </div>
+        </article>
+      ))}
+    </div>
+  </section>
+
+  <!-- Interactive Event Inquiry Form (PRD Section 9) -->
+  <ContactForm />
+
+  <!-- FAQ Accordion -->
+  <FAQAccordion />
+</Layout>

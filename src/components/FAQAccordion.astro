@@ -1,0 +1,97 @@
+---
+interface FAQItem {
+  question: string;
+  answer: string;
+}
+
+interface Props {
+  faqs?: FAQItem[];
+  title?: string;
+  subtitle?: string;
+}
+
+const defaultFaqs: FAQItem[] = [
+  {
+    question: 'Apa saja wilayah jangkauan operasional Aethel Event Organizer?',
+    answer: 'Fokus utama kami adalah Malang Raya (Kota Malang, Kabupaten Malang, Kota Wisata Batu) dan Kediri (Kota Kediri & Kabupaten Kediri). Kami juga melayani area sekitar seperti Blitar, Jombang, Pasuruan, dan kota-kota lain di Jawa Timur sesuai kesepakatan dan kebutuhan proyek.'
+  },
+  {
+    question: 'Jenis acara apa saja yang dapat ditangani oleh Aethel Events?',
+    answer: 'Kami tidak membatasi kategori acara. Layanan kami mencakup Corporate Event & Awarding Night, Wedding Organizer, Seminar & Conference, Gathering Perusahaan & Outbound, Festival Musik & Konser, Pameran / Brand Activation, Birthday Party, Wisuda, hingga Custom Event yang dirancang khusus.'
+  },
+  {
+    question: 'Bagaimana tahapan konsultasi dan perencanaan hingga hari-H acara?',
+    answer: 'Tahapan dimulai dari: (1) Free Kickoff Consultation via WA/meeting, (2) Penyusunan Konsep & Proposal Itemized Budget terinci, (3) Survey venue bersama di Malang atau Kediri, (4) Technical meeting & koordinasi vendor, (5) Gladi bersih dan eksekusi hari-H dengan pendampingan tim LO & stage manager.'
+  },
+  {
+    question: 'Apakah Aethel dapat membantu pengurusan perizinan dan booking venue?',
+    answer: 'Ya, kami memiliki tim hubungan kelembagaan yang terbiasa mengurus izin keramaian dari kepolisian setempat, satpol PP, dinas terkait, serta memegang jaringan rekanan resmi ballroom hotel dan resort di Malang dan Kediri.'
+  },
+  {
+    question: 'Bagaimana transparansi anggaran dan sistem pembayaran kerja sama?',
+    answer: 'Kami menerapkan transparansi penuh tanpa mark-up tersembunyi. Setiap rincian biaya panggung, sound, konsumsi, dan manajemen dijabarkan dalam format itemized. Pembayaran dilakukan secara bertahap sesuai milestone persiapan acara.'
+  }
+];
+
+const {
+  faqs = defaultFaqs,
+  title = 'Pertanyaan yang Sering Diajukan (FAQ)',
+  subtitle = 'Informasi seputar layanan, jangkauan operasional, dan alur kerja penyelenggaraan acara.'
+} = Astro.props;
+---
+
+<section class="max-w-4xl mx-auto px-4 sm:px-6 py-12 reveal-on-scroll">
+  <div class="text-center max-w-xl mx-auto mb-8">
+    <span class="text-xs font-bold tracking-widest uppercase text-[#3f724f] bg-[#eaf2eb] px-3.5 py-1.5 rounded-full inline-block mb-3">
+      FAQ & Informasi
+    </span>
+    <h2 class="text-2xl sm:text-3xl font-sans font-extrabold text-[#1b3825]">
+      {title}
+    </h2>
+    <p class="text-xs sm:text-sm text-[#546b5a] mt-2">
+      {subtitle}
+    </p>
+  </div>
+
+  <div class="space-y-3" id="faq-list">
+    {faqs.map((faq, idx) => (
+      <div class="bg-white rounded-2xl border border-[#e2ece4] overflow-hidden shadow-xs transition-colors faq-item">
+        <button
+          type="button"
+          class="faq-trigger w-full px-5 py-4 text-left flex items-center justify-between text-xs sm:text-sm font-bold text-[#1b3825] hover:text-[#2d553b] focus:outline-none"
+          aria-expanded={idx === 0 ? 'true' : 'false'}
+        >
+          <span>{faq.question}</span>
+          <svg class="faq-icon w-4 h-4 text-[#2d553b] transform transition-transform duration-200 shrink-0 ml-3" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7" />
+          </svg>
+        </button>
+        <div class={`faq-content px-5 pb-4 text-xs text-[#526a58] leading-relaxed ${idx === 0 ? '' : 'hidden'}`}>
+          {faq.answer}
+        </div>
+      </div>
+    ))}
+  </div>
+</section>
+
+<script>
+  const faqItems = document.querySelectorAll('.faq-item');
+  faqItems.forEach((item) => {
+    const trigger = item.querySelector('.faq-trigger');
+    const content = item.querySelector('.faq-content');
+    const icon = item.querySelector('.faq-icon');
+
+    trigger?.addEventListener('click', () => {
+      const isHidden = content?.classList.contains('hidden');
+      if (isHidden) {
+        content?.classList.remove('hidden');
+        icon?.classList.add('rotate-180');
+        trigger.setAttribute('aria-expanded', 'true');
+      } else {
+        content?.classList.add('hidden');
+        icon?.classList.remove('rotate-180');
+        trigger.setAttribute('aria-expanded', 'false');
+      }
+    });
+  });
+</script>

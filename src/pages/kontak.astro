@@ -1,0 +1,127 @@
+---
+import Layout from '../layouts/Layout.astro';
+import ContactForm from '../components/ContactForm.astro';
+import { businessInfo } from '../data/business';
+---
+
+<Layout
+  title="Kontak & Konsultasi Acara | Aethel Event Organizer"
+  description="Hubungi tim Aethel Event Organizer untuk konsultasi kebutuhan acara Anda di Malang, Kediri, dan sekitarnya. Respon cepat 24/7."
+  currentPath="/kontak"
+  breadcrumbs={[
+    { name: 'Beranda', url: '/' },
+    { name: 'Kontak', url: '/kontak' }
+  ]}
+>
+  <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8 sm:py-12">
+    
+    <!-- Header -->
+    <div class="max-w-3xl mb-8">
+      <span class="text-xs font-bold tracking-widest uppercase text-[#3f724f] bg-[#eaf2eb] px-3.5 py-1.5 rounded-full inline-block mb-3">
+        Hubungi Kami
+      </span>
+      <h1 class="text-3xl sm:text-4xl font-sans font-extrabold text-[#1b3825] leading-tight mb-3">
+        Konsultasi & Alamat Kantor
+      </h1>
+      <p class="text-xs sm:text-sm text-[#546b5a] leading-relaxed">
+        Diskusikan visi acara Anda bersama konsultan perencana kami. Kami siap melayani konsultasi via online maupun tatap muka langsung di kantor Malang dan Kediri.
+      </p>
+    </div>
+
+    <!-- Office & Contact Info Cards -->
+    <div class="grid grid-cols-1 md:grid-cols-3 gap-6 mb-12">
+      
+      <!-- Malang Office -->
+      <div class="bg-white rounded-3xl p-6 border border-[#e2ece4] shadow-xs flex flex-col justify-between">
+        <div>
+          <div class="flex items-center justify-between mb-3">
+            <span class="text-xs font-bold text-[#2d553b] bg-[#eaf2eb] px-2.5 py-1 rounded-full">Kantor Utama</span>
+            <span class="text-[11px] text-[#6a8771]">Kota Malang</span>
+          </div>
+          <h3 class="text-base font-bold text-[#1b3825] mb-2">Office Malang</h3>
+          <p class="text-xs text-[#526a58] leading-relaxed mb-4">
+            Jl. Besar Ijen No. 42, Klojen, Kota Malang, Jawa Timur 65115
+          </p>
+          <span class="text-[11px] text-[#718d77] block">Area Layanan: Malang Kota, Kab. Malang, & Kota Batu</span>
+        </div>
+        <div class="pt-4 border-t border-[#edf4ee] mt-4">
+          <a
+            href={`https://wa.me/${businessInfo.whatsapp}?text=Halo%20Aethel%20Events,%20saya%20ingin%20jadwal%20konsultasi%20di%20kantor%20Malang.`}
+            target="_blank"
+            class="text-xs font-bold text-[#2d553b] hover:underline flex items-center gap-1"
+          >
+            <span>Jadwalkan Kunjungan Malang</span>
+            <span>&rarr;</span>
+          </a>
+        </div>
+      </div>
+
+      <!-- Kediri Hub -->
+      <div class="bg-white rounded-3xl p-6 border border-[#e2ece4] shadow-xs flex flex-col justify-between">
+        <div>
+          <div class="flex items-center justify-between mb-3">
+            <span class="text-xs font-bold text-[#2d553b] bg-[#eaf2eb] px-2.5 py-1 rounded-full">Hub Logistik</span>
+            <span class="text-[11px] text-[#6a8771]">Kota Kediri</span>
+          </div>
+          <h3 class="text-base font-bold text-[#1b3825] mb-2">Hub Operasional Kediri</h3>
+          <p class="text-xs text-[#526a58] leading-relaxed mb-4">
+            Jl. Dhoho No. 88, Pakelan, Kota Kediri, Jawa Timur 64129
+          </p>
+          <span class="text-[11px] text-[#718d77] block">Area Layanan: Kota Kediri, Kab. Kediri, & Sekitarnya</span>
+        </div>
+        <div class="pt-4 border-t border-[#edf4ee] mt-4">
+          <a
+            href={`https://wa.me/${businessInfo.whatsapp}?text=Halo%20Aethel%20Events,%20saya%20ingin%20jadwal%20konsultasi%20di%20hub%20Kediri.`}
+            target="_blank"
+            class="text-xs font-bold text-[#2d553b] hover:underline flex items-center gap-1"
+          >
+            <span>Jadwalkan Kunjungan Kediri</span>
+            <span>&rarr;</span>
+          </a>
+        </div>
+      </div>
+
+      <!-- Quick Communication Channels -->
+      <div class="bg-gradient-to-br from-[#20422d] to-[#1c3825] text-white rounded-3xl p-6 shadow-md flex flex-col justify-between">
+        <div>
+          <span class="text-xs font-bold text-emerald-300 bg-white/10 px-2.5 py-1 rounded-full inline-block mb-3">
+            Layanan Siaga
+          </span>
+          <h3 class="text-base font-bold text-white mb-2">Kontak Cepat & Darurat</h3>
+          <p class="text-xs text-[#cbe2d0] leading-relaxed mb-4">
+            Butuh estimasi mendadak atau bantuan koordinasi acara dalam waktu dekat?
+          </p>
+          <div class="space-y-2 text-xs">
+            <div class="flex items-center gap-2">
+              <span class="text-emerald-300 font-semibold">WhatsApp:</span>
+              <span>+62 812-3456-7890</span>
+            </div>
+            <div class="flex items-center gap-2">
+              <span class="text-emerald-300 font-semibold">Email:</span>
+              <span>halo@aethelevents.com</span>
+            </div>
+            <div class="flex items-center gap-2">
+              <span class="text-emerald-300 font-semibold">Jam Operasional:</span>
+              <span>08.00 - 18.00 WIB</span>
+            </div>
+          </div>
+        </div>
+
+        <div class="pt-4 border-t border-white/20 mt-4">
+          <a
+            href={`https://wa.me/${businessInfo.whatsapp}`}
+            target="_blank"
+            class="w-full py-2.5 px-4 bg-emerald-500 hover:bg-emerald-600 text-white rounded-full text-xs font-bold text-center block transition-colors"
+          >
+            Chat WhatsApp Sekarang
+          </a>
+        </div>
+      </div>
+
+    </div>
+
+    <!-- Contact Form Section fulfilling PRD Section 9 -->
+    <ContactForm />
+
+  </div>
+</Layout>

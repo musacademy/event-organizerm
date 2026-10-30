@@ -1,0 +1,133 @@
+---
+import Layout from '../../layouts/Layout.astro';
+import { portfolioData } from '../../data/portfolio';
+---
+
+<Layout
+  title="Portofolio Acara | Aethel Event Organizer Malang & Kediri"
+  description="Dokumentasi proyek acara yang telah sukses diselenggarakan di Malang, Kediri, dan Kota Wisata Batu oleh tim Aethel Events."
+  currentPath="/portofolio"
+  breadcrumbs={[
+    { name: 'Beranda', url: '/' },
+    { name: 'Portofolio', url: '/portofolio' }
+  ]}
+>
+  <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8 sm:py-12">
+    
+    <!-- Header -->
+    <div class="max-w-3xl mb-8">
+      <span class="text-xs font-bold tracking-widest uppercase text-[#3f724f] bg-[#eaf2eb] px-3.5 py-1.5 rounded-full inline-block mb-3">
+        Dokumentasi Proyek
+      </span>
+      <h1 class="text-3xl sm:text-4xl font-sans font-extrabold text-[#1b3825] leading-tight mb-3">
+        Portofolio Penyelenggaraan Acara
+      </h1>
+      <p class="text-xs sm:text-sm text-[#546b5a] leading-relaxed">
+        Jelajahi rekam jejak nyata kegiatan korporat, gathering, pernikahan, seminar, dan festival yang kami kelola dengan standar terbaik di Malang dan Kediri.
+      </p>
+    </div>
+
+    <!-- City & Category Filters -->
+    <div class="flex flex-wrap items-center gap-2 mb-8 pb-3 border-b border-[#e2ece4]">
+      <button class="portfolio-filter active px-4 py-1.5 rounded-full text-xs font-semibold bg-[#2d553b] text-white transition-all shadow-xs" data-filter="all">
+        Semua Proyek ({portfolioData.length})
+      </button>
+      <button class="portfolio-filter px-4 py-1.5 rounded-full text-xs font-semibold bg-white text-[#415446] hover:bg-[#eaf1ec] border border-[#e1eae2] transition-all" data-filter="malang">
+        Malang & Batu
+      </button>
+      <button class="portfolio-filter px-4 py-1.5 rounded-full text-xs font-semibold bg-white text-[#415446] hover:bg-[#eaf1ec] border border-[#e1eae2] transition-all" data-filter="kediri">
+        Kediri
+      </button>
+    </div>
+
+    <!-- Portfolio Grid -->
+    <div id="portfolio-grid" class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+      {portfolioData.map((item) => (
+        <article
+          class="portfolio-card bg-white rounded-3xl overflow-hidden border border-[#e2ece4] shadow-xs hover:shadow-lg transition-all duration-300 flex flex-col justify-between group"
+          data-city={item.city}
+        >
+          <div>
+            <div class="relative w-full h-52 overflow-hidden bg-gray-100">
+              <img
+                src={item.featuredImage}
+                alt={item.title}
+                class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
+                loading="lazy"
+              />
+              <span class="absolute top-3 left-3 px-3 py-1 bg-[#2d553b] text-white text-[10px] font-bold rounded-full shadow-xs">
+                {item.category}
+              </span>
+              <div class="absolute bottom-3 left-3 bg-white/90 backdrop-blur-xs px-2.5 py-1 rounded-full text-[10px] font-medium text-[#2d553b]">
+                {item.location}
+              </div>
+            </div>
+
+            <div class="p-6">
+              <div class="text-[11px] text-[#63806b] mb-1 font-medium">{item.date} &bull; {item.attendees}</div>
+              <h2 class="text-base font-bold text-[#1b3825] group-hover:text-[#2d553b] transition-colors leading-snug line-clamp-1 mb-2">
+                <a href={`/portofolio/${item.slug}`}>
+                  {item.title}
+                </a>
+              </h2>
+              <p class="text-xs text-[#526a58] leading-relaxed line-clamp-2 mb-4">
+                {item.description}
+              </p>
+
+              <!-- Services provided chips -->
+              <div class="flex flex-wrap gap-1.5">
+                {item.servicesProvided.slice(0, 3).map((svc) => (
+                  <span class="text-[10px] bg-[#edf4ee] text-[#2d553b] px-2 py-0.5 rounded-md font-medium">
+                    {svc}
+                  </span>
+                ))}
+              </div>
+            </div>
+          </div>
+
+          <div class="p-6 pt-0 border-t border-[#edf4ee] flex items-center justify-between">
+            <span class="text-[11px] text-[#698570] font-medium">Klien: {item.client}</span>
+            <a
+              href={`/portofolio/${item.slug}`}
+              class="text-xs font-bold text-[#2d553b] hover:underline inline-flex items-center gap-1"
+            >
+              <span>Lihat Detail</span>
+              <span>&rarr;</span>
+            </a>
+          </div>
+        </article>
+      ))}
+    </div>
+
+  </div>
+</Layout>
+
+<script>
+  const filterBtns = document.querySelectorAll('.portfolio-filter');
+  const cards = document.querySelectorAll<HTMLElement>('.portfolio-card');
+
+  filterBtns.forEach((btn) => {
+    btn.addEventListener('click', () => {
+      filterBtns.forEach((b) => {
+        b.classList.remove('bg-[#2d553b]', 'text-white', 'shadow-xs');
+        b.classList.add('bg-white', 'text-[#415446]');
+      });
+      btn.classList.add('bg-[#2d553b]', 'text-white', 'shadow-xs');
+      btn.classList.remove('bg-white', 'text-[#415446]');
+
+      const filterVal = btn.getAttribute('data-filter');
+      cards.forEach((card) => {
+        const city = card.getAttribute('data-city');
+        if (filterVal === 'all') {
+          card.style.display = 'flex';
+        } else if (filterVal === 'malang' && (city === 'malang' || city === 'batu')) {
+          card.style.display = 'flex';
+        } else if (filterVal === city) {
+          card.style.display = 'flex';
+        } else {
+          card.style.display = 'none';
+        }
+      });
+    });
+  });
+</script>
