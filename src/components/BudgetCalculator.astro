@@ -12,9 +12,6 @@ import { businessInfo } from '../data/business';
       
       <!-- Left Explanation -->
       <div class="lg:col-span-5">
-        <span class="inline-block text-xs font-bold tracking-widest text-emerald-300 bg-white/10 px-3 py-1 rounded-full mb-3 backdrop-blur-xs">
-          Kalkulator & Estimasi Acara
-        </span>
         <h2 class="text-2xl sm:text-3xl font-sans font-extrabold text-white leading-tight mb-3">
           Simulasikan Kebutuhan & Anggaran Acara Anda
         </h2>
@@ -128,34 +125,39 @@ import { businessInfo } from '../data/business';
 </section>
 
 <script>
-  function updateCalculator() {
-    const city = (document.getElementById('calc-city') as HTMLSelectElement)?.value || 'Malang';
-    const typeSelect = document.getElementById('calc-type') as HTMLSelectElement;
-    const guestSelect = document.getElementById('calc-guests') as HTMLSelectElement;
-    const venue = (document.getElementById('calc-venue') as HTMLSelectElement)?.value || '';
+  function setupBudgetCalculator() {
+    function updateCalculator() {
+      const city = (document.getElementById('calc-city') as HTMLSelectElement)?.value || 'Malang';
+      const typeSelect = document.getElementById('calc-type') as HTMLSelectElement;
+      const guestSelect = document.getElementById('calc-guests') as HTMLSelectElement;
+      const venue = (document.getElementById('calc-venue') as HTMLSelectElement)?.value || '';
 
-    const baseVal = parseFloat(typeSelect?.selectedOptions[0]?.getAttribute('data-base') || '18');
-    const multVal = parseFloat(guestSelect?.selectedOptions[0]?.getAttribute('data-mult') || '1.5');
+      const baseVal = parseFloat(typeSelect?.selectedOptions[0]?.getAttribute('data-base') || '18');
+      const multVal = parseFloat(guestSelect?.selectedOptions[0]?.getAttribute('data-mult') || '1.5');
 
-    const lowEst = (baseVal * multVal).toFixed(1);
-    const highEst = (baseVal * multVal * 1.35).toFixed(1);
+      const lowEst = (baseVal * multVal).toFixed(1);
+      const highEst = (baseVal * multVal * 1.35).toFixed(1);
 
-    const totalEl = document.getElementById('calc-total');
-    if (totalEl) {
-      totalEl.innerText = `Rp ${lowEst} - ${highEst} Juta`;
+      const totalEl = document.getElementById('calc-total');
+      if (totalEl) {
+        totalEl.innerText = `Rp ${lowEst} - ${highEst} Juta`;
+      }
+
+      const waBtn = document.getElementById('calc-wa-btn') as HTMLAnchorElement;
+      if (waBtn) {
+        const typeText = typeSelect?.value;
+        const guestText = guestSelect?.value;
+        const msg = `Halo Aethel Events, saya ingin konsultasi acara dengan simulasi kalkulator:\n- Lokasi: ${city}\n- Jenis Acara: ${typeText}\n- Jumlah Tamu: ${guestText}\n- Kebutuhan Venue: ${venue}\n- Estimasi Awal: Rp ${lowEst} - ${highEst} Juta.\nMohon info ketersediaan tanggal & proposal rincinya. Terima kasih!`;
+        waBtn.href = `https://wa.me/6281234567890?text=${encodeURIComponent(msg)}`;
+      }
     }
 
-    const waBtn = document.getElementById('calc-wa-btn') as HTMLAnchorElement;
-    if (waBtn) {
-      const typeText = typeSelect?.value;
-      const guestText = guestSelect?.value;
-      const msg = `Halo Aethel Events, saya ingin konsultasi acara dengan simulasi kalkulator:\n- Lokasi: ${city}\n- Jenis Acara: ${typeText}\n- Jumlah Tamu: ${guestText}\n- Kebutuhan Venue: ${venue}\n- Estimasi Awal: Rp ${lowEst} - ${highEst} Juta.\nMohon info ketersediaan tanggal & proposal rincinya. Terima kasih!`;
-      waBtn.href = `https://wa.me/6281234567890?text=${encodeURIComponent(msg)}`;
-    }
+    ['calc-city', 'calc-type', 'calc-guests', 'calc-venue'].forEach((id) => {
+      document.getElementById(id)?.addEventListener('change', updateCalculator);
+    });
+    updateCalculator();
   }
 
-  ['calc-city', 'calc-type', 'calc-guests', 'calc-venue'].forEach((id) => {
-    document.getElementById(id)?.addEventListener('change', updateCalculator);
-  });
-  updateCalculator();
+  setupBudgetCalculator();
+  document.addEventListener('astro:page-load', setupBudgetCalculator);
 </script>

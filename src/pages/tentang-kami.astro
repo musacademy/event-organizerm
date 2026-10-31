@@ -1,6 +1,26 @@
 ---
 import Layout from '../layouts/Layout.astro';
+import FAQAccordion from '../components/FAQAccordion.astro';
 import { businessInfo } from '../data/business';
+
+const companyFaqs = [
+  {
+    question: 'Apakah Aethel Event Organizer merupakan badan usaha resmi berlegalitas hukum?',
+    answer: 'Ya, kami beroperasi secara resmi di bawah badan hukum CV Aethel Karya Kreasi dengan kelengkapan NIB, NPWP perusahaan, dan rekening bank korporat untuk keamanan transaksi serta administrasi perpajakan yang tertib.'
+  },
+  {
+    question: 'Berapa kapasitas tim lapangan dan peralatan yang dimiliki Aethel?',
+    answer: 'Kami memiliki tim inti produksi, show management, desainer visual 3D, dan talent coordinator. Kami juga didukung gudang inventaris rigging panggung, sound system line-array, dan lighting mandiri di hub Kediri dan Malang.'
+  },
+  {
+    question: 'Apakah Aethel melayani acara di luar Malang dan Kediri?',
+    answer: 'Tentu saja. Kami secara berkala menangani proyek gathering dan festival di Kota Wisata Batu, Blitar, Pasuruan, Jombang, hingga wilayah Jawa Timur lainnya.'
+  },
+  {
+    question: 'Bagaimana komitmen Aethel terhadap SOP keselamatan dan perizinan?',
+    answer: 'Keselamatan adalah prioritas utama. Setiap instalasi rigging panggung, genset listrik, dan kerumunan diawasi safety officer bersertifikat dan dikoordinasikan dengan dinas terkait serta kepolisian setempat.'
+  }
+];
 ---
 
 <Layout
@@ -17,9 +37,6 @@ import { businessInfo } from '../data/business';
     <!-- Hero / Profile Header -->
     <div class="bg-white rounded-[2.5rem] p-6 sm:p-12 border border-[#e2ece4] shadow-xs mb-10">
       <div class="max-w-3xl">
-        <span class="text-xs font-bold tracking-widest uppercase text-[#3f724f] bg-[#eaf2eb] px-3.5 py-1.5 rounded-full inline-block mb-3">
-          Profil Perusahaan
-        </span>
         <h1 class="text-3xl sm:text-5xl font-extrabold font-sans text-[#1b3825] leading-tight mb-4">
           Mewujudkan Acara Berkesan dengan Presisi & Dedikasi.
         </h1>
@@ -128,18 +145,12 @@ import { businessInfo } from '../data/business';
       </div>
     </div>
 
-    <!-- CTA -->
-    <div class="text-center py-6">
-      <h3 class="text-xl font-bold font-sans text-[#1b3825] mb-2">Ingin Berdiskusi Langsung dengan Tim Kami?</h3>
-      <p class="text-xs text-[#526a58] mb-4">Kami menyambut sesi kickoff tatap muka di kantor Malang maupun Kediri.</p>
-      <a
-        href="/kontak"
-        class="inline-flex items-center gap-2 px-6 py-3 rounded-full bg-[#2d553b] hover:bg-[#1a3825] text-white text-xs sm:text-sm font-semibold transition-all shadow-md"
-      >
-        <span>Hubungi Kami & Jadwalkan Pertemuan</span>
-        <span>&rarr;</span>
-      </a>
-    </div>
+    <!-- FAQ Section -->
+    <FAQAccordion
+      faqs={companyFaqs}
+      title="Pertanyaan Seputar Legalitas & Operasional Kami"
+      subtitle="Keterbukaan informasi mengenai legalitas perusahaan, kesiapan tim, dan komitmen standar kerja kami."
+    />
 
   </div>
 </Layout>

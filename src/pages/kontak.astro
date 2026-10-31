@@ -1,13 +1,34 @@
 ---
 import Layout from '../layouts/Layout.astro';
 import ContactForm from '../components/ContactForm.astro';
+import FAQAccordion from '../components/FAQAccordion.astro';
 import { businessInfo } from '../data/business';
+
+const contactFaqs = [
+  {
+    question: 'Berapa lama tim Aethel merespons formulir rencana acara?',
+    answer: 'Tim konsultan kami merespons dalam waktu 1x24 jam kerja (biasanya dalam 1-2 jam via WhatsApp pada jam operasional). Jika Anda membutuhkan respons instan, silakan hubungi langsung nomor WhatsApp kami.'
+  },
+  {
+    question: 'Apakah konsultasi awal dan estimasi biaya dikenakan biaya?',
+    answer: 'Sama sekali tidak. Sesi kickoff meeting, konsultasi konsep acara, dan penyusunan proposal estimasi anggaran awal bersifat gratis tanpa komitmen.'
+  },
+  {
+    question: 'Berapa lama idealnya waktu pemesanan sebelum hari-H acara?',
+    answer: 'Untuk acara skala besar seperti Wedding, Konferensi, atau Gathering Corporate ratusan peserta, kami sarankan 1-3 bulan sebelumnya agar reservasi venue dan perizinan lebih optimal. Namun, kami juga melayani proyek ekspres dengan persiapan 2-4 minggu tergantung ketersediaan tim.'
+  },
+  {
+    question: 'Bagaimana mekanisme pembayaran setelah proposal disetujui?',
+    answer: 'Pembayaran dilakukan bertahap via rekening resmi perusahaan (CV Aethel Karya Kreasi): DP booking tanggal 30%, termin produksi 50% setelah technical meeting, dan pelunasan 20% menjelang hari-H acara.'
+  }
+];
 ---
 
 <Layout
   title="Kontak & Konsultasi Acara | Aethel Event Organizer"
   description="Hubungi tim Aethel Event Organizer untuk konsultasi kebutuhan acara Anda di Malang, Kediri, dan sekitarnya. Respon cepat 24/7."
   currentPath="/kontak"
+  showCTA={false}
   breadcrumbs={[
     { name: 'Beranda', url: '/' },
     { name: 'Kontak', url: '/kontak' }
@@ -17,9 +38,6 @@ import { businessInfo } from '../data/business';
     
     <!-- Header -->
     <div class="max-w-3xl mb-8">
-      <span class="text-xs font-bold tracking-widest uppercase text-[#3f724f] bg-[#eaf2eb] px-3.5 py-1.5 rounded-full inline-block mb-3">
-        Hubungi Kami
-      </span>
       <h1 class="text-3xl sm:text-4xl font-sans font-extrabold text-[#1b3825] leading-tight mb-3">
         Konsultasi & Alamat Kantor
       </h1>
@@ -122,6 +140,13 @@ import { businessInfo } from '../data/business';
 
     <!-- Contact Form Section fulfilling PRD Section 9 -->
     <ContactForm />
+
+    <!-- FAQ Section -->
+    <FAQAccordion
+      faqs={contactFaqs}
+      title="Pertanyaan Seputar Pemesanan & Konsultasi"
+      subtitle="Jawaban cepat untuk pertanyaan yang sering diajukan sebelum mengajukan rencana acara."
+    />
 
   </div>
 </Layout>

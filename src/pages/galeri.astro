@@ -1,5 +1,25 @@
 ---
 import Layout from '../layouts/Layout.astro';
+import FAQAccordion from '../components/FAQAccordion.astro';
+
+const galleryFaqs = [
+  {
+    question: 'Apakah seluruh dokumentasi di galeri adalah foto asli dari acara Aethel?',
+    answer: 'Ya, 100% foto dan visual di galeri ini merupakan dokumentasi riil dari berbagai event yang kami kelola langsung di Malang Raya, Kota Wisata Batu, dan Kediri bersama tim produksi kami.'
+  },
+  {
+    question: 'Bisakah instalasi dekorasi, stage, dan lighting disesuaikan dengan ukuran venue?',
+    answer: 'Tentu. Tim teknis dan desainer 3D kami selalu melakukan pengukuran lokasi (technical survey) terlebih dahulu. Ukuran panggung, modular LED wall, rigging sound, dan komposisi bunga akan dihitung presisi agar proporsional dengan kapasitas dan layout venue Anda.'
+  },
+  {
+    question: 'Berapa durasi waktu yang dibutuhkan tim Aethel untuk loading dan setup dekorasi?',
+    answer: 'Durasi setup bervariasi sesuai kompleksitas: untuk acara meeting / intimate gathering membutuhkan waktu loading 4–8 jam, sedangkan untuk wedding megah, konser, atau stage custom skala besar membutuhkan loading H-1 (12–24 jam sebelumnya) dengan gladi bersih tuntas sebelum tamu hadir.'
+  },
+  {
+    question: 'Bagaimana penanganan dekorasi dan lighting jika acara diadakan outdoor?',
+    answer: 'Untuk venue outdoor di Malang atau Batu yang bersuhu sejuk atau berangin, kami menyiapkan konstruksi panggung berbobot aman (rigging ballast), pelindung cuaca (clear tent / tenda roder transparan jika diperlukan), serta electrical waterproof setup untuk keamanan maksimal.'
+  }
+];
 
 const galleryItems = [
   {
@@ -74,9 +94,6 @@ const galleryItems = [
     
     <!-- Header -->
     <div class="max-w-3xl mb-8">
-      <span class="text-xs font-bold tracking-widest uppercase text-[#3f724f] bg-[#eaf2eb] px-3.5 py-1.5 rounded-full inline-block mb-3">
-        Galeri Visual
-      </span>
       <h1 class="text-3xl sm:text-4xl font-sans font-extrabold text-[#1b3825] leading-tight mb-3">
         Galeri Karya & Dokumentasi Acara
       </h1>
@@ -124,37 +141,51 @@ const galleryItems = [
       </div>
     </div>
 
+    <!-- FAQ Section -->
+    <div class="mt-16 pt-10 border-t border-[#e2ece4]">
+      <FAQAccordion
+        faqs={galleryFaqs}
+        title="Pertanyaan Seputar Galeri & Dekorasi Acara"
+        subtitle="Pertanyaan seputar spesifikasi panggung, instalasi dekorasi, loading venue, dan adaptasi outdoor."
+      />
+    </div>
+
   </div>
 </Layout>
 
 <script>
-  const cards = document.querySelectorAll('.gallery-card');
-  const modal = document.getElementById('lightbox-modal');
-  const modalImg = document.getElementById('lightbox-img') as HTMLImageElement;
-  const modalTitle = document.getElementById('lightbox-title');
-  const modalLoc = document.getElementById('lightbox-loc');
-  const closeBtn = document.getElementById('lightbox-close');
+  function setupGalleryLightbox() {
+    const cards = document.querySelectorAll('.gallery-card');
+    const modal = document.getElementById('lightbox-modal');
+    const modalImg = document.getElementById('lightbox-img') as HTMLImageElement;
+    const modalTitle = document.getElementById('lightbox-title');
+    const modalLoc = document.getElementById('lightbox-loc');
+    const closeBtn = document.getElementById('lightbox-close');
 
-  cards.forEach((card) => {
-    card.addEventListener('click', () => {
-      const src = card.getAttribute('data-src') || '';
-      const title = card.getAttribute('data-title') || '';
-      const loc = card.getAttribute('data-loc') || '';
+    cards.forEach((card) => {
+      card.addEventListener('click', () => {
+        const src = card.getAttribute('data-src') || '';
+        const title = card.getAttribute('data-title') || '';
+        const loc = card.getAttribute('data-loc') || '';
 
-      if (modalImg) modalImg.src = src;
-      if (modalTitle) modalTitle.innerText = title;
-      if (modalLoc) modalLoc.innerText = loc;
-      modal?.classList.remove('hidden');
+        if (modalImg) modalImg.src = src;
+        if (modalTitle) modalTitle.innerText = title;
+        if (modalLoc) modalLoc.innerText = loc;
+        modal?.classList.remove('hidden');
+      });
     });
-  });
 
-  closeBtn?.addEventListener('click', () => {
-    modal?.classList.add('hidden');
-  });
+    closeBtn?.addEventListener('click', () => {
+      modal?.classList.add('hidden');
+    });
 
-  modal?.addEventListener('click', (e) => {
-    if (e.target === modal) {
-      modal.classList.add('hidden');
-    }
-  });
+    modal?.addEventListener('click', (e) => {
+      if (e.target === modal) {
+        modal.classList.add('hidden');
+      }
+    });
+  }
+
+  setupGalleryLightbox();
+  document.addEventListener('astro:page-load', setupGalleryLightbox);
 </script>

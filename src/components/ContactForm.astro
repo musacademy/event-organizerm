@@ -18,9 +18,6 @@ const {
   <div class="bg-white rounded-[2.5rem] p-6 sm:p-10 border border-[#e2ece4] shadow-lg relative overflow-hidden">
     
     <div class="text-center max-w-xl mx-auto mb-8">
-      <span class="text-xs font-bold tracking-widest uppercase text-[#3f724f] bg-[#eaf2eb] px-3.5 py-1.5 rounded-full inline-block mb-3">
-        Formulir Pengajuan Acara
-      </span>
       <h2 class="text-2xl sm:text-3xl font-sans font-extrabold text-[#1b3825]">
         {headline}
       </h2>
@@ -220,59 +217,64 @@ const {
   </div>
 </section>
 
-<script>
-  const form = document.getElementById('event-inquiry-form') as HTMLFormElement;
-  const successAlert = document.getElementById('form-success-alert');
-  const directWaBtn = document.getElementById('btn-direct-wa');
+<script define:vars={{ whatsappNumber: businessInfo.whatsapp }}>
+  function setupContactForm() {
+    const form = document.getElementById('event-inquiry-form') as HTMLFormElement;
+    const successAlert = document.getElementById('form-success-alert');
+    const directWaBtn = document.getElementById('btn-direct-wa');
 
-  function collectFormData() {
-    const name = (document.getElementById('form-name') as HTMLInputElement)?.value || '';
-    const org = (document.getElementById('form-org') as HTMLInputElement)?.value || '-';
-    const wa = (document.getElementById('form-wa') as HTMLInputElement)?.value || '';
-    const email = (document.getElementById('form-email') as HTMLInputElement)?.value || '-';
-    const location = (document.getElementById('form-location') as HTMLSelectElement)?.value || 'Malang';
-    const type = (document.getElementById('form-type') as HTMLSelectElement)?.value || 'Corporate Event';
-    const venue = (document.getElementById('form-venue') as HTMLInputElement)?.value || '-';
-    const date = (document.getElementById('form-date') as HTMLInputElement)?.value || 'Fleksibel';
-    const guests = (document.getElementById('form-guests') as HTMLInputElement)?.value || '-';
-    const notes = (document.getElementById('form-notes') as HTMLTextAreaElement)?.value || '-';
+    function collectFormData() {
+      const name = (document.getElementById('form-name') as HTMLInputElement)?.value || '';
+      const org = (document.getElementById('form-org') as HTMLInputElement)?.value || '-';
+      const wa = (document.getElementById('form-wa') as HTMLInputElement)?.value || '';
+      const email = (document.getElementById('form-email') as HTMLInputElement)?.value || '-';
+      const location = (document.getElementById('form-location') as HTMLSelectElement)?.value || 'Malang';
+      const type = (document.getElementById('form-type') as HTMLSelectElement)?.value || 'Corporate Event';
+      const venue = (document.getElementById('form-venue') as HTMLInputElement)?.value || '-';
+      const date = (document.getElementById('form-date') as HTMLInputElement)?.value || 'Fleksibel';
+      const guests = (document.getElementById('form-guests') as HTMLInputElement)?.value || '-';
+      const notes = (document.getElementById('form-notes') as HTMLTextAreaElement)?.value || '-';
 
-    return { name, org, wa, email, location, type, venue, date, guests, notes };
-  }
+      return { name, org, wa, email, location, type, venue, date, guests, notes };
+    }
 
-  function getWhatsAppUrl(data: ReturnType<typeof collectFormData>) {
-    const text = `Halo Aethel Events, saya ingin mengajukan rencana acara:\n\n` +
-      `*Nama / PIC:* ${data.name || 'Calon Klien'}\n` +
-      `*Perusahaan / Komunitas:* ${data.org}\n` +
-      `*No WhatsApp:* ${data.wa}\n` +
-      `*Email:* ${data.email}\n` +
-      `*Lokasi Acara:* ${data.location}\n` +
-      `*Jenis Acara:* ${data.type}\n` +
-      `*Venue:* ${data.venue}\n` +
-      `*Rencana Tanggal:* ${data.date}\n` +
-      `*Perkiraan Tamu:* ${data.guests}\n` +
-      `*Catatan Khusus:* ${data.notes}\n\n` +
-      `Mohon konfirmasi ketersediaan tim dan langkah konsultasi selanjutnya. Terima kasih!`;
-    return `https://wa.me/6281234567890?text=${encodeURIComponent(text)}`;
-  }
+    function getWhatsAppUrl(data: ReturnType<typeof collectFormData>) {
+      const text = `Halo Aethel Events, saya ingin mengajukan rencana acara:\n\n` +
+        `*Nama / PIC:* ${data.name || 'Calon Klien'}\n` +
+        `*Perusahaan / Komunitas:* ${data.org}\n` +
+        `*No WhatsApp:* ${data.wa}\n` +
+        `*Email:* ${data.email}\n` +
+        `*Lokasi Acara:* ${data.location}\n` +
+        `*Jenis Acara:* ${data.type}\n` +
+        `*Venue:* ${data.venue}\n` +
+        `*Rencana Tanggal:* ${data.date}\n` +
+        `*Perkiraan Tamu:* ${data.guests}\n` +
+        `*Catatan Khusus:* ${data.notes}\n\n` +
+        `Mohon konfirmasi ketersediaan tim dan langkah konsultasi selanjutnya. Terima kasih!`;
+      return `https://wa.me/${whatsappNumber}?text=${encodeURIComponent(text)}`;
+    }
 
-  if (form) {
-    form.addEventListener('submit', (e) => {
-      e.preventDefault();
-      const data = collectFormData();
-      if (successAlert) {
-        successAlert.classList.remove('hidden');
-      }
-      setTimeout(() => {
+    if (form) {
+      form.addEventListener('submit', (e) => {
+        e.preventDefault();
+        const data = collectFormData();
+        if (successAlert) {
+          successAlert.classList.remove('hidden');
+        }
+        setTimeout(() => {
+          window.open(getWhatsAppUrl(data), '_blank');
+        }, 700);
+      });
+    }
+
+    if (directWaBtn) {
+      directWaBtn.addEventListener('click', () => {
+        const data = collectFormData();
         window.open(getWhatsAppUrl(data), '_blank');
-      }, 700);
-    });
+      });
+    }
   }
 
-  if (directWaBtn) {
-    directWaBtn.addEventListener('click', () => {
-      const data = collectFormData();
-      window.open(getWhatsAppUrl(data), '_blank');
-    });
-  }
+  setupContactForm();
+  document.addEventListener('astro:page-load', setupContactForm);
 </script>
