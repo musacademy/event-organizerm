@@ -35,14 +35,11 @@ const isCurrent = (href: string) => {
 >
   <!-- Drawer Header with Logo & Close Button -->
   <div class="p-6 border-b border-gray-100 flex items-center justify-between">
-    <div class="flex flex-col">
+    <a href="/" class="flex items-center">
       <span class="font-script text-2xl font-bold tracking-tight text-gray-950 block leading-none">
-        Aethel
+        Halo Malang
       </span>
-      <span class="text-[9px] font-bold text-[#2d553b] tracking-widest uppercase mt-1 block">
-        Event Organizer Malang & Kediri
-      </span>
-    </div>
+    </a>
 
     <button
       id="mobile-drawer-close"
@@ -99,7 +96,7 @@ const isCurrent = (href: string) => {
   <!-- Drawer Footer CTA -->
   <div class="p-6 border-t border-gray-100 bg-[#fbfdfb]">
     <a
-      href={`https://wa.me/${businessInfo.whatsapp}?text=Halo%20Aethel%20Events,%20saya%20ingin%20konsultasi%20acara.`}
+      href={`https://wa.me/${businessInfo.whatsapp}?text=Halo%20Halo%20Malang,%20saya%20ingin%20konsultasi%20acara.`}
       target="_blank"
       rel="noopener noreferrer"
       class="w-full py-3.5 px-4 bg-[#2d553b] hover:bg-[#1f3f2a] text-white rounded-full text-sm font-semibold transition-all shadow-md flex items-center justify-center gap-2"

@@ -6,7 +6,7 @@ import { businessInfo } from '../data/business';
 
 const contactFaqs = [
   {
-    question: 'Berapa lama tim Aethel merespons formulir rencana acara?',
+    question: 'Berapa lama tim Halo Malang merespons formulir rencana acara?',
     answer: 'Tim konsultan kami merespons dalam waktu 1x24 jam kerja (biasanya dalam 1-2 jam via WhatsApp pada jam operasional). Jika Anda membutuhkan respons instan, silakan hubungi langsung nomor WhatsApp kami.'
   },
   {
@@ -19,14 +19,14 @@ const contactFaqs = [
   },
   {
     question: 'Bagaimana mekanisme pembayaran setelah proposal disetujui?',
-    answer: 'Pembayaran dilakukan bertahap via rekening resmi perusahaan (CV Aethel Karya Kreasi): DP booking tanggal 30%, termin produksi 50% setelah technical meeting, dan pelunasan 20% menjelang hari-H acara.'
+    answer: 'Pembayaran dilakukan bertahap via rekening resmi perusahaan (CV Halo Malang Kreasi): DP booking tanggal 30%, termin produksi 50% setelah technical meeting, dan pelunasan 20% menjelang hari-H acara.'
   }
 ];
 ---
 
 <Layout
-  title="Kontak & Konsultasi Acara | Aethel Event Organizer"
-  description="Hubungi tim Aethel Event Organizer untuk konsultasi kebutuhan acara Anda di Malang, Kediri, dan sekitarnya. Respon cepat 24/7."
+  title="Kontak & Konsultasi Acara | Halo Malang Event Organizer"
+  description="Hubungi tim Halo Malang Event Organizer untuk konsultasi kebutuhan acara Anda di Malang, Kediri, dan sekitarnya. Respon cepat 24/7."
   currentPath="/kontak"
   showCTA={false}
   breadcrumbs={[
@@ -64,7 +64,7 @@ const contactFaqs = [
         </div>
         <div class="pt-4 border-t border-[#edf4ee] mt-4">
           <a
-            href={`https://wa.me/${businessInfo.whatsapp}?text=Halo%20Aethel%20Events,%20saya%20ingin%20jadwal%20konsultasi%20di%20kantor%20Malang.`}
+            href={`https://wa.me/${businessInfo.whatsapp}?text=Halo%20Halo%20Malang,%20saya%20ingin%20jadwal%20konsultasi%20di%20kantor%20Malang.`}
             target="_blank"
             class="text-xs font-bold text-[#2d553b] hover:underline flex items-center gap-1"
           >
@@ -89,7 +89,7 @@ const contactFaqs = [
         </div>
         <div class="pt-4 border-t border-[#edf4ee] mt-4">
           <a
-            href={`https://wa.me/${businessInfo.whatsapp}?text=Halo%20Aethel%20Events,%20saya%20ingin%20jadwal%20konsultasi%20di%20hub%20Kediri.`}
+            href={`https://wa.me/${businessInfo.whatsapp}?text=Halo%20Halo%20Malang,%20saya%20ingin%20jadwal%20konsultasi%20di%20hub%20Kediri.`}
             target="_blank"
             class="text-xs font-bold text-[#2d553b] hover:underline flex items-center gap-1"
           >
@@ -112,11 +112,11 @@ const contactFaqs = [
           <div class="space-y-2 text-xs">
             <div class="flex items-center gap-2">
               <span class="text-emerald-300 font-semibold">WhatsApp:</span>
-              <span>+62 812-3456-7890</span>
+              <span>{businessInfo.phone}</span>
             </div>
             <div class="flex items-center gap-2">
               <span class="text-emerald-300 font-semibold">Email:</span>
-              <span>halo@aethelevents.com</span>
+              <span>{businessInfo.email}</span>
             </div>
             <div class="flex items-center gap-2">
               <span class="text-emerald-300 font-semibold">Jam Operasional:</span>

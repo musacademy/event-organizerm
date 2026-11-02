@@ -25,7 +25,7 @@ export interface PortfolioFaq {
 
 export const portfolioFaqs: PortfolioFaq[] = [
   {
-    question: 'Apakah Aethel melayani acara privat dengan perjanjian kerahasiaan (NDA)?',
+    question: 'Apakah Halo Malang melayani acara privat dengan perjanjian kerahasiaan (NDA)?',
     answer: 'Ya, untuk acara korporat berskala internal, peluncuran produk rahasia, maupun pesta keluarga eksklusif, kami siap menandatangani Non-Disclosure Agreement (NDA) dan tidak mempublikasikan dokumentasi ke publik tanpa persetujuan tertulis.'
   },
   {
@@ -37,7 +37,7 @@ export const portfolioFaqs: PortfolioFaq[] = [
     answer: 'Kami menyediakan opsi paket all-in-one yang mencakup fotografer profesional, video aftermovie cinematic beresolusi 4K, pilot drone tersertifikasi, hingga tim live streaming multi-kamera.'
   },
   {
-    question: 'Berapa kapasitas tamu terbesar yang pernah ditangani tim Aethel?',
+    question: 'Berapa kapasitas tamu terbesar yang pernah ditangani tim Halo Malang?',
     answer: 'Kami telah berpengalaman mengelola acara berskala intimate (50-100 orang), corporate gathering 500+ peserta, hingga festival musik kampus dan konser publik dengan audiens lebih dari 3.000 pengunjung.'
   }
 ];
@@ -76,7 +76,7 @@ export const portfolioData: PortfolioItem[] = [
     client: 'Arya & dr. Nabila',
     attendees: '180 Undangan Intimate',
     testimonial: {
-      quote: 'Hari paling bahagia kami ditangani dengan luar biasa tenang dan tertata oleh tim Aethel. Kami bisa menikmati setiap detik tanpa rasa khawatir.',
+      quote: 'Hari paling bahagia kami ditangani dengan luar biasa tenang dan tertata oleh tim Halo Malang. Kami bisa menikmati setiap detik tanpa rasa khawatir.',
       author: 'Arya & dr. Nabila',
       role: 'Mempelai Pengantin'
     }
@@ -95,7 +95,7 @@ export const portfolioData: PortfolioItem[] = [
     client: 'PT Citra Sejahtera Logistik',
     attendees: '220 Karyawan',
     testimonial: {
-      quote: 'Manajemen acara 300 peserta di alam terbuka berjalan sangat mulus. Tim Aethel sigap mengatasi perubahan cuaca di Batu dengan contingency plan yang siap.',
+      quote: 'Manajemen acara 300 peserta di alam terbuka berjalan sangat mulus. Tim Halo Malang sigap mengatasi perubahan cuaca di Batu dengan contingency plan yang siap.',
       author: 'Nilo Jiti Kusuma',
       role: 'HR & GA Manager PT Citra Sejahtera'
     }
@@ -114,7 +114,7 @@ export const portfolioData: PortfolioItem[] = [
     client: 'Asosiasi Industri Kediri Bersatu',
     attendees: '320 Tamu Undangan',
     testimonial: {
-      quote: 'Standar penyelenggaraan setara acara nasional di Jakarta. Kediri bangga memiliki mitra event organizer sekaliber Aethel.',
+      quote: 'Standar penyelenggaraan setara acara nasional di Jakarta. Kediri bangga memiliki mitra event organizer sekaliber Halo Malang.',
       author: 'Drs. H. Hendra Wicaksono',
       role: 'Ketua Panitia Pengarah'
     }

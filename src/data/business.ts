@@ -1,11 +1,11 @@
 export const businessInfo = {
-  name: 'Aethel Event Studio',
-  legalName: 'CV Aethel Karya Kreasi',
+  name: 'Halo Malang',
+  legalName: 'CV Halo Malang Kreasi',
   tagline: 'Professional Event Organizer Malang & Kediri',
   shortDesc: 'Penyelenggara acara terpercaya di Malang dan Kediri untuk Corporate Event, Wedding, Seminar, Gathering, Festival, dan Custom Event.',
   phone: '+62 812-3456-7890',
   whatsapp: '6281234567890',
-  email: 'halo@aethelevents.com',
+  email: 'halo@halomalang.web.id',
   workingHours: 'Senin - Sabtu: 08.00 - 18.00 WIB (Konsultasi Acara Darurat 24 Jam)',
   areasServed: [
     'Kota Malang',
@@ -28,9 +28,9 @@ export const businessInfo = {
     }
   ],
   socials: {
-    instagram: 'https://instagram.com/aethelevents',
-    tiktok: 'https://tiktok.com/@aethelevents',
-    youtube: 'https://youtube.com/@aethelevents',
-    linkedin: 'https://linkedin.com/company/aethel-events'
+    instagram: 'https://instagram.com/halomalang',
+    tiktok: 'https://tiktok.com/@halomalang',
+    youtube: 'https://youtube.com/@halomalang',
+    linkedin: 'https://linkedin.com/company/halo-malang'
   }
 };

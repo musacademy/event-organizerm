@@ -1,7 +1,7 @@
 {
-  "name": "event-organizer",
+  "name": "halo-malang",
   "version": "1.0.0",
-  "description": "Event Organizer Malang & Kediri - Penyelenggara Acara Profesional",
+  "description": "Halo Malang - Event Organizer Malang & Kediri Penyelenggara Acara Profesional",
   "type": "module",
   "scripts": {
     "dev": "astro dev --host",

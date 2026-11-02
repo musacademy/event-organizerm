@@ -17,7 +17,7 @@ export interface VenueHighlight {
 
 export const unifiedFaqs: LayananFaq[] = [
   {
-    question: 'Bagaimana Aethel Events menghandle acara di Malang dan Kediri dalam 1 proyek?',
+    question: 'Bagaimana Halo Malang menghandle acara di Malang dan Kediri dalam 1 proyek?',
     answer: 'Kami mengoperasikan dua hub resmi: Kantor Utama di Malang (Kawasan Ijen) dan Hub Operasional di Kediri (Kawasan Dhoho). Dengan sistem manajemen terpusat, tim produksi, show management, dan gudang peralatan kami siap beroperasi di kedua wilayah tanpa kendala koordinasi atau biaya mobilisasi luar kota yang membebani klien.'
   },
   {
@@ -25,11 +25,11 @@ export const unifiedFaqs: LayananFaq[] = [
     answer: 'Sama sekali tidak ada perbedaan. Seluruh acara di Malang Raya maupun Kediri ditangani dengan SOP kualitas yang sama: rancangan 3D layout presisi, tim show director berpengalaman, sound system berstandar profesional, dan pendampingan LO dedicated sepanjang acara.'
   },
   {
-    question: 'Bisakah Aethel mengelola acara multi-kota atau roadshow di Jawa Timur?',
+    question: 'Bisakah Halo Malang mengelola acara multi-kota atau roadshow di Jawa Timur?',
     answer: 'Tentu bisa. Karena memiliki basis operasional kuat di Malang dan Kediri, kami sangat ideal untuk menangani rangkaian roadshow korporasi, aktivasi brand, atau pameran yang berpindah antara Malang, Batu, Kediri, Blitar, hingga Jombang dengan satu kontrak kerja sama yang efisien.'
   },
   {
-    question: 'Venue mana saja yang menjadi rekanan resmi Aethel di Malang dan Kediri?',
+    question: 'Venue mana saja yang menjadi rekanan resmi Halo Malang di Malang dan Kediri?',
     answer: 'Di Malang Raya: Grand Mercure Mirama, Hotel Savana, The Singhasari Resort Batu, Kusuma Agrowisata, dan Malang Creative Center. Di Kediri: Grand Surya Hotel, Insumo Kediri Convention Centre, Lotus Garden Hotel, serta area publik seperti Simpang Lima Gumul (SLG).'
   },
   {
