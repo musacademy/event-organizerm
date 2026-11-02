@@ -1,0 +1,30 @@
+---
+import { serviceCategories } from '../../data/layanan';
+---
+
+<section id="kategori-layanan" class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-10">
+  <div class="bg-[#edf4ee] rounded-[2.5rem] p-6 sm:p-12 border border-[#d6e5d9]">
+    <div class="max-w-2xl mb-10">
+      <h2 class="text-2xl sm:text-3xl font-sans font-extrabold text-[#1b3825] mb-3">
+        Cakupan Layanan Penyelenggaraan Acara
+      </h2>
+      <p class="text-xs sm:text-sm text-[#546e5a] leading-relaxed">
+        Dari skala intimate hingga perhelatan akbar, seluruh divisi show management, dekorasi, perizinan, dan audio-visual ditangani dengan standar mutu tinggi.
+      </p>
+    </div>
+
+    <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+      {serviceCategories.map((service) => (
+        <div class="bg-white p-6 rounded-3xl border border-[#dce8df] shadow-xs hover:shadow-md transition-all">
+          <div class="w-12 h-12 rounded-2xl bg-[#e3efe5] flex items-center justify-center text-[#2d553b] mb-4">
+            <svg class="w-6 h-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d={service.icon} />
+            </svg>
+          </div>
+          <h3 class="text-base font-bold text-[#1b3825] mb-2">{service.title}</h3>
+          <p class="text-xs text-[#526a58] leading-relaxed">{service.description}</p>
+        </div>
+      ))}
+    </div>
+  </div>
+</section>

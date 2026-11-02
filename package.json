@@ -7,7 +7,8 @@
     "dev": "astro dev --host",
     "start": "astro dev --host",
     "build": "astro build",
-    "preview": "astro preview"
+    "preview": "astro preview",
+    "optimize:images": "node scripts/optimize-images.cjs"
   },
   "keywords": [
     "event organizer",
@@ -23,5 +24,8 @@
     "@tailwindcss/vite": "^4.3.3",
     "astro": "^7.4.4",
     "tailwindcss": "^4.3.3"
+  },
+  "devDependencies": {
+    "sharp": "^0.35.5"
   }
 }

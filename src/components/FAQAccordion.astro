@@ -78,8 +78,8 @@ const {
       const detailsList = container.querySelectorAll('details');
       detailsList.forEach((detail) => {
         detail.addEventListener('click', (e) => {
-          const target = e.target as HTMLElement;
-          if (target.closest('summary') && !detail.open) {
+          const target = e.target;
+          if (target && target.closest('summary') && !detail.open) {
             detailsList.forEach((other) => {
               if (other !== detail) {
                 other.removeAttribute('open');

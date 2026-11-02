@@ -21,7 +21,7 @@ export const blogPosts: BlogPost[] = [
     author: 'Tim Perencana Aethel',
     category: 'Corporate & Tips',
     cityTag: 'Malang',
-    image: '/images/corporate-malang.jpg',
+    image: '/images/corporate-malang.webp',
     content: [
       'Malang Raya—mencakup Kota Malang, Kabupaten Malang, dan Kota Wisata Batu—telah menjadi salah satu destinasi terfavorit di Jawa Timur untuk corporate retreat, seminar ilmiah, hingga awarding night tahunan. Suasana kota yang asri dan sejuk menjadi daya tarik utama.',
       'Namun, merencanakan acara korporat berskala puluhan hingga ratusan peserta memiliki tantangan logistik tersendiri. Memilih mitra Event Organizer (EO) yang tepat adalah faktor penentu antara acara yang meninggalkan kesan mendalam atau sekadar formalitas yang melelahkan.',
@@ -39,7 +39,7 @@ export const blogPosts: BlogPost[] = [
     author: 'Tim Kreatif Aethel',
     category: 'Gathering & Outbound',
     cityTag: 'Kediri',
-    image: '/images/gathering-batu.jpg',
+    image: '/images/gathering-batu.webp',
     content: [
       'Pertumbuhan ekonomi dan industri di wilayah Kediri, Jawa Timur, mendorong meningkatnya kebutuhan perusahaan akan kegiatan team building dan gathering yang profesional. Dengan beroperasinya Bandara Dhoho Kediri, mobilitas tim luar kota semakin efisien.',
       'Untuk merancang gathering yang berkesan di Kediri, tentukan terlebih dahulu sasaran utama kegiatan: apakah berfokus pada refreshing santai, pelatihan kepemimpinan, atau perayaan pencapaian target bisnis tahunan.',
@@ -56,7 +56,7 @@ export const blogPosts: BlogPost[] = [
     author: 'Divisi Acara Edukasi',
     category: 'Seminar & Conference',
     cityTag: 'Malang',
-    image: '/images/hero-stage.jpg',
+    image: '/images/hero-stage.webp',
     content: [
       'Menjadi rumah bagi puluhan perguruan tinggi ternama seperti Universitas Brawijaya, Universitas Negeri Malang, dan UIN Maulana Malik Ibrahim, Malang rutin menjadi tuan rumah seminar nasional dan simposium internasional.',
       'Persiapan utama meliputi kepastian tanggal narasumber utama (keynote speakers) dan reservasi auditorium atau ballroom hotel setidaknya 2-3 bulan sebelum hari-H.',
@@ -73,7 +73,7 @@ export const blogPosts: BlogPost[] = [
     author: 'Konsultan Anggaran Aethel',
     category: 'Manajemen Anggaran',
     cityTag: 'Umum',
-    image: '/images/wedding-reception.jpg',
+    image: '/images/wedding-reception.webp',
     content: [
       'Menyusun anggaran acara adalah pondasi utama keberhasilan setiap kegiatan. Kesalahan umum panitia adalah mengalokasikan persentase dana terlalu besar di elemen dekorasi, namun kekurangan alokasi untuk sound system, genset, atau konsumsi tamu.',
       'Formula ideal alokasi anggaran acara: Venue & Katering (40-45%), Produksi Panggung & Audio Visual (25-30%), Jasa Manajemen EO & Tim Pelaksana (10-15%), Dokumentasi & Publikasi (5-8%), serta Dana Tak Terduga / Contingency (5-10%).',
@@ -90,7 +90,7 @@ export const blogPosts: BlogPost[] = [
     author: 'Tim Riset Lapangan Aethel',
     category: 'Venue & Lokasi',
     cityTag: 'Malang',
-    image: '/images/floral-decor.jpg',
+    image: '/images/floral-decor.webp',
     content: [
       'Ketika merencanakan acara di Malang Raya, pertanyaan pertama yang kerap muncul adalah: sebaiknya memilih venue di pusat Kota Malang atau di Kota Wisata Batu?',
       'Jika acara Anda adalah seminar korporasi berdurasi satu hari dengan mayoritas peserta luar kota yang tiba via Stasiun Malang Kotabaru atau Bandara Abdulrachman Saleh, pusat Kota Malang (seperti kawasan Ijen, Klojen, atau Blimbing) adalah pilihan paling praktis.',
@@ -107,7 +107,7 @@ export const blogPosts: BlogPost[] = [
     author: 'Tim Produksi Festival',
     category: 'Festival & Komunitas',
     cityTag: 'Kediri',
-    image: '/images/stage-concert.jpg',
+    image: '/images/stage-concert.webp',
     content: [
       'Geliat komunitas kreatif di Kediri semakin berkembang pesat, mulai dari pameran otomotif, festival musik indie, hingga expo UMKM lokal di sekitar ikon Monumen Simpang Lima Gumul (SLG).',
       'Kunci utama festival outdoor yang aman adalah manajemen crowd flow. Pisahkan pintu masuk penonton, jalur khusus logistik vendor, dan akses darurat ambulans medis.',

@@ -45,8 +45,8 @@ import { businessInfo } from '../data/business';
           
           <!-- Kota Lokasi Acara -->
           <div>
-            <label class="block text-xs font-bold text-[#1b3825] mb-1.5">Lokasi Kota Acara</label>
-            <select id="calc-city" class="w-full text-xs font-medium rounded-xl border border-[#d6e3d8] bg-[#f9fbf9] p-2.5 focus:border-[#2d553b] focus:ring-1 focus:ring-[#2d553b] outline-none">
+            <label for="calc-city" class="block text-xs font-bold text-[#1b3825] mb-1.5">Lokasi Kota Acara</label>
+            <select id="calc-city" name="calc-city" aria-label="Lokasi Kota Acara" class="w-full text-xs font-medium rounded-xl border border-[#d6e3d8] bg-[#f9fbf9] p-2.5 focus:border-[#2d553b] focus:ring-1 focus:ring-[#2d553b] outline-none">
               <option value="Malang">Malang Raya (Kota / Kab)</option>
               <option value="Batu">Kota Wisata Batu</option>
               <option value="Kediri">Kediri (Kota / Kab)</option>
@@ -57,8 +57,8 @@ import { businessInfo } from '../data/business';
 
           <!-- Jenis Acara -->
           <div>
-            <label class="block text-xs font-bold text-[#1b3825] mb-1.5">Jenis Acara</label>
-            <select id="calc-type" class="w-full text-xs font-medium rounded-xl border border-[#d6e3d8] bg-[#f9fbf9] p-2.5 focus:border-[#2d553b] focus:ring-1 focus:ring-[#2d553b] outline-none">
+            <label for="calc-type" class="block text-xs font-bold text-[#1b3825] mb-1.5">Jenis Acara</label>
+            <select id="calc-type" name="calc-type" aria-label="Jenis Acara" class="w-full text-xs font-medium rounded-xl border border-[#d6e3d8] bg-[#f9fbf9] p-2.5 focus:border-[#2d553b] focus:ring-1 focus:ring-[#2d553b] outline-none">
               <option value="Corporate Event" data-base="18">Corporate Event / Gala Dinner</option>
               <option value="Gathering Perusahaan" data-base="15">Gathering & Outbound Perusahaan</option>
               <option value="Wedding Organizer" data-base="22">Wedding Organizer & Resepsi</option>
@@ -71,8 +71,8 @@ import { businessInfo } from '../data/business';
 
           <!-- Jumlah Tamu / Peserta -->
           <div>
-            <label class="block text-xs font-bold text-[#1b3825] mb-1.5">Estimasi Peserta / Tamu</label>
-            <select id="calc-guests" class="w-full text-xs font-medium rounded-xl border border-[#d6e3d8] bg-[#f9fbf9] p-2.5 focus:border-[#2d553b] focus:ring-1 focus:ring-[#2d553b] outline-none">
+            <label for="calc-guests" class="block text-xs font-bold text-[#1b3825] mb-1.5">Estimasi Peserta / Tamu</label>
+            <select id="calc-guests" name="calc-guests" aria-label="Estimasi Peserta atau Tamu" class="w-full text-xs font-medium rounded-xl border border-[#d6e3d8] bg-[#f9fbf9] p-2.5 focus:border-[#2d553b] focus:ring-1 focus:ring-[#2d553b] outline-none">
               <option value="Intimate (< 50 orang)" data-mult="1">Intimate (&lt; 50 orang)</option>
               <option value="Medium (50 - 150 orang)" data-mult="1.35">Medium (50 - 150 orang)</option>
               <option value="Large (150 - 350 orang)" data-mult="1.8" selected>Large (150 - 350 orang)</option>
@@ -83,8 +83,8 @@ import { businessInfo } from '../data/business';
 
           <!-- Status Venue -->
           <div>
-            <label class="block text-xs font-bold text-[#1b3825] mb-1.5">Status Venue / Tempat</label>
-            <select id="calc-venue" class="w-full text-xs font-medium rounded-xl border border-[#d6e3d8] bg-[#f9fbf9] p-2.5 focus:border-[#2d553b] focus:ring-1 focus:ring-[#2d553b] outline-none">
+            <label for="calc-venue" class="block text-xs font-bold text-[#1b3825] mb-1.5">Status Venue / Tempat</label>
+            <select id="calc-venue" name="calc-venue" aria-label="Status Venue atau Tempat" class="w-full text-xs font-medium rounded-xl border border-[#d6e3d8] bg-[#f9fbf9] p-2.5 focus:border-[#2d553b] focus:ring-1 focus:ring-[#2d553b] outline-none">
               <option value="Sudah Ada Venue Sendiri">Sudah ada venue sendiri</option>
               <option value="Butuh Rekomendasi Venue dari EO" selected>Butuh rekomendasi & booking EO</option>
             </select>
@@ -127,10 +127,12 @@ import { businessInfo } from '../data/business';
 <script>
   function setupBudgetCalculator() {
     function updateCalculator() {
-      const city = (document.getElementById('calc-city') as HTMLSelectElement)?.value || 'Malang';
-      const typeSelect = document.getElementById('calc-type') as HTMLSelectElement;
-      const guestSelect = document.getElementById('calc-guests') as HTMLSelectElement;
-      const venue = (document.getElementById('calc-venue') as HTMLSelectElement)?.value || '';
+      const cityEl = document.getElementById('calc-city');
+      const city = cityEl ? cityEl.value : 'Malang';
+      const typeSelect = document.getElementById('calc-type');
+      const guestSelect = document.getElementById('calc-guests');
+      const venueEl = document.getElementById('calc-venue');
+      const venue = venueEl ? venueEl.value : '';
 
       const baseVal = parseFloat(typeSelect?.selectedOptions[0]?.getAttribute('data-base') || '18');
       const multVal = parseFloat(guestSelect?.selectedOptions[0]?.getAttribute('data-mult') || '1.5');
@@ -143,10 +145,10 @@ import { businessInfo } from '../data/business';
         totalEl.innerText = `Rp ${lowEst} - ${highEst} Juta`;
       }
 
-      const waBtn = document.getElementById('calc-wa-btn') as HTMLAnchorElement;
+      const waBtn = document.getElementById('calc-wa-btn');
       if (waBtn) {
-        const typeText = typeSelect?.value;
-        const guestText = guestSelect?.value;
+        const typeText = typeSelect?.value || 'Corporate Event';
+        const guestText = guestSelect?.value || '150 - 350 orang';
         const msg = `Halo Aethel Events, saya ingin konsultasi acara dengan simulasi kalkulator:\n- Lokasi: ${city}\n- Jenis Acara: ${typeText}\n- Jumlah Tamu: ${guestText}\n- Kebutuhan Venue: ${venue}\n- Estimasi Awal: Rp ${lowEst} - ${highEst} Juta.\nMohon info ketersediaan tanggal & proposal rincinya. Terima kasih!`;
         waBtn.href = `https://wa.me/6281234567890?text=${encodeURIComponent(msg)}`;
       }

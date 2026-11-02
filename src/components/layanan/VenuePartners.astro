@@ -1,0 +1,37 @@
+---
+import { venueHighlights } from '../../data/layanan';
+---
+
+<section class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-10">
+  <div class="text-center max-w-2xl mx-auto mb-8">
+    <h2 class="text-2xl sm:text-3xl font-sans font-extrabold text-[#1b3825]">
+      Jaringan Venue Rekanan di Malang & Kediri
+    </h2>
+    <p class="text-xs sm:text-sm text-[#546b5a] mt-2">
+      Akses kemitraan prioritas untuk kemudahan reservasi ballroom hotel, resort perbukitan, convention hall, hingga ruang terbuka publik.
+    </p>
+  </div>
+
+  <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+    {venueHighlights.map((hub) => (
+      <div class="bg-white p-6 sm:p-8 rounded-[2rem] border border-[#e2ece4] shadow-xs">
+        <div class="flex items-center justify-between mb-4 pb-3 border-b border-[#edf4ee]">
+          <h3 class="text-lg font-bold text-[#1b3825]">{hub.region}</h3>
+          <span class="text-xs font-semibold px-3 py-1 bg-[#eaf2eb] text-[#2d553b] rounded-full">
+            {hub.badge}
+          </span>
+        </div>
+        <ul class="space-y-2.5">
+          {hub.venues.map((venue) => (
+            <li class="flex items-center gap-2.5 text-xs text-[#395341]">
+              <svg class="w-4 h-4 text-[#2d553b] shrink-0" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7" />
+              </svg>
+              <span>{venue}</span>
+            </li>
+          ))}
+        </ul>
+      </div>
+    ))}
+  </div>
+</section>

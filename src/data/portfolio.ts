@@ -18,6 +18,30 @@ export interface PortfolioItem {
   };
 }
 
+export interface PortfolioFaq {
+  question: string;
+  answer: string;
+}
+
+export const portfolioFaqs: PortfolioFaq[] = [
+  {
+    question: 'Apakah Aethel melayani acara privat dengan perjanjian kerahasiaan (NDA)?',
+    answer: 'Ya, untuk acara korporat berskala internal, peluncuran produk rahasia, maupun pesta keluarga eksklusif, kami siap menandatangani Non-Disclosure Agreement (NDA) dan tidak mempublikasikan dokumentasi ke publik tanpa persetujuan tertulis.'
+  },
+  {
+    question: 'Bisakah konsep visual dan tema acara dirancang secara custom?',
+    answer: 'Tentu. Setiap proyek kami dirancang dari nol sesuai identitas brand atau preferensi personal klien. Kami memadukan moodboard visual 3D, pemilihan material dekorasi, serta tata cahaya untuk mewujudkan tema yang unik.'
+  },
+  {
+    question: 'Apakah paket dokumentasi (foto, video cinematic, drone) sudah termasuk dalam layanan EO?',
+    answer: 'Kami menyediakan opsi paket all-in-one yang mencakup fotografer profesional, video aftermovie cinematic beresolusi 4K, pilot drone tersertifikasi, hingga tim live streaming multi-kamera.'
+  },
+  {
+    question: 'Berapa kapasitas tamu terbesar yang pernah ditangani tim Aethel?',
+    answer: 'Kami telah berpengalaman mengelola acara berskala intimate (50-100 orang), corporate gathering 500+ peserta, hingga festival musik kampus dan konser publik dengan audiens lebih dari 3.000 pengunjung.'
+  }
+];
+
 export const portfolioData: PortfolioItem[] = [
   {
     title: 'East Java Corporate Innovation Forum 2024',
@@ -27,8 +51,8 @@ export const portfolioData: PortfolioItem[] = [
     location: 'Grand Mercure Malang Mirama, Kota Malang',
     city: 'malang',
     description: 'Konferensi inovasi bisnis tahunan yang dihadiri lebih dari 350 delegasi korporasi se-Jawa Timur. Menghadirkan panggung minimalis modern beraksen sage green, sistem LED modular p3.9, dan tata suara speech-clarity.',
-    featuredImage: '/images/corporate-malang.jpg',
-    gallery: ['/images/corporate-malang.jpg', '/images/hero-stage.jpg', '/images/stage-concert.jpg'],
+    featuredImage: '/images/corporate-malang.webp',
+    gallery: ['/images/corporate-malang.webp', '/images/hero-stage.webp', '/images/stage-concert.webp'],
     servicesProvided: ['Konseptor & Stage Design', 'Penyediaan Sound & Multi-LED Screen', 'Manajemen Registrasi Digital', 'Live Broadcast Streaming', 'Tim Hospitality & LO VIP'],
     client: 'PT Nusadana Korpora',
     attendees: '380 Peserta',
@@ -46,8 +70,8 @@ export const portfolioData: PortfolioItem[] = [
     location: 'Batu Retreat Garden, Kota Wisata Batu (Malang Raya)',
     city: 'malang',
     description: 'Pernikahan berkonsep intimate botanical di area perbukitan sejuk Batu. Menggabungkan instalasi bunga eucalyptus lokal Malang, pencahayaan fairy lights hangat, dan tata katering fine dining outdoor.',
-    featuredImage: '/images/wedding-reception.jpg',
-    gallery: ['/images/wedding-reception.jpg', '/images/floral-decor.jpg', '/images/hero-stage.jpg'],
+    featuredImage: '/images/wedding-reception.webp',
+    gallery: ['/images/wedding-reception.webp', '/images/floral-decor.webp', '/images/hero-stage.webp'],
     servicesProvided: ['Full Wedding Planner & Organizer', 'Dekorasi Florist Botanical', 'Vendor & Venue Management', 'Technical Crew & Timekeeper', 'Sound Akustik Outdoor'],
     client: 'Arya & dr. Nabila',
     attendees: '180 Undangan Intimate',
@@ -65,8 +89,8 @@ export const portfolioData: PortfolioItem[] = [
     location: 'Kusuma Agrowisata Resort, Kota Batu (Malang Raya)',
     city: 'malang',
     description: 'Program gathering tahunan karyawan dan jajaran manajemen dengan kombinasi games kepemimpinan outdoor, gala dinner barbeque, dan live band acoustic.',
-    featuredImage: '/images/gathering-batu.jpg',
-    gallery: ['/images/gathering-batu.jpg', '/images/stage-concert.jpg', '/images/floral-decor.jpg'],
+    featuredImage: '/images/gathering-batu.webp',
+    gallery: ['/images/gathering-batu.webp', '/images/stage-concert.webp', '/images/floral-decor.webp'],
     servicesProvided: ['Penyusunan Games & Outbound Fasilitator', 'Stage Outdoor & Lighting', 'Akomodasi & Transportasi Shuttle', 'Dokumentasi Drone & Video Highlight'],
     client: 'PT Citra Sejahtera Logistik',
     attendees: '220 Karyawan',
@@ -84,8 +108,8 @@ export const portfolioData: PortfolioItem[] = [
     location: 'Grand Surya Hotel, Kota Kediri',
     city: 'kediri',
     description: 'Malam penganugerahan bagi pelaku usaha industri dan UMKM terkemuka di Kediri. Acara bernuansa mewah dengan banquet table setting elegan, awarding show, dan orkestra kamar.',
-    featuredImage: '/images/kediri-gala.jpg',
-    gallery: ['/images/kediri-gala.jpg', '/images/hero-stage.jpg', '/images/corporate-malang.jpg'],
+    featuredImage: '/images/kediri-gala.webp',
+    gallery: ['/images/kediri-gala.webp', '/images/hero-stage.webp', '/images/corporate-malang.webp'],
     servicesProvided: ['Event Production & Concept', 'Lighting Show & Panggung Megah', 'Protokoler Pejabat & VIP', 'Piala & Plakat Desain Custom', 'Press Conference'],
     client: 'Asosiasi Industri Kediri Bersatu',
     attendees: '320 Tamu Undangan',
@@ -103,8 +127,8 @@ export const portfolioData: PortfolioItem[] = [
     location: 'Taman Tirtayasa Outdoor Stage, Kota Kediri',
     city: 'kediri',
     description: 'Festival musik pemuda menghadirkan 8 band lokal Jawa Timur dan guest star nasional. Mengutamakan kenyamanan sirkulasi penonton, tata lampu panggung spektakuler, dan bazaar tenant kreatif.',
-    featuredImage: '/images/stage-concert.jpg',
-    gallery: ['/images/stage-concert.jpg', '/images/hero-stage.jpg', '/images/gathering-batu.jpg'],
+    featuredImage: '/images/stage-concert.webp',
+    gallery: ['/images/stage-concert.webp', '/images/hero-stage.webp', '/images/gathering-batu.webp'],
     servicesProvided: ['Rigging Stage 12x10m & FOH', 'Line Array Sound 30.000 Watt', 'Perizinan Keramaian & Medis', 'Manajemen Ticketing & Gate Scanner'],
     client: 'Komunitas Kreatif Kediri',
     attendees: '2.500 Penonton',
@@ -122,8 +146,8 @@ export const portfolioData: PortfolioItem[] = [
     location: 'Malang Creative Center (MCC), Kota Malang',
     city: 'malang',
     description: 'Pameran instalasi flora kontemporer dan ruang interaktif berkonsep zen interior. Menampilkan 15 instalasi botanik dan workshop merangkai bunga estetis.',
-    featuredImage: '/images/floral-decor.jpg',
-    gallery: ['/images/floral-decor.jpg', '/images/hero-stage.jpg', '/images/wedding-reception.jpg'],
+    featuredImage: '/images/floral-decor.webp',
+    gallery: ['/images/floral-decor.webp', '/images/hero-stage.webp', '/images/wedding-reception.webp'],
     servicesProvided: ['Layout Ruang Pameran & Partisi', 'Pencahayaan Galeri Terarah', 'Buku Katalog & Merchandise', 'Manajemen Kunjungan Berjadwal'],
     client: 'Ikatan Perangkai Bunga Malang Raya',
     attendees: '1.200 Pengunjung',

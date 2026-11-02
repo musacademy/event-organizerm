@@ -1,0 +1,108 @@
+---
+interface Props {
+  defaultLocation?: 'Malang' | 'Kediri' | 'Wilayah lain' | 'Belum ditentukan';
+}
+
+const { defaultLocation = 'Malang' } = Astro.props;
+---
+
+<!-- Event Details & Location -->
+<div class="grid grid-cols-1 sm:grid-cols-2 gap-4 pt-2 border-t border-[#edf4ee]">
+  <!-- Location Selection -->
+  <div>
+    <label for="form-location" class="block text-xs font-bold text-[#1b3825] mb-1.5">
+      Lokasi Rencana Acara <span class="text-red-500">*</span>
+    </label>
+    <select
+      id="form-location"
+      name="form-location"
+      required
+      class="w-full text-xs font-medium rounded-xl border border-[#d6e3d8] bg-[#f9fbf9] p-3 focus:border-[#2d553b] focus:ring-1 focus:ring-[#2d553b] outline-none"
+    >
+      <option value="Malang" selected={defaultLocation === 'Malang'}>Malang (Kota Malang / Kab. Malang / Kota Batu)</option>
+      <option value="Kediri" selected={defaultLocation === 'Kediri'}>Kediri (Kota Kediri / Kab. Kediri)</option>
+      <option value="Wilayah lain" selected={defaultLocation === 'Wilayah lain'}>Wilayah lain (Jawa Timur & sekitarnya)</option>
+      <option value="Belum ditentukan" selected={defaultLocation === 'Belum ditentukan'}>Belum ditentukan (Masih eksplorasi)</option>
+    </select>
+    <span class="text-[10px] text-[#63806a] block mt-1">Kami juga melayani area luar Malang & Kediri sesuai kesepakatan.</span>
+  </div>
+
+  <!-- Event Type -->
+  <div>
+    <label for="form-type" class="block text-xs font-bold text-[#1b3825] mb-1.5">
+      Jenis Acara <span class="text-red-500">*</span>
+    </label>
+    <select
+      id="form-type"
+      name="form-type"
+      required
+      class="w-full text-xs font-medium rounded-xl border border-[#d6e3d8] bg-[#f9fbf9] p-3 focus:border-[#2d553b] focus:ring-1 focus:ring-[#2d553b] outline-none"
+    >
+      <option value="Corporate Event">Corporate Event / Gala Dinner / Awarding</option>
+      <option value="Wedding Organizer">Wedding Organizer (Intimate / Luxury)</option>
+      <option value="Seminar & Conference">Seminar, Conference & Workshop</option>
+      <option value="Gathering Perusahaan">Gathering Perusahaan & Outbound</option>
+      <option value="Concert & Festival">Concert & Festival Musik</option>
+      <option value="Exhibition & Brand Activation">Exhibition & Brand Activation</option>
+      <option value="Birthday & Private Event">Birthday Party & Private Celebration</option>
+      <option value="Graduation Event">Graduation Event / Wisuda</option>
+      <option value="Community Event">Community Event</option>
+      <option value="Custom Event">Custom Event Khusus Lainnya</option>
+    </select>
+  </div>
+
+  <!-- Venue / Address field -->
+  <div>
+    <label for="form-venue" class="block text-xs font-bold text-[#1b3825] mb-1.5">
+      Nama Venue / Perkiraan Alamat (Jika Sudah Ada)
+    </label>
+    <input
+      type="text"
+      id="form-venue"
+      name="form-venue"
+      placeholder="Contoh: Grand Mercure Malang / Grand Surya Kediri / Belum Ada"
+      class="w-full text-xs font-medium rounded-xl border border-[#d6e3d8] bg-[#f9fbf9] p-3 focus:border-[#2d553b] focus:ring-1 focus:ring-[#2d553b] outline-none"
+    />
+  </div>
+
+  <!-- Date & Guest Count -->
+  <div class="grid grid-cols-2 gap-2">
+    <div>
+      <label for="form-date" class="block text-xs font-bold text-[#1b3825] mb-1.5">
+        Rencana Tanggal
+      </label>
+      <input
+        type="date"
+        id="form-date"
+        name="form-date"
+        class="w-full text-xs font-medium rounded-xl border border-[#d6e3d8] bg-[#f9fbf9] p-3 focus:border-[#2d553b] focus:ring-1 focus:ring-[#2d553b] outline-none"
+      />
+    </div>
+    <div>
+      <label for="form-guests" class="block text-xs font-bold text-[#1b3825] mb-1.5">
+        Jumlah Tamu
+      </label>
+      <input
+        type="text"
+        id="form-guests"
+        name="form-guests"
+        placeholder="Contoh: 200 Orang"
+        class="w-full text-xs font-medium rounded-xl border border-[#d6e3d8] bg-[#f9fbf9] p-3 focus:border-[#2d553b] focus:ring-1 focus:ring-[#2d553b] outline-none"
+      />
+    </div>
+  </div>
+</div>
+
+<!-- Notes / Specific Needs -->
+<div class="pt-2">
+  <label for="form-notes" class="block text-xs font-bold text-[#1b3825] mb-1.5">
+    Ceritakan Konsep atau Kebutuhan Khusus Acara
+  </label>
+  <textarea
+    id="form-notes"
+    name="form-notes"
+    rows="3"
+    placeholder="Jelaskan kebutuhan panggung, dekorasi, rundown, pengisi acara, atau rentang anggaran yang Anda rencanakan..."
+    class="w-full text-xs font-medium rounded-xl border border-[#d6e3d8] bg-[#f9fbf9] p-3 focus:border-[#2d553b] focus:ring-1 focus:ring-[#2d553b] outline-none"
+  ></textarea>
+</div>

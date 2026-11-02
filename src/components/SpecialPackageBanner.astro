@@ -60,9 +60,13 @@ import { businessInfo } from '../data/business';
       <!-- Image and CTA matching reference layout -->
       <div class="relative w-full h-44 sm:h-52 rounded-2xl overflow-hidden group">
         <img
-          src="/images/gathering-batu.jpg"
+          src="/images/gathering-batu.webp"
           alt="Outdoor corporate gathering di Batu Malang"
           class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
+          loading="lazy"
+          decoding="async"
+          width="500"
+          height="208"
         />
         <div class="absolute inset-0 bg-gradient-to-t from-black/60 via-transparent to-transparent"></div>
         <div class="absolute bottom-3 left-3 right-3 flex items-center justify-between">
@@ -85,27 +89,35 @@ import { businessInfo } from '../data/business';
     <div class="grid grid-cols-2 gap-3 h-full">
       <div class="relative rounded-3xl overflow-hidden border border-[#e2ece4] h-full min-h-[280px] group shadow-xs">
         <img
-          src="/images/wedding-reception.jpg"
+          src="/images/wedding-reception.webp"
           alt="Intimate wedding reception setup"
           class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
+          loading="lazy"
+          decoding="async"
+          width="500"
+          height="400"
         />
         <div class="absolute inset-0 bg-gradient-to-t from-[#1b3825]/90 via-transparent to-transparent"></div>
         <div class="absolute bottom-4 left-3 right-3 text-white">
           <span class="text-[10px] uppercase font-bold text-emerald-300">Wedding Vibe</span>
-          <h4 class="text-xs font-bold leading-snug">Botanical Intimate Batu & Kediri</h4>
+          <h3 class="text-xs font-bold leading-snug">Botanical Intimate Batu & Kediri</h3>
         </div>
       </div>
 
       <div class="relative rounded-3xl overflow-hidden border border-[#e2ece4] h-full min-h-[280px] group shadow-xs">
         <img
-          src="/images/corporate-malang.jpg"
+          src="/images/corporate-malang.webp"
           alt="Corporate innovation stage Malang"
           class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
+          loading="lazy"
+          decoding="async"
+          width="500"
+          height="400"
         />
         <div class="absolute inset-0 bg-gradient-to-t from-[#1b3825]/90 via-transparent to-transparent"></div>
         <div class="absolute bottom-4 left-3 right-3 text-white">
           <span class="text-[10px] uppercase font-bold text-emerald-300">Corporate Vibe</span>
-          <h4 class="text-xs font-bold leading-snug">Grand Ballroom Gala & Seminar</h4>
+          <h3 class="text-xs font-bold leading-snug">Grand Ballroom Gala & Seminar</h3>
         </div>
       </div>
     </div>

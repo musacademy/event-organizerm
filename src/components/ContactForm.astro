@@ -1,5 +1,7 @@
 ---
 import { businessInfo } from '../data/business';
+import ContactPersonalInfo from './contact/ContactPersonalInfo.astro';
+import ContactEventDetails from './contact/ContactEventDetails.astro';
 
 interface Props {
   defaultLocation?: 'Malang' | 'Kediri' | 'Wilayah lain' | 'Belum ditentukan';
@@ -27,156 +29,11 @@ const {
     </div>
 
     <form id="event-inquiry-form" class="space-y-6">
-      
-      <!-- Personal & Contact Info -->
-      <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
-        <div>
-          <label for="form-name" class="block text-xs font-bold text-[#1b3825] mb-1.5">
-            Nama Lengkap / PIC Acara <span class="text-red-500">*</span>
-          </label>
-          <input
-            type="text"
-            id="form-name"
-            required
-            placeholder="Contoh: Bpk. Hendra Kusuma / dr. Nabila"
-            class="w-full text-xs font-medium rounded-xl border border-[#d6e3d8] bg-[#f9fbf9] p-3 focus:border-[#2d553b] focus:ring-1 focus:ring-[#2d553b] outline-none"
-          />
-        </div>
+      <!-- Personal & Contact Info Fields -->
+      <ContactPersonalInfo />
 
-        <div>
-          <label for="form-org" class="block text-xs font-bold text-[#1b3825] mb-1.5">
-            Nama Perusahaan / Komunitas (Opsional)
-          </label>
-          <input
-            type="text"
-            id="form-org"
-            placeholder="Contoh: PT Citra Sejahtera / Pribadi"
-            class="w-full text-xs font-medium rounded-xl border border-[#d6e3d8] bg-[#f9fbf9] p-3 focus:border-[#2d553b] focus:ring-1 focus:ring-[#2d553b] outline-none"
-          />
-        </div>
-
-        <div>
-          <label for="form-wa" class="block text-xs font-bold text-[#1b3825] mb-1.5">
-            Nomor WhatsApp / HP Aktif <span class="text-red-500">*</span>
-          </label>
-          <input
-            type="tel"
-            id="form-wa"
-            required
-            placeholder="Contoh: 081234567890"
-            class="w-full text-xs font-medium rounded-xl border border-[#d6e3d8] bg-[#f9fbf9] p-3 focus:border-[#2d553b] focus:ring-1 focus:ring-[#2d553b] outline-none"
-          />
-        </div>
-
-        <div>
-          <label for="form-email" class="block text-xs font-bold text-[#1b3825] mb-1.5">
-            Alamat Email (Opsional)
-          </label>
-          <input
-            type="email"
-            id="form-email"
-            placeholder="Contoh: hendra@perusahaan.co.id"
-            class="w-full text-xs font-medium rounded-xl border border-[#d6e3d8] bg-[#f9fbf9] p-3 focus:border-[#2d553b] focus:ring-1 focus:ring-[#2d553b] outline-none"
-          />
-        </div>
-      </div>
-
-      <!-- Event Details & Location (Mandatory PRD Section 9) -->
-      <div class="grid grid-cols-1 sm:grid-cols-2 gap-4 pt-2 border-t border-[#edf4ee]">
-        
-        <!-- Location Selection fulfilling PRD 9 -->
-        <div>
-          <label for="form-location" class="block text-xs font-bold text-[#1b3825] mb-1.5">
-            Lokasi Rencana Acara <span class="text-red-500">*</span>
-          </label>
-          <select
-            id="form-location"
-            required
-            class="w-full text-xs font-medium rounded-xl border border-[#d6e3d8] bg-[#f9fbf9] p-3 focus:border-[#2d553b] focus:ring-1 focus:ring-[#2d553b] outline-none"
-          >
-            <option value="Malang" selected={defaultLocation === 'Malang'}>Malang (Kota Malang / Kab. Malang / Kota Batu)</option>
-            <option value="Kediri" selected={defaultLocation === 'Kediri'}>Kediri (Kota Kediri / Kab. Kediri)</option>
-            <option value="Wilayah lain" selected={defaultLocation === 'Wilayah lain'}>Wilayah lain (Jawa Timur & sekitarnya)</option>
-            <option value="Belum ditentukan" selected={defaultLocation === 'Belum ditentukan'}>Belum ditentukan (Masih eksplorasi)</option>
-          </select>
-          <span class="text-[10px] text-[#63806a] block mt-1">Kami juga melayani area luar Malang & Kediri sesuai kesepakatan.</span>
-        </div>
-
-        <!-- Event Type -->
-        <div>
-          <label for="form-type" class="block text-xs font-bold text-[#1b3825] mb-1.5">
-            Jenis Acara <span class="text-red-500">*</span>
-          </label>
-          <select
-            id="form-type"
-            required
-            class="w-full text-xs font-medium rounded-xl border border-[#d6e3d8] bg-[#f9fbf9] p-3 focus:border-[#2d553b] focus:ring-1 focus:ring-[#2d553b] outline-none"
-          >
-            <option value="Corporate Event">Corporate Event / Gala Dinner / Awarding</option>
-            <option value="Wedding Organizer">Wedding Organizer (Intimate / Luxury)</option>
-            <option value="Seminar & Conference">Seminar, Conference & Workshop</option>
-            <option value="Gathering Perusahaan">Gathering Perusahaan & Outbound</option>
-            <option value="Concert & Festival">Concert & Festival Musik</option>
-            <option value="Exhibition & Brand Activation">Exhibition & Brand Activation</option>
-            <option value="Birthday & Private Event">Birthday Party & Private Celebration</option>
-            <option value="Graduation Event">Graduation Event / Wisuda</option>
-            <option value="Community Event">Community Event</option>
-            <option value="Custom Event">Custom Event Khusus Lainnya</option>
-          </select>
-        </div>
-
-        <!-- Optional Venue / Address field (PRD Section 9) -->
-        <div>
-          <label for="form-venue" class="block text-xs font-bold text-[#1b3825] mb-1.5">
-            Nama Venue / Perkiraan Alamat (Jika Sudah Ada)
-          </label>
-          <input
-            type="text"
-            id="form-venue"
-            placeholder="Contoh: Grand Mercure Malang / Grand Surya Kediri / Belum Ada"
-            class="w-full text-xs font-medium rounded-xl border border-[#d6e3d8] bg-[#f9fbf9] p-3 focus:border-[#2d553b] focus:ring-1 focus:ring-[#2d553b] outline-none"
-          />
-        </div>
-
-        <!-- Date & Guest Count -->
-        <div class="grid grid-cols-2 gap-2">
-          <div>
-            <label for="form-date" class="block text-xs font-bold text-[#1b3825] mb-1.5">
-              Rencana Tanggal
-            </label>
-            <input
-              type="date"
-              id="form-date"
-              class="w-full text-xs font-medium rounded-xl border border-[#d6e3d8] bg-[#f9fbf9] p-3 focus:border-[#2d553b] focus:ring-1 focus:ring-[#2d553b] outline-none"
-            />
-          </div>
-          <div>
-            <label for="form-guests" class="block text-xs font-bold text-[#1b3825] mb-1.5">
-              Jumlah Tamu
-            </label>
-            <input
-              type="text"
-              id="form-guests"
-              placeholder="Contoh: 200 Orang"
-              class="w-full text-xs font-medium rounded-xl border border-[#d6e3d8] bg-[#f9fbf9] p-3 focus:border-[#2d553b] focus:ring-1 focus:ring-[#2d553b] outline-none"
-            />
-          </div>
-        </div>
-
-      </div>
-
-      <!-- Notes / Specific Needs -->
-      <div>
-        <label for="form-notes" class="block text-xs font-bold text-[#1b3825] mb-1.5">
-          Ceritakan Konsep atau Kebutuhan Khusus Acara
-        </label>
-        <textarea
-          id="form-notes"
-          rows="3"
-          placeholder="Jelaskan kebutuhan panggung, dekorasi, rundown, pengisi acara, atau rentang anggaran yang Anda rencanakan..."
-          class="w-full text-xs font-medium rounded-xl border border-[#d6e3d8] bg-[#f9fbf9] p-3 focus:border-[#2d553b] focus:ring-1 focus:ring-[#2d553b] outline-none"
-        ></textarea>
-      </div>
+      <!-- Event Details & Location Fields -->
+      <ContactEventDetails defaultLocation={defaultLocation} />
 
       <!-- Submission Status Alert -->
       <div id="form-success-alert" class="hidden bg-[#edf7ef] border border-[#a2d1ac] rounded-2xl p-4 text-xs text-[#1e4e2a]">
@@ -211,7 +68,6 @@ const {
           <span>Kirim Langsung via WhatsApp</span>
         </button>
       </div>
-
     </form>
 
   </div>
@@ -219,57 +75,68 @@ const {
 
 <script define:vars={{ whatsappNumber: businessInfo.whatsapp }}>
   function setupContactForm() {
-    const form = document.getElementById('event-inquiry-form') as HTMLFormElement;
-    const successAlert = document.getElementById('form-success-alert');
-    const directWaBtn = document.getElementById('btn-direct-wa');
+    var form = document.getElementById('event-inquiry-form');
+    var successAlert = document.getElementById('form-success-alert');
+    var directWaBtn = document.getElementById('btn-direct-wa');
 
     function collectFormData() {
-      const name = (document.getElementById('form-name') as HTMLInputElement)?.value || '';
-      const org = (document.getElementById('form-org') as HTMLInputElement)?.value || '-';
-      const wa = (document.getElementById('form-wa') as HTMLInputElement)?.value || '';
-      const email = (document.getElementById('form-email') as HTMLInputElement)?.value || '-';
-      const location = (document.getElementById('form-location') as HTMLSelectElement)?.value || 'Malang';
-      const type = (document.getElementById('form-type') as HTMLSelectElement)?.value || 'Corporate Event';
-      const venue = (document.getElementById('form-venue') as HTMLInputElement)?.value || '-';
-      const date = (document.getElementById('form-date') as HTMLInputElement)?.value || 'Fleksibel';
-      const guests = (document.getElementById('form-guests') as HTMLInputElement)?.value || '-';
-      const notes = (document.getElementById('form-notes') as HTMLTextAreaElement)?.value || '-';
+      var nameEl = document.getElementById('form-name');
+      var orgEl = document.getElementById('form-org');
+      var waEl = document.getElementById('form-wa');
+      var emailEl = document.getElementById('form-email');
+      var locEl = document.getElementById('form-location');
+      var typeEl = document.getElementById('form-type');
+      var venueEl = document.getElementById('form-venue');
+      var dateEl = document.getElementById('form-date');
+      var guestsEl = document.getElementById('form-guests');
+      var notesEl = document.getElementById('form-notes');
 
-      return { name, org, wa, email, location, type, venue, date, guests, notes };
+      return {
+        name: (nameEl && nameEl.value) ? nameEl.value : '',
+        org: (orgEl && orgEl.value) ? orgEl.value : '-',
+        wa: (waEl && waEl.value) ? waEl.value : '',
+        email: (emailEl && emailEl.value) ? emailEl.value : '-',
+        location: (locEl && locEl.value) ? locEl.value : 'Malang',
+        type: (typeEl && typeEl.value) ? typeEl.value : 'Corporate Event',
+        venue: (venueEl && venueEl.value) ? venueEl.value : '-',
+        date: (dateEl && dateEl.value) ? dateEl.value : 'Fleksibel',
+        guests: (guestsEl && guestsEl.value) ? guestsEl.value : '-',
+        notes: (notesEl && notesEl.value) ? notesEl.value : '-'
+      };
     }
 
-    function getWhatsAppUrl(data: ReturnType<typeof collectFormData>) {
-      const text = `Halo Aethel Events, saya ingin mengajukan rencana acara:\n\n` +
-        `*Nama / PIC:* ${data.name || 'Calon Klien'}\n` +
-        `*Perusahaan / Komunitas:* ${data.org}\n` +
-        `*No WhatsApp:* ${data.wa}\n` +
-        `*Email:* ${data.email}\n` +
-        `*Lokasi Acara:* ${data.location}\n` +
-        `*Jenis Acara:* ${data.type}\n` +
-        `*Venue:* ${data.venue}\n` +
-        `*Rencana Tanggal:* ${data.date}\n` +
-        `*Perkiraan Tamu:* ${data.guests}\n` +
-        `*Catatan Khusus:* ${data.notes}\n\n` +
-        `Mohon konfirmasi ketersediaan tim dan langkah konsultasi selanjutnya. Terima kasih!`;
-      return `https://wa.me/${whatsappNumber}?text=${encodeURIComponent(text)}`;
+    function getWhatsAppUrl(data) {
+      var text = 'Halo Aethel Events, saya ingin mengajukan rencana acara:\n\n' +
+        '*Nama / PIC:* ' + (data.name || 'Calon Klien') + '\n' +
+        '*Perusahaan / Komunitas:* ' + data.org + '\n' +
+        '*No WhatsApp:* ' + data.wa + '\n' +
+        '*Email:* ' + data.email + '\n' +
+        '*Lokasi Acara:* ' + data.location + '\n' +
+        '*Jenis Acara:* ' + data.type + '\n' +
+        '*Venue:* ' + data.venue + '\n' +
+        '*Rencana Tanggal:* ' + data.date + '\n' +
+        '*Perkiraan Tamu:* ' + data.guests + '\n' +
+        '*Catatan Khusus:* ' + data.notes + '\n\n' +
+        'Mohon konfirmasi ketersediaan tim dan langkah konsultasi selanjutnya. Terima kasih!';
+      return 'https://wa.me/' + whatsappNumber + '?text=' + encodeURIComponent(text);
     }
 
     if (form) {
-      form.addEventListener('submit', (e) => {
+      form.addEventListener('submit', function(e) {
         e.preventDefault();
-        const data = collectFormData();
+        var data = collectFormData();
         if (successAlert) {
           successAlert.classList.remove('hidden');
         }
-        setTimeout(() => {
+        setTimeout(function() {
           window.open(getWhatsAppUrl(data), '_blank');
         }, 700);
       });
     }
 
     if (directWaBtn) {
-      directWaBtn.addEventListener('click', () => {
-        const data = collectFormData();
+      directWaBtn.addEventListener('click', function() {
+        var data = collectFormData();
         window.open(getWhatsAppUrl(data), '_blank');
       });
     }
