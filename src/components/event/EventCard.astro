@@ -1,0 +1,138 @@
+---
+import type { EventItem } from '../../data/events';
+
+interface Props {
+  event: EventItem;
+}
+
+const { event } = Astro.props;
+
+// Determine badge styling based on status
+let statusBadgeClass = 'bg-emerald-50 text-emerald-800 border-emerald-200';
+let statusDotClass = 'bg-emerald-500';
+
+if (event.status === 'Early Bird Aktif') {
+  statusBadgeClass = 'bg-amber-50 text-amber-800 border-amber-200';
+  statusDotClass = 'bg-amber-500 animate-pulse';
+} else if (event.status === 'Slot Terbatas') {
+  statusBadgeClass = 'bg-rose-50 text-rose-800 border-rose-200';
+  statusDotClass = 'bg-rose-500 animate-pulse';
+} else if (event.status === 'Segera Hadir') {
+  statusBadgeClass = 'bg-sky-50 text-sky-800 border-sky-200';
+  statusDotClass = 'bg-sky-500';
+}
+---
+
+<div
+  class="event-card bg-white rounded-3xl overflow-hidden border border-[#e2ece4] shadow-xs hover:shadow-xl hover:-translate-y-1 transition-all duration-300 flex flex-col justify-between group"
+  data-category={event.categorySlug}
+  data-city={event.city}
+  data-status={event.status.toLowerCase().replace(/\s+/g, '-')}
+  data-price={event.priceStart === 0 ? 'free' : 'paid'}
+  data-title={event.title.toLowerCase()}
+  data-search={`${event.title} ${event.location} ${event.category} ${event.cityName}`.toLowerCase()}
+>
+  <div>
+    <!-- Event Banner Image -->
+    <a href={`/event/${event.slug}`} class="block relative w-full h-56 overflow-hidden bg-gray-100">
+      <img
+        src={event.featuredImage}
+        alt={event.title}
+        class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
+        loading="lazy"
+        decoding="async"
+      />
+      
+      <!-- Top badges -->
+      <div class="absolute top-3 left-3 right-3 flex items-center justify-between gap-2 pointer-events-none">
+        <span class="px-3 py-1 bg-[#2d553b] text-white text-[11px] font-bold rounded-full shadow-xs backdrop-blur-xs">
+          {event.category}
+        </span>
+        <span class={`px-2.5 py-0.5 text-[10px] font-bold rounded-full border flex items-center gap-1.5 shadow-xs bg-white/95 backdrop-blur-xs ${statusBadgeClass}`}>
+          <span class={`w-1.5 h-1.5 rounded-full ${statusDotClass}`}></span>
+          <span>{event.status}</span>
+        </span>
+      </div>
+
+      <!-- City Pill Bottom Left -->
+      <div class="absolute bottom-3 left-3 bg-white/95 backdrop-blur-xs px-2.5 py-1 rounded-full text-[11px] font-bold text-[#2d553b] flex items-center gap-1 shadow-xs">
+        <svg class="w-3.5 h-3.5 text-[#2d553b]" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z" />
+          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 11a3 3 0 11-6 0 3 3 0 016 0z" />
+        </svg>
+        <span>{event.cityName}</span>
+      </div>
+    </a>
+
+    <!-- Card Content -->
+    <div class="p-4 sm:p-6">
+      
+      <!-- Date & Time Row -->
+      <div class="flex flex-wrap items-center gap-x-2 gap-y-1 text-xs text-[#526a58] font-medium mb-2.5">
+        <div class="flex items-center gap-1">
+          <svg class="w-4 h-4 text-[#2d553b]" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z" />
+          </svg>
+          <span class="font-bold text-[#1b3825]">{event.date}</span>
+        </div>
+        <span class="hidden sm:inline">&bull;</span>
+        <div class="flex items-center gap-1">
+          <svg class="w-3.5 h-3.5 text-[#63806b]" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z" />
+          </svg>
+          <span>{event.time}</span>
+        </div>
+      </div>
+
+      <!-- Title -->
+      <h2 class="text-base sm:text-lg font-bold font-sans text-[#1b3825] group-hover:text-[#2d553b] transition-colors leading-snug mb-2 line-clamp-2">
+        <a href={`/event/${event.slug}`} class="focus:outline-hidden">
+          {event.title}
+        </a>
+      </h2>
+
+      <!-- Venue info -->
+      <p class="text-xs text-[#526a58] flex items-start gap-1.5 mb-3 line-clamp-1">
+        <svg class="w-3.5 h-3.5 text-[#2d553b] shrink-0 mt-0.5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 21V5a2 2 0 00-2-2H7a2 2 0 00-2 2v16m14 0h2m-2 0h-5m-9 0H3m2 0h5M9 7h1m-1 4h1m4-4h1m-1 4h1m-5 10v-5a1 1 0 011-1h2a1 1 0 011 1v5m-4 0h4" />
+        </svg>
+        <span>{event.venueName}</span>
+      </p>
+
+      <!-- Short Description -->
+      <p class="text-xs text-[#63806b] leading-relaxed line-clamp-2 mb-4">
+        {event.shortDesc}
+      </p>
+
+      <!-- Key highlights tags -->
+      <div class="flex flex-wrap gap-1.5 mb-2">
+        {event.highlights.slice(0, 2).map((h) => (
+          <span class="text-[10px] bg-[#edf4ee] text-[#2d553b] px-2 py-0.5 rounded-md font-medium line-clamp-1">
+            ✓ {h}
+          </span>
+        ))}
+      </div>
+
+    </div>
+  </div>
+
+  <!-- Footer Pricing & CTA -->
+  <div class="p-4 sm:p-6 pt-3 sm:pt-4 border-t border-[#edf4ee] bg-[#fbfdfb] flex items-center justify-between gap-2">
+    <div>
+      <span class="text-[10px] text-[#63806b] uppercase tracking-wider block font-semibold">Tiket Masuk</span>
+      <span class="text-sm font-extrabold text-[#1b3825]">
+        {event.priceDisplay}
+      </span>
+    </div>
+
+    <div class="flex items-center gap-2">
+      <a
+        href={`/event/${event.slug}`}
+        class="px-4 py-2 rounded-full text-xs font-bold text-white bg-[#2d553b] hover:bg-[#1a3825] transition-all shadow-xs inline-flex items-center gap-1.5 group/btn"
+      >
+        <span>Detail & Daftar</span>
+        <span class="group-hover/btn:translate-x-0.5 transition-transform">&rarr;</span>
+      </a>
+    </div>
+  </div>
+</div>

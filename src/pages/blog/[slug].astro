@@ -56,11 +56,11 @@ const { post } = Astro.props;
         {post.title}
       </h1>
 
-      <div class="flex items-center gap-4 text-xs text-[#526a58] pt-3 border-t border-[#e2ece4]">
+      <div class="flex flex-wrap items-center gap-x-3 gap-y-1 text-xs text-[#526a58] pt-3 border-t border-[#e2ece4]">
         <span><strong>Penulis:</strong> {post.author}</span>
-        <span>&bull;</span>
+        <span class="hidden sm:inline">&bull;</span>
         <span><strong>Tanggal:</strong> {post.date}</span>
-        <span>&bull;</span>
+        <span class="hidden sm:inline">&bull;</span>
         <span><strong>Waktu Baca:</strong> {post.readTime}</span>
       </div>
     </header>
@@ -84,19 +84,19 @@ const { post } = Astro.props;
     </div>
 
     <!-- Contextual Local SEO Links matching PRD Section 7 -->
-    <div class="mt-10 p-6 bg-[#edf5ef] rounded-3xl border border-[#d5e6d9]">
+    <div class="mt-10 p-5 sm:p-6 bg-[#edf5ef] rounded-3xl border border-[#d5e6d9]">
       <h3 class="text-sm font-bold text-[#1b3825] mb-2">Perlu Bantuan Penyelenggaraan Acara Terpadu?</h3>
       <p class="text-xs text-[#526a58] leading-relaxed mb-4">
         Diskusikan langsung konsep, penataan venue, perizinan, dan anggaran bersama tim Halo Malang.
       </p>
-      <div class="flex flex-wrap items-center gap-3">
-        <a href="/layanan" class="text-xs font-bold px-4 py-2 bg-[#2d553b] text-white rounded-full hover:bg-[#1a3825] transition-all">
+      <div class="flex flex-col sm:flex-row items-stretch sm:items-center gap-2.5">
+        <a href="/layanan" class="text-xs font-bold px-4 py-2.5 bg-[#2d553b] text-white rounded-full hover:bg-[#1a3825] transition-all text-center">
           Lihat Layanan Event Organizer Malang & Kediri &rarr;
         </a>
         <a
           href={`https://wa.me/${businessInfo.whatsapp}?text=Halo%20Halo%20Malang,%20saya%20membaca%20artikel%20${encodeURIComponent(post.title)}%20dan%20ingin%20konsultasi.`}
           target="_blank"
-          class="text-xs font-bold px-4 py-2 bg-white text-[#2d553b] rounded-full border border-[#d0e0d3] hover:bg-gray-50 transition-all inline-flex items-center gap-1.5"
+          class="text-xs font-bold px-4 py-2.5 bg-white text-[#2d553b] rounded-full border border-[#d0e0d3] hover:bg-gray-50 transition-all inline-flex items-center justify-center gap-1.5 text-center"
         >
           <span>Chat WhatsApp Konsultan</span>
         </a>

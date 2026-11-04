@@ -26,13 +26,13 @@ const features = [
 <section class="max-w-[1240px] mx-auto px-4 sm:px-6 lg:px-8 py-4 sm:py-6">
   <div class="grid grid-cols-2 lg:grid-cols-4 gap-3 sm:gap-4">
     {features.map((feat) => (
-      <div class="bg-white rounded-2xl sm:rounded-3xl p-4 sm:p-5 border border-gray-100 shadow-[0_2px_12px_rgba(0,0,0,0.03)] hover:shadow-md transition-all duration-300 group hover:-translate-y-1 flex items-center gap-3.5">
-        <div class="w-10 h-10 sm:w-11 sm:h-11 rounded-2xl bg-[#eaf4ec] text-[#2d553b] flex items-center justify-center shrink-0 group-hover:bg-[#2d553b] group-hover:text-white transition-colors duration-200">
-          <svg class="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor" set:html={feat.icon} />
+      <div class="bg-white rounded-2xl sm:rounded-3xl p-3 sm:p-5 border border-gray-100 shadow-[0_2px_12px_rgba(0,0,0,0.03)] hover:shadow-md transition-all duration-300 group hover:-translate-y-1 flex items-center gap-2.5 sm:gap-3.5">
+        <div class="w-8 h-8 sm:w-11 sm:h-11 rounded-xl sm:rounded-2xl bg-[#eaf4ec] text-[#2d553b] flex items-center justify-center shrink-0 group-hover:bg-[#2d553b] group-hover:text-white transition-colors duration-200">
+          <svg class="w-4 h-4 sm:w-5 sm:h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor" set:html={feat.icon} />
         </div>
-        <div>
-          <h3 class="text-xs sm:text-sm font-bold text-gray-900 leading-tight mb-0.5">{feat.title}</h3>
-          <p class="text-[10px] sm:text-xs text-gray-500 line-clamp-1">{feat.subtitle}</p>
+        <div class="min-w-0 flex-1">
+          <h3 class="text-[11px] sm:text-sm font-bold text-gray-900 leading-tight mb-0.5 truncate">{feat.title}</h3>
+          <p class="text-[9px] sm:text-xs text-gray-500 truncate">{feat.subtitle}</p>
         </div>
       </div>
     ))}

@@ -49,6 +49,7 @@ import { businessInfo } from '../data/business';
         <ul class="space-y-2.5 text-sm text-[#c8e2cd]">
           <li><a href="/" class="hover:text-white transition-colors">Beranda</a></li>
           <li><a href="/tentang-kami" class="hover:text-white transition-colors">Tentang Kami</a></li>
+          <li><a href="/event" class="hover:text-white transition-colors">Event Mendatang</a></li>
           <li><a href="/portofolio" class="hover:text-white transition-colors">Portofolio Acara</a></li>
           <li><a href="/galeri" class="hover:text-white transition-colors">Galeri Dokumentasi</a></li>
           <li><a href="/blog" class="hover:text-white transition-colors">Blog & Panduan Acara</a></li>
@@ -87,9 +88,8 @@ import { businessInfo } from '../data/business';
           </div>
           <div class="pt-2 border-t border-[#2a4d36]">
             <a href={`https://wa.me/${businessInfo.whatsapp}`} class="text-emerald-300 hover:text-white block font-medium">
-              WhatsApp: +62 812-3456-7890
+              WhatsApp: {businessInfo.phone}
             </a>
-            <span class="block text-[#c2dfca] mt-0.5">{businessInfo.email}</span>
             <span class="block text-[#b4d6be] mt-1 font-medium">Jam: 08.00 - 18.00 WIB (Darurat 24/7)</span>
           </div>
         </div>
@@ -98,9 +98,9 @@ import { businessInfo } from '../data/business';
     </div>
 
     <!-- Bottom copyright and note -->
-    <div class="pt-8 flex flex-col md:flex-row items-center justify-between text-xs text-[#b8d7c0] gap-4">
+    <div class="pt-8 flex flex-col md:flex-row items-center justify-between text-xs text-[#b8d7c0] gap-4 text-center md:text-left">
       <p>&copy; {new Date().getFullYear()} {businessInfo.name} ({businessInfo.legalName}). Hak Cipta Dilindungi.</p>
-      <div class="flex items-center gap-6">
+      <div class="flex flex-wrap items-center justify-center gap-4 sm:gap-6">
         <a href="/tentang-kami" class="text-[#c2dfca] hover:text-white transition-colors underline-offset-2 hover:underline">Kebijakan Layanan</a>
         <a href="/kontak" class="text-[#c2dfca] hover:text-white transition-colors underline-offset-2 hover:underline">Konsultasi Biaya</a>
         <a href="/sitemap-index.xml" class="text-[#c2dfca] hover:text-white transition-colors underline-offset-2 hover:underline">Sitemap XML</a>

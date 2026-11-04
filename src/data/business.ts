@@ -3,8 +3,8 @@ export const businessInfo = {
   legalName: 'CV Halo Malang Kreasi',
   tagline: 'Professional Event Organizer Malang & Kediri',
   shortDesc: 'Penyelenggara acara terpercaya di Malang dan Kediri untuk Corporate Event, Wedding, Seminar, Gathering, Festival, dan Custom Event.',
-  phone: '+62 812-3456-7890',
-  whatsapp: '6281234567890',
+  phone: '+62 889-8964-3555',
+  whatsapp: '6288989643555',
   email: 'halo@halomalang.web.id',
   workingHours: 'Senin - Sabtu: 08.00 - 18.00 WIB (Konsultasi Acara Darurat 24 Jam)',
   areasServed: [

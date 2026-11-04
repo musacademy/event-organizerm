@@ -10,7 +10,7 @@ const { currentPath = '/' } = Astro.props;
 const navItems = [
   { name: 'Beranda', href: '/' },
   { name: 'Tentang Kami', href: '/tentang-kami' },
-  { name: 'Layanan', href: '/layanan' },
+  { name: 'Event', href: '/event' },
   { name: 'Portofolio', href: '/portofolio' },
   { name: 'Galeri', href: '/galeri' },
   { name: 'Blog', href: '/blog' },
@@ -26,11 +26,11 @@ const isCurrent = (href: string) => {
 
 <header class="w-full bg-white z-50 relative">
   <div class="max-w-[1240px] mx-auto px-4 sm:px-6 lg:px-8">
-    <div class="flex items-center justify-between h-20 sm:h-24">
+    <div class="flex items-center justify-between h-16 sm:h-20 lg:h-24">
       
       <!-- Brand Logo with authentic script calligraphy style -->
       <a href="/" class="flex items-center group transition-transform hover:scale-102">
-        <span class="font-script text-3xl sm:text-4xl font-bold tracking-tight text-gray-950 block leading-none">
+        <span class="font-script text-2xl sm:text-3xl lg:text-4xl font-bold tracking-tight text-gray-950 block leading-none">
           Halo Malang
         </span>
       </a>

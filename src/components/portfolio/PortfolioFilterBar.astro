@@ -6,52 +6,52 @@ interface Props {
 const { totalCount } = Astro.props;
 ---
 
-<div class="flex flex-wrap items-center gap-2 mb-8 pb-3 border-b border-[#e2ece4]">
+<div class="flex items-center gap-2 mb-6 sm:mb-8 pb-3 border-b border-[#e2ece4] overflow-x-auto scrollbar-none flex-nowrap sm:flex-wrap -mx-4 px-4 sm:mx-0 sm:px-0">
   <button
     type="button"
-    class="portfolio-filter active px-4 py-1.5 rounded-full text-xs font-semibold bg-[#2d553b] text-white shadow-xs border border-[#2d553b] transition-all cursor-pointer"
+    class="portfolio-filter active px-4 py-1.5 rounded-full text-xs font-semibold bg-[#2d553b] text-white shadow-xs border border-[#2d553b] transition-all cursor-pointer shrink-0 whitespace-nowrap"
     data-filter="all"
   >
     Semua Proyek ({totalCount})
   </button>
   <button
     type="button"
-    class="portfolio-filter px-4 py-1.5 rounded-full text-xs font-semibold bg-white text-[#415446] hover:bg-[#eaf1ec] border border-[#e1eae2] transition-all cursor-pointer"
+    class="portfolio-filter px-4 py-1.5 rounded-full text-xs font-semibold bg-white text-[#415446] hover:bg-[#eaf1ec] border border-[#e1eae2] transition-all cursor-pointer shrink-0 whitespace-nowrap"
     data-filter="malang"
   >
     Malang & Batu
   </button>
   <button
     type="button"
-    class="portfolio-filter px-4 py-1.5 rounded-full text-xs font-semibold bg-white text-[#415446] hover:bg-[#eaf1ec] border border-[#e1eae2] transition-all cursor-pointer"
+    class="portfolio-filter px-4 py-1.5 rounded-full text-xs font-semibold bg-white text-[#415446] hover:bg-[#eaf1ec] border border-[#e1eae2] transition-all cursor-pointer shrink-0 whitespace-nowrap"
     data-filter="kediri"
   >
     Kediri
   </button>
   <button
     type="button"
-    class="portfolio-filter px-4 py-1.5 rounded-full text-xs font-semibold bg-white text-[#415446] hover:bg-[#eaf1ec] border border-[#e1eae2] transition-all cursor-pointer"
+    class="portfolio-filter px-4 py-1.5 rounded-full text-xs font-semibold bg-white text-[#415446] hover:bg-[#eaf1ec] border border-[#e1eae2] transition-all cursor-pointer shrink-0 whitespace-nowrap"
     data-filter="corporate"
   >
     Corporate & Gala
   </button>
   <button
     type="button"
-    class="portfolio-filter px-4 py-1.5 rounded-full text-xs font-semibold bg-white text-[#415446] hover:bg-[#eaf1ec] border border-[#e1eae2] transition-all cursor-pointer"
+    class="portfolio-filter px-4 py-1.5 rounded-full text-xs font-semibold bg-white text-[#415446] hover:bg-[#eaf1ec] border border-[#e1eae2] transition-all cursor-pointer shrink-0 whitespace-nowrap"
     data-filter="wedding"
   >
     Wedding Organizer
   </button>
   <button
     type="button"
-    class="portfolio-filter px-4 py-1.5 rounded-full text-xs font-semibold bg-white text-[#415446] hover:bg-[#eaf1ec] border border-[#e1eae2] transition-all cursor-pointer"
+    class="portfolio-filter px-4 py-1.5 rounded-full text-xs font-semibold bg-white text-[#415446] hover:bg-[#eaf1ec] border border-[#e1eae2] transition-all cursor-pointer shrink-0 whitespace-nowrap"
     data-filter="gathering"
   >
     Gathering & Outbound
   </button>
   <button
     type="button"
-    class="portfolio-filter px-4 py-1.5 rounded-full text-xs font-semibold bg-white text-[#415446] hover:bg-[#eaf1ec] border border-[#e1eae2] transition-all cursor-pointer"
+    class="portfolio-filter px-4 py-1.5 rounded-full text-xs font-semibold bg-white text-[#415446] hover:bg-[#eaf1ec] border border-[#e1eae2] transition-all cursor-pointer shrink-0 whitespace-nowrap"
     data-filter="festival"
   >
     Festival & Konser

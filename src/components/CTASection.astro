@@ -23,7 +23,7 @@ const {
 ---
 
 <section class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 mt-14 sm:mt-20 mb-8 reveal-on-scroll">
-  <div class="relative rounded-[2.5rem] sm:rounded-[3rem] overflow-hidden bg-gradient-to-br from-[#112418] via-[#1b3825] to-[#255235] text-white p-8 sm:p-14 lg:p-16 shadow-2xl border border-emerald-500/20">
+  <div class="relative rounded-3xl sm:rounded-[3rem] overflow-hidden bg-gradient-to-br from-[#112418] via-[#1b3825] to-[#255235] text-white p-6 sm:p-14 lg:p-16 shadow-2xl border border-emerald-500/20">
     
     <!-- Background Ambient Glow & Lighting Effects -->
     <div class="absolute -top-24 -right-24 w-96 h-96 bg-emerald-400/15 rounded-full blur-3xl pointer-events-none"></div>
@@ -45,23 +45,23 @@ const {
       </div>
 
       <!-- Main Headline -->
-      <h2 class="text-2xl sm:text-4xl lg:text-5xl font-extrabold font-sans tracking-tight text-white leading-[1.18] mb-5">
+      <h2 class="text-2xl sm:text-4xl lg:text-5xl font-extrabold font-sans tracking-tight text-white leading-[1.18] mb-4 sm:mb-5">
         {title}
       </h2>
 
       <!-- Description / Value Proposition -->
-      <p class="text-sm sm:text-base text-emerald-100/90 leading-relaxed mb-8 max-w-2xl font-normal">
+      <p class="text-xs sm:text-base text-emerald-100/90 leading-relaxed mb-6 sm:mb-8 max-w-2xl font-normal">
         {subtitle}
       </p>
 
       <!-- Action Buttons -->
-      <div class="flex flex-wrap items-center gap-3.5 mb-10">
+      <div class="flex flex-col sm:flex-row items-stretch sm:items-center gap-3 sm:gap-3.5 mb-8 sm:mb-10">
         <!-- WhatsApp Primary Button -->
         <a
           href={primaryCtaUrl}
           target="_blank"
           rel="noopener noreferrer"
-          class="inline-flex items-center gap-2.5 px-7 py-4 rounded-full bg-[#25D366] hover:bg-[#20ba59] text-white text-sm font-bold transition-all duration-300 shadow-lg hover:shadow-2xl hover:scale-103 group"
+          class="inline-flex items-center justify-center gap-2.5 px-6 sm:px-7 py-3.5 sm:py-4 rounded-full bg-[#25D366] hover:bg-[#20ba59] text-white text-xs sm:text-sm font-bold transition-all duration-300 shadow-lg hover:shadow-2xl hover:scale-103 group text-center"
         >
           <svg class="w-5 h-5 fill-current transition-transform duration-300 group-hover:rotate-12" viewBox="0 0 24 24">
             <path d="M12.04 2c-5.46 0-9.91 4.45-9.91 9.91 0 1.75.46 3.45 1.32 4.95L2.05 22l5.25-1.38c1.45.79 3.08 1.21 4.74 1.21 5.46 0 9.91-4.45 9.91-9.91 0-2.65-1.03-5.14-2.9-7.01A9.816 9.816 0 0012.04 2zM12.05 20.2c-1.5 0-2.97-.4-4.26-1.16l-.31-.18-3.16.83.84-3.08-.2-.32a8.21 8.21 0 01-1.26-4.38c0-4.54 3.7-8.24 8.24-8.24 2.2 0 4.27.86 5.82 2.42a8.18 8.18 0 012.41 5.83c.02 4.54-3.68 8.24-8.38 8.24zm4.51-6.17c-.25-.12-1.47-.72-1.7-.8-.23-.09-.39-.13-.56.12-.17.25-.64.8-.79.97-.14.17-.29.19-.54.07-.25-.12-1.05-.39-2-1.23-.74-.66-1.23-1.47-1.38-1.72-.14-.25-.02-.38.11-.5.11-.11.25-.29.37-.43.12-.15.17-.25.25-.42.08-.17.04-.31-.02-.44-.06-.12-.56-1.35-.77-1.85-.2-.49-.41-.42-.56-.43h-.48c-.17 0-.44.06-.67.31-.23.25-.88.86-.88 2.1 0 1.23.9 2.43 1.02 2.6.13.16 1.77 2.7 4.29 3.79.6.26 1.07.41 1.44.53.6.19 1.15.16 1.59.1.48-.07 1.47-.6 1.68-1.18.21-.58.21-1.08.15-1.18-.06-.1-.23-.16-.48-.28z"/>
@@ -72,7 +72,7 @@ const {
         <!-- Secondary Form Button -->
         <a
           href={secondaryCtaUrl}
-          class="inline-flex items-center gap-2 px-7 py-4 rounded-full bg-white/10 hover:bg-white text-white hover:text-[#1b3825] text-sm font-semibold transition-all duration-300 backdrop-blur-md border border-white/20 hover:scale-103 shadow-md"
+          class="inline-flex items-center justify-center gap-2 px-6 sm:px-7 py-3.5 sm:py-4 rounded-full bg-white/10 hover:bg-white text-white hover:text-[#1b3825] text-xs sm:text-sm font-semibold transition-all duration-300 backdrop-blur-md border border-white/20 hover:scale-103 shadow-md text-center"
         >
           <span>{secondaryCtaText}</span>
           <svg class="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">

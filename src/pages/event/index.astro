@@ -1,0 +1,343 @@
+---
+import Layout from '../../layouts/Layout.astro';
+import { upcomingEventsData, eventFaqs } from '../../data/events';
+import EventCard from '../../components/event/EventCard.astro';
+import EventFilterSidebar from '../../components/event/EventFilterSidebar.astro';
+import FAQAccordion from '../../components/FAQAccordion.astro';
+---
+
+<Layout
+  title="Agenda Event Mendatang di Malang & Kediri | Halo Malang"
+  description="Daftar jadwal konser musik, running event, festival budaya, dan expo pameran mendatang di Malang, Kediri, dan Batu. Registrasi dan beli tiket online sekarang."
+  currentPath="/event"
+  breadcrumbs={[
+    { name: 'Beranda', url: '/' },
+    { name: 'Event', url: '/event' },
+  ]}
+>
+  <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8 sm:py-12">
+    
+    <!-- Hero Header -->
+    <div class="max-w-3xl mb-8">
+      <div class="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-[#eef4ef] text-[#2d553b] text-xs font-bold mb-3">
+        <span class="w-2 h-2 rounded-full bg-emerald-500 animate-pulse"></span>
+        <span>Jadwal & Tiket Acara Resmi</span>
+      </div>
+      <h1 class="text-3xl sm:text-4xl lg:text-5xl font-sans font-extrabold text-[#1b3825] leading-tight mb-3">
+        Agenda Event Mendatang
+      </h1>
+      <p class="text-xs sm:text-sm text-[#546b5a] leading-relaxed">
+        Jelajahi berbagai konser musik live, lomba lari marathon, festival kuliner khas, dan pameran kreatif yang siap hadir di Malang, Kediri, dan Kota Wisata Batu. Registrasi tiket sekarang sebelum kuota habis!
+      </p>
+    </div>
+
+    <!-- Mobile Filter Toggle Button -->
+    <div class="lg:hidden mb-6 flex items-center justify-between p-3.5 bg-white rounded-2xl border border-[#e2ece4] shadow-xs">
+      <div class="flex items-center gap-2">
+        <span class="text-xs font-bold text-[#1b3825]">Filter & Kategori Event</span>
+        <span id="mobile-filter-badge" class="text-[10px] bg-[#eef4ef] text-[#2d553b] px-2 py-0.5 rounded-full font-bold">
+          {upcomingEventsData.length} Event
+        </span>
+      </div>
+      <button
+        id="toggle-mobile-filter-btn"
+        type="button"
+        class="px-3.5 py-1.5 rounded-xl bg-[#2d553b] text-white text-xs font-bold flex items-center gap-1.5 cursor-pointer hover:bg-[#1b3825] transition-colors"
+      >
+        <svg class="w-3.5 h-3.5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 6V4m0 2a2 2 0 100 4m0-4a2 2 0 110 4m-6 8a2 2 0 100-4m0 4a2 2 0 110-4m0 4v2m0-6V4m6 6v10m6-2a2 2 0 100-4m0 4a2 2 0 110-4m0 4v2m0-6V4" />
+        </svg>
+        <span>Buka Filter</span>
+      </button>
+    </div>
+
+    <!-- Main Content Layout (Sidebar Filter on Left + Cards Grid on Right) -->
+    <div class="grid grid-cols-1 lg:grid-cols-12 gap-6 lg:gap-8 items-start">
+      
+      <!-- Left Column: Filtering Sidebar -->
+      <div id="filter-sidebar-wrapper" class="hidden lg:block lg:col-span-4 xl:col-span-3 sticky top-28">
+        <EventFilterSidebar totalCount={upcomingEventsData.length} />
+      </div>
+
+      <!-- Right Column: Results & Cards Grid -->
+      <div class="lg:col-span-8 xl:col-span-9">
+        
+        <!-- Top Controls Bar -->
+        <div class="flex items-center justify-between gap-3 mb-6 pb-4 border-b border-[#e2ece4]">
+          <div class="flex items-center gap-2">
+            <span class="text-xs font-bold text-[#1b3825]">
+              Menampilkan <span id="event-count-display" class="text-[#2d553b] font-extrabold">{upcomingEventsData.length}</span> event
+            </span>
+            <div id="active-filter-chips" class="hidden sm:flex flex-wrap gap-1.5 ml-2"></div>
+          </div>
+
+          <!-- Quick Sorting -->
+          <div class="flex items-center gap-1.5 text-xs">
+            <label for="sort-event-select" class="text-[#546b5a] font-medium hidden sm:inline">Urutkan:</label>
+            <select
+              id="sort-event-select"
+              class="px-3 py-1.5 text-xs rounded-xl border border-[#d6e3d9] bg-white text-gray-700 focus:outline-hidden focus:border-[#2d553b] cursor-pointer"
+            >
+              <option value="nearest">Waktu Terdekat</option>
+              <option value="price-asc">Harga Terendah</option>
+              <option value="name-asc">Nama Event (A-Z)</option>
+            </select>
+          </div>
+        </div>
+
+        <!-- Event Grid -->
+        <div id="event-grid-container" class="grid grid-cols-1 md:grid-cols-2 gap-6">
+          {upcomingEventsData.map((event) => (
+            <EventCard event={event} />
+          ))}
+
+          <!-- Empty State -->
+          <div id="event-empty-state" class="hidden py-16 px-4 text-center col-span-full bg-white rounded-3xl border border-[#e2ece4]">
+            <div class="w-16 h-16 mx-auto rounded-full bg-[#f0f6f1] flex items-center justify-center text-[#2d553b] mb-4">
+              <svg class="w-8 h-8" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z" />
+              </svg>
+            </div>
+            <h3 class="text-base font-bold text-[#1b3825] mb-1.5">Tidak Ada Event yang Sesuai</h3>
+            <p class="text-xs text-[#5c7763] max-w-sm mx-auto mb-5 leading-relaxed">
+              Coba sesuaikan kata kunci pencarian, ubah pilihan wilayah atau kosongkan filter untuk melihat semua agenda event lainnya.
+            </p>
+            <button
+              type="button"
+              id="empty-reset-btn"
+              class="px-5 py-2.5 rounded-full bg-[#2d553b] text-white text-xs font-bold hover:bg-[#1a3825] transition-all cursor-pointer shadow-xs"
+            >
+              Tampilkan Semua Event
+            </button>
+          </div>
+        </div>
+
+      </div>
+
+    </div>
+
+    <!-- FAQ Section -->
+    <div class="mt-20 pt-12 border-t border-[#e2ece4]">
+      <FAQAccordion
+        faqs={eventFaqs}
+        title="Pertanyaan Seputar Tiket & Kepesertaan Event"
+        subtitle="Informasi penting mengenai cara pendaftaran, validasi tiket, pengalihan nama, dan kebijakan umum event."
+      />
+    </div>
+
+  </div>
+</Layout>
+
+<!-- Client Side Dynamic Filtering Script -->
+<script is:inline>
+  (function() {
+    var state = {
+      search: '',
+      category: 'all',
+      city: 'all',
+      statuses: [],
+      price: 'all',
+      sort: 'nearest'
+    };
+
+    var searchInput = document.getElementById('event-search-input');
+    var resetBtn = document.getElementById('reset-filter-btn');
+    var emptyResetBtn = document.getElementById('empty-reset-btn');
+    var countDisplay = document.getElementById('event-count-display');
+    var mobileFilterBadge = document.getElementById('mobile-filter-badge');
+    var activeChipsEl = document.getElementById('active-filter-chips');
+    var emptyState = document.getElementById('event-empty-state');
+    var sortSelect = document.getElementById('sort-event-select');
+    var cards = Array.from(document.querySelectorAll('.event-card'));
+    var gridContainer = document.getElementById('event-grid-container');
+
+    // Mobile filter toggle
+    var toggleMobileBtn = document.getElementById('toggle-mobile-filter-btn');
+    var sidebarWrapper = document.getElementById('filter-sidebar-wrapper');
+
+    if (toggleMobileBtn && sidebarWrapper) {
+      toggleMobileBtn.addEventListener('click', function() {
+        var isHidden = sidebarWrapper.classList.contains('hidden');
+        if (isHidden) {
+          sidebarWrapper.classList.remove('hidden');
+          toggleMobileBtn.innerHTML = '<span>Tutup Filter</span>';
+        } else {
+          sidebarWrapper.classList.add('hidden');
+          toggleMobileBtn.innerHTML = '<svg class="w-3.5 h-3.5" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 6V4m0 2a2 2 0 100 4m0-4a2 2 0 110 4m-6 8a2 2 0 100-4m0 4a2 2 0 110-4m0 4v2m0-6V4m6 6v10m6-2a2 2 0 100-4m0 4a2 2 0 110-4m0 4v2m0-6V4" /></svg><span>Buka Filter</span>';
+        }
+      });
+    }
+
+    // Helper: parse URL query params if any
+    var urlParams = new URLSearchParams(window.location.search);
+    if (urlParams.get('kategori')) state.category = urlParams.get('kategori');
+    if (urlParams.get('kota')) state.city = urlParams.get('kota');
+
+    function syncUIWithState() {
+      // Sync category radio
+      var catRadio = document.querySelector('input[name="filter-category"][value="' + state.category + '"]');
+      if (catRadio) catRadio.checked = true;
+
+      // Sync city buttons
+      document.querySelectorAll('.city-filter-btn').forEach(function(btn) {
+        var c = btn.getAttribute('data-city');
+        if (c === state.city) {
+          btn.classList.add('active', 'bg-[#2d553b]', 'text-white', 'font-bold');
+          btn.classList.remove('bg-[#f2f7f3]', 'text-[#344d3b]', 'font-medium');
+        } else {
+          btn.classList.remove('active', 'bg-[#2d553b]', 'text-white', 'font-bold');
+          btn.classList.add('bg-[#f2f7f3]', 'text-[#344d3b]', 'font-medium');
+        }
+      });
+
+      // Sync price buttons
+      document.querySelectorAll('.price-filter-btn').forEach(function(btn) {
+        var p = btn.getAttribute('data-price');
+        if (p === state.price) {
+          btn.classList.add('active', 'bg-[#2d553b]', 'text-white', 'font-bold');
+          btn.classList.remove('bg-[#f2f7f3]', 'text-[#344d3b]', 'font-medium');
+        } else {
+          btn.classList.remove('active', 'bg-[#2d553b]', 'text-white', 'font-bold');
+          btn.classList.add('bg-[#f2f7f3]', 'text-[#344d3b]', 'font-medium');
+        }
+      });
+    }
+
+    function applyFilter() {
+      var visibleCount = 0;
+      var q = state.search.trim().toLowerCase();
+
+      cards.forEach(function(card) {
+        var cardCat = card.getAttribute('data-category') || '';
+        var cardCity = card.getAttribute('data-city') || '';
+        var cardStatus = card.getAttribute('data-status') || '';
+        var cardPrice = card.getAttribute('data-price') || '';
+        var cardSearch = card.getAttribute('data-search') || '';
+
+        var matchSearch = (!q || cardSearch.indexOf(q) !== -1);
+        var matchCat = (state.category === 'all' || cardCat === state.category);
+        var matchCity = (state.city === 'all' || cardCity === state.city);
+        var matchPrice = (state.price === 'all' || cardPrice === state.price);
+        
+        var matchStatus = true;
+        if (state.statuses.length > 0) {
+          matchStatus = state.statuses.indexOf(cardStatus) !== -1;
+        }
+
+        if (matchSearch && matchCat && matchCity && matchPrice && matchStatus) {
+          card.classList.remove('hidden');
+          visibleCount++;
+        } else {
+          card.classList.add('hidden');
+        }
+      });
+
+      // Update counters
+      if (countDisplay) countDisplay.textContent = visibleCount;
+      if (mobileFilterBadge) mobileFilterBadge.textContent = visibleCount + ' Event';
+
+      // Empty state
+      if (emptyState) {
+        if (visibleCount === 0) {
+          emptyState.classList.remove('hidden');
+        } else {
+          emptyState.classList.add('hidden');
+        }
+      }
+    }
+
+    // Search input listener
+    if (searchInput) {
+      searchInput.addEventListener('input', function(e) {
+        state.search = e.target.value;
+        applyFilter();
+      });
+    }
+
+    // Category radio listener
+    document.querySelectorAll('input[name="filter-category"]').forEach(function(radio) {
+      radio.addEventListener('change', function(e) {
+        state.category = e.target.value;
+        applyFilter();
+      });
+    });
+
+    // City buttons
+    document.querySelectorAll('.city-filter-btn').forEach(function(btn) {
+      btn.addEventListener('click', function() {
+        state.city = btn.getAttribute('data-city') || 'all';
+        syncUIWithState();
+        applyFilter();
+      });
+    });
+
+    // Status checkboxes
+    document.querySelectorAll('input[name="filter-status"]').forEach(function(cb) {
+      cb.addEventListener('change', function() {
+        var checkedStatuses = [];
+        document.querySelectorAll('input[name="filter-status"]:checked').forEach(function(c) {
+          checkedStatuses.push(c.value);
+        });
+        state.statuses = checkedStatuses;
+        applyFilter();
+      });
+    });
+
+    // Price buttons
+    document.querySelectorAll('.price-filter-btn').forEach(function(btn) {
+      btn.addEventListener('click', function() {
+        state.price = btn.getAttribute('data-price') || 'all';
+        syncUIWithState();
+        applyFilter();
+      });
+    });
+
+    // Sort select
+    if (sortSelect) {
+      sortSelect.addEventListener('change', function(e) {
+        var mode = e.target.value;
+        var cardElements = Array.from(document.querySelectorAll('.event-card'));
+
+        cardElements.sort(function(a, b) {
+          if (mode === 'name-asc') {
+            return (a.getAttribute('data-title') || '').localeCompare(b.getAttribute('data-title') || '');
+          }
+          if (mode === 'price-asc') {
+            var priceA = a.getAttribute('data-price') === 'free' ? 0 : 1;
+            var priceB = b.getAttribute('data-price') === 'free' ? 0 : 1;
+            return priceA - priceB;
+          }
+          return 0; // default order
+        });
+
+        cardElements.forEach(function(el) {
+          if (gridContainer && emptyState) {
+            gridContainer.insertBefore(el, emptyState);
+          }
+        });
+      });
+    }
+
+    // Reset handlers
+    function resetAll() {
+      state.search = '';
+      state.category = 'all';
+      state.city = 'all';
+      state.statuses = [];
+      state.price = 'all';
+      if (searchInput) searchInput.value = '';
+      document.querySelectorAll('input[name="filter-status"]').forEach(function(cb) {
+        cb.checked = false;
+      });
+      syncUIWithState();
+      applyFilter();
+    }
+
+    if (resetBtn) resetBtn.addEventListener('click', resetAll);
+    if (emptyResetBtn) emptyResetBtn.addEventListener('click', resetAll);
+
+    // Initial run
+    syncUIWithState();
+    applyFilter();
+  })();
+</script>

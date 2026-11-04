@@ -1,0 +1,348 @@
+---
+import Layout from '../../layouts/Layout.astro';
+import { upcomingEventsData, type EventItem } from '../../data/events';
+import { businessInfo } from '../../data/business';
+import EventRegistrationModal from '../../components/event/EventRegistrationModal.astro';
+
+export function getStaticPaths() {
+  return upcomingEventsData.map((event) => ({
+    params: { slug: event.slug },
+    props: { event },
+  }));
+}
+
+interface Props {
+  event: EventItem;
+}
+
+const { event } = Astro.props;
+
+// Determine badge styling
+let statusBadgeClass = 'bg-emerald-50 text-emerald-800 border-emerald-200';
+let statusDotClass = 'bg-emerald-500';
+
+if (event.status === 'Early Bird Aktif') {
+  statusBadgeClass = 'bg-amber-50 text-amber-800 border-amber-200';
+  statusDotClass = 'bg-amber-500 animate-pulse';
+} else if (event.status === 'Slot Terbatas') {
+  statusBadgeClass = 'bg-rose-50 text-rose-800 border-rose-200';
+  statusDotClass = 'bg-rose-500 animate-pulse';
+} else if (event.status === 'Segera Hadir') {
+  statusBadgeClass = 'bg-sky-50 text-sky-800 border-sky-200';
+  statusDotClass = 'bg-sky-500';
+}
+---
+
+<Layout
+  title={`${event.title} | Event Halo Malang`}
+  description={`${event.shortDesc} Lokasi: ${event.location}. Tanggal: ${event.date}. Beli tiket & daftar sekarang.`}
+  image={event.featuredImage}
+  currentPath={`/event/${event.slug}`}
+  breadcrumbs={[
+    { name: 'Beranda', url: '/' },
+    { name: 'Event', url: '/event' },
+    { name: event.title, url: `/event/${event.slug}` },
+  ]}
+>
+  <article class="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8 py-8 sm:py-12">
+    
+    <!-- Breadcrumb & Back -->
+    <div class="mb-6">
+      <a href="/event" class="text-xs font-bold text-[#2d553b] hover:underline inline-flex items-center gap-1.5">
+        <span>&larr;</span>
+        <span>Kembali ke Semua Event</span>
+      </a>
+    </div>
+
+    <!-- Title Header -->
+    <div class="mb-8">
+      <div class="flex flex-wrap items-center gap-2 mb-3">
+        <span class="px-3 py-1 bg-[#2d553b] text-white text-xs font-bold rounded-full">
+          {event.category}
+        </span>
+        <span class="px-3 py-1 bg-[#eaf2eb] text-[#2d553b] text-xs font-semibold rounded-full">
+          {event.cityName}
+        </span>
+        <span class={`px-3 py-1 text-xs font-bold rounded-full border flex items-center gap-1.5 ${statusBadgeClass}`}>
+          <span class={`w-1.5 h-1.5 rounded-full ${statusDotClass}`}></span>
+          <span>{event.status}</span>
+        </span>
+      </div>
+
+      <h1 class="text-2xl sm:text-4xl font-sans font-extrabold text-[#1b3825] leading-tight mb-4">
+        {event.title}
+      </h1>
+
+      <div class="grid grid-cols-2 sm:flex sm:flex-wrap sm:items-center gap-2.5 sm:gap-4 text-xs text-[#526a58] pt-3 border-t border-[#e2ece4]">
+        <div class="flex items-center gap-1">
+          <strong class="text-[#1b3825]">Tanggal:</strong> {event.date}
+        </div>
+        <div class="flex items-center gap-1">
+          <strong class="text-[#1b3825]">Waktu:</strong> {event.time}
+        </div>
+        <div class="flex items-center gap-1 col-span-2 sm:col-span-1">
+          <strong class="text-[#1b3825]">Lokasi:</strong> {event.venueName}
+        </div>
+        <div class="flex items-center gap-1 col-span-2 sm:col-span-1">
+          <strong class="text-[#1b3825]">Kuota:</strong> {event.quota}
+        </div>
+      </div>
+    </div>
+
+    <!-- Featured Banner Image -->
+    <div class="rounded-3xl overflow-hidden border border-[#e2ece4] shadow-sm mb-10 max-h-[500px] relative bg-gray-100">
+      <img
+        src={event.featuredImage}
+        alt={event.title}
+        class="w-full h-full object-cover"
+      />
+      <div class="absolute bottom-4 left-4 sm:bottom-6 sm:left-6 bg-black/60 backdrop-blur-md px-4 py-2.5 rounded-2xl text-white text-xs sm:text-sm font-semibold max-w-md">
+        📍 {event.location}
+      </div>
+    </div>
+
+    <!-- Content & Highlights Grid (Like Portfolio Detail) -->
+    <div class="grid grid-cols-1 lg:grid-cols-12 gap-10">
+      
+      <!-- Main Story / Details (Left Col 8) -->
+      <div class="lg:col-span-8">
+        
+        <!-- Description -->
+        <h2 class="text-xl font-bold font-sans text-[#1b3825] mb-4">Deskripsi & Konsep Acara</h2>
+        <p class="text-sm text-[#3e5645] leading-relaxed mb-8">
+          {event.description}
+        </p>
+
+        <!-- Highlights Checklist -->
+        <div class="bg-[#f5faf6] rounded-3xl p-6 sm:p-7 border border-[#e0ece2] mb-8">
+          <h3 class="text-base font-bold text-[#1b3825] mb-4 flex items-center gap-2">
+            <svg class="w-5 h-5 text-[#2d553b]" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z" />
+            </svg>
+            <span>Keistimewaan & Highlight Acara:</span>
+          </h3>
+          <ul class="space-y-2.5">
+            {event.highlights.map((item) => (
+              <li class="flex items-start gap-2.5 text-xs sm:text-sm text-[#2f4937]">
+                <div class="w-5 h-5 rounded-full bg-[#2d553b] text-white flex items-center justify-center shrink-0 mt-0.5">
+                  <svg class="w-3 h-3" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="3" d="M5 13l4 4L19 7" />
+                  </svg>
+                </div>
+                <span class="leading-relaxed">{item}</span>
+              </li>
+            ))}
+          </ul>
+        </div>
+
+        <!-- Guest Stars / Lineup if available -->
+        {event.guestStars && event.guestStars.length > 0 && (
+          <div class="mb-8">
+            <h3 class="text-base font-bold text-[#1b3825] mb-4">Bintang Tamu & Penampil Khusus:</h3>
+            <div class="grid grid-cols-2 sm:grid-cols-3 gap-3">
+              {event.guestStars.map((star) => (
+                <div class="p-4 rounded-2xl bg-white border border-[#e2ece4] shadow-xs text-center">
+                  <div class="w-12 h-12 rounded-full bg-[#eef4ef] text-[#2d553b] font-bold text-base flex items-center justify-center mx-auto mb-2">
+                    {star.name.charAt(0)}
+                  </div>
+                  <h4 class="text-xs font-bold text-[#1b3825] leading-snug">{star.name}</h4>
+                  <p class="text-[10px] text-[#63806b] mt-0.5">{star.role}</p>
+                </div>
+              ))}
+            </div>
+          </div>
+        )}
+
+        <!-- Rundown Acara -->
+        <div class="mb-8">
+          <h3 class="text-base font-bold text-[#1b3825] mb-4">Jadwal & Rundown Acara:</h3>
+          <div class="space-y-2.5">
+            {event.rundown.map((item) => (
+              <div class="flex items-start gap-3 p-3.5 rounded-2xl bg-white border border-[#e2ece4]">
+                <span class="px-2.5 py-1 rounded-lg bg-[#edf4ee] text-[#2d553b] font-bold text-xs shrink-0 font-mono">
+                  {item.time}
+                </span>
+                <span class="text-xs sm:text-sm font-medium text-[#2f4937] pt-0.5">
+                  {item.activity}
+                </span>
+              </div>
+            ))}
+          </div>
+        </div>
+
+        <!-- Facilities Checklist -->
+        <h3 class="text-base font-bold text-[#1b3825] mb-3">Fasilitas yang Didapatkan Peserta:</h3>
+        <ul class="grid grid-cols-1 sm:grid-cols-2 gap-2.5 mb-8">
+          {event.facilities.map((fac) => (
+            <li class="flex items-center gap-2 text-xs sm:text-sm text-[#2f4937] p-2.5 rounded-xl bg-white border border-[#e6eee8]">
+              <div class="w-5 h-5 rounded-full bg-[#e3efe5] flex items-center justify-center text-[#2d553b] shrink-0">
+                <svg class="w-3 h-3" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7" />
+                </svg>
+              </div>
+              <span>{fac}</span>
+            </li>
+          ))}
+        </ul>
+
+        <!-- Photo Gallery -->
+        <h3 class="text-base font-bold text-[#1b3825] mb-3">Galeri Foto Suasana & Venue:</h3>
+        <div class="grid grid-cols-1 sm:grid-cols-2 gap-4 mb-8">
+          {event.gallery.map((imgUrl, i) => (
+            <div class="rounded-2xl overflow-hidden border border-[#e2ece4] h-48 shadow-xs bg-gray-100">
+              <img src={imgUrl} alt={`${event.title} foto ${i + 1}`} class="w-full h-full object-cover hover:scale-105 transition-transform duration-300" loading="lazy" />
+            </div>
+          ))}
+        </div>
+
+        <!-- Terms & Conditions -->
+        <div class="p-6 rounded-3xl bg-[#fafafa] border border-gray-200">
+          <h3 class="text-xs font-bold text-gray-900 uppercase tracking-wider mb-2">Syarat & Ketentuan Pendaftaran:</h3>
+          <ul class="space-y-1.5 list-disc list-inside text-xs text-gray-600 leading-relaxed">
+            {event.terms.map((t) => (
+              <li>{t}</li>
+            ))}
+          </ul>
+        </div>
+
+      </div>
+
+      <!-- Right Column: Registration Card (Sticky) -->
+      <div class="lg:col-span-4">
+        <div class="bg-white rounded-3xl p-6 border border-[#e2ece4] shadow-xs sticky top-28">
+          
+          <div class="pb-4 mb-5 border-b border-[#edf4ee]">
+            <span class="text-[11px] font-semibold text-[#63806b] uppercase tracking-wider block">Harga Tiket Masuk</span>
+            <div class="text-2xl font-extrabold text-[#1b3825] mt-1">
+              {event.priceDisplay}
+            </div>
+            <div class="text-[11px] text-[#526a58] mt-1 flex items-center gap-1">
+              <span>🎟️ Kuota Terbatas: <strong>{event.quota}</strong></span>
+            </div>
+          </div>
+
+          <!-- Ticket Tiers Summary Box -->
+          <div class="space-y-2 mb-6">
+            <span class="text-xs font-bold text-[#1b3825] block">Pilihan Kategori:</span>
+            {event.ticketTiers.map((tier) => (
+              <div class="p-2.5 rounded-xl bg-[#f7faf8] border border-[#e2eee5] text-xs">
+                <div class="flex justify-between items-center font-bold">
+                  <span class="text-[#1b3825]">{tier.name}</span>
+                  <span class="text-[#2d553b]">{tier.priceDisplay}</span>
+                </div>
+                <div class="text-[10px] text-[#63806b] mt-1">
+                  Status: <strong class="text-emerald-700">{tier.quotaStatus}</strong>
+                </div>
+              </div>
+            ))}
+          </div>
+
+          <!-- Main CTA: Daftar Sekarang (Opens Modal) -->
+          <button
+            type="button"
+            data-open-reg-modal
+            class="w-full py-3.5 rounded-2xl bg-[#2d553b] hover:bg-[#1a3825] text-white text-xs sm:text-sm font-bold flex items-center justify-center gap-2 transition-all shadow-md mb-3 cursor-pointer group"
+          >
+            <svg class="w-4 h-4 fill-none stroke-current" viewBox="0 0 24 24" stroke-width="2">
+              <path stroke-linecap="round" stroke-linejoin="round" d="M15 5v2m0 4v2m0 4v2M5 5a2 2 0 00-2 2v3a2 2 0 110 4v3a2 2 0 002 2h14a2 2 0 002-2v-3a2 2 0 110-4V7a2 2 0 00-2-2H5z" />
+            </svg>
+            <span>Daftar Event Ini Sekarang</span>
+          </button>
+
+          <!-- WhatsApp Direct Consultation -->
+          <a
+            href={`https://wa.me/${businessInfo.whatsapp}?text=Halo%20Halo%20Malang,%20saya%20ingin%20tanya%20informasi%20seputar%20event%20${encodeURIComponent(event.title)}.`}
+            target="_blank"
+            class="w-full py-3 rounded-2xl bg-[#edf4ee] hover:bg-[#dce9df] text-[#2d553b] text-xs font-bold flex items-center justify-center gap-2 transition-all mb-5"
+          >
+            <svg class="w-4 h-4 fill-current text-[#2d553b]" viewBox="0 0 24 24">
+              <path d="M12.04 2c-5.46 0-9.91 4.45-9.91 9.91 0 1.75.46 3.45 1.32 4.95L2.05 22l5.25-1.38c1.45.79 3.08 1.21 4.74 1.21 5.46 0 9.91-4.45 9.91-9.91 0-2.65-1.03-5.14-2.9-7.01A9.816 9.816 0 0012.04 2z" />
+            </svg>
+            <span>Tanya Admin WhatsApp</span>
+          </a>
+
+          <!-- Organizer Info Card -->
+          <div class="pt-4 border-t border-[#edf4ee] text-xs text-[#526a58] space-y-2">
+            <div>
+              <span class="block text-[10px] text-[#63806b] uppercase tracking-wider font-semibold">Penyelenggara Resmi:</span>
+              <span class="font-bold text-[#1b3825]">{event.organizer}</span>
+            </div>
+            <div>
+              <span class="block text-[10px] text-[#63806b] uppercase tracking-wider font-semibold">Layanan Bantuan:</span>
+              <span>{event.contactPerson}</span>
+            </div>
+          </div>
+
+          <!-- Share buttons -->
+          <div class="pt-4 mt-4 border-t border-[#edf4ee]">
+            <span class="block text-[10px] text-[#63806b] uppercase tracking-wider font-semibold mb-2">Bagikan Event:</span>
+            <div class="flex items-center gap-2">
+              <a
+                href={`https://wa.me/?text=Yuk%20ikut%20event%20${encodeURIComponent(event.title)}%20di%20${encodeURIComponent(event.cityName)}!%20Cek%20dan%20daftar%20disini:%20https://halomalang.web.id/event/${event.slug}`}
+                target="_blank"
+                class="px-3 py-1.5 rounded-lg bg-[#25D366]/10 text-[#128C7E] font-bold text-[11px] hover:bg-[#25D366]/20 transition-colors flex items-center gap-1"
+              >
+                <span>WhatsApp</span>
+              </a>
+              <button
+                type="button"
+                id="copy-event-link-btn"
+                class="px-3 py-1.5 rounded-lg bg-gray-100 text-gray-700 font-bold text-[11px] hover:bg-gray-200 transition-colors cursor-pointer"
+              >
+                Salin Link
+              </button>
+            </div>
+          </div>
+
+        </div>
+      </div>
+
+    </div>
+
+  </article>
+
+  <!-- Mobile Sticky Bottom Bar for Instant Registration -->
+  <div id="event-mobile-bottom-bar" class="lg:hidden fixed bottom-0 left-0 right-0 p-3.5 bg-white/95 backdrop-blur-md border-t border-[#e2ece4] shadow-2xl z-40 flex items-center justify-between">
+    <div>
+      <span class="text-[10px] text-[#63806b] block">Harga Tiket:</span>
+      <span class="text-sm font-extrabold text-[#1b3825]">{event.priceDisplay}</span>
+    </div>
+    <button
+      type="button"
+      data-open-reg-modal
+      class="px-5 py-2.5 rounded-full bg-[#2d553b] text-white text-xs font-bold shadow-md hover:bg-[#1a3825] transition-all cursor-pointer"
+    >
+      Daftar Sekarang
+    </button>
+  </div>
+
+  <!-- Registration Modal Component -->
+  <EventRegistrationModal event={event} />
+
+</Layout>
+
+<style>
+  @media (max-width: 1023px) {
+    :global(#floating-actions) {
+      bottom: 5.25rem !important;
+    }
+  }
+</style>
+
+<script is:inline>
+  (function() {
+    var copyBtn = document.getElementById('copy-event-link-btn');
+    if (copyBtn) {
+      copyBtn.addEventListener('click', function() {
+        if (navigator.clipboard) {
+          navigator.clipboard.writeText(window.location.href).then(function() {
+            copyBtn.textContent = 'Tersalin!';
+            setTimeout(function() {
+              copyBtn.textContent = 'Salin Link';
+            }, 2000);
+          });
+        }
+      });
+    }
+  })();
+</script>

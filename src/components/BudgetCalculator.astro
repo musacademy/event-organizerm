@@ -94,7 +94,7 @@ import { businessInfo } from '../data/business';
 
         <!-- Calculated Summary Box -->
         <div class="bg-[#f0f6f1] rounded-2xl p-4 border border-[#d7e6da] mb-5">
-          <div class="flex items-center justify-between mb-2">
+          <div class="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-1 mb-2">
             <span class="text-xs font-bold text-[#1b3825]">Perkiraan Rentang Anggaran:</span>
             <span id="calc-total" class="text-base sm:text-lg font-black text-[#2d553b]">
               Rp 24,0 - 32,0 Juta
@@ -124,7 +124,7 @@ import { businessInfo } from '../data/business';
   </div>
 </section>
 
-<script>
+<script define:vars={{ waNumber: businessInfo.whatsapp }}>
   function setupBudgetCalculator() {
     function updateCalculator() {
       const cityEl = document.getElementById('calc-city');
@@ -150,7 +150,7 @@ import { businessInfo } from '../data/business';
         const typeText = typeSelect?.value || 'Corporate Event';
         const guestText = guestSelect?.value || '150 - 350 orang';
         const msg = `Halo Halo Malang, saya ingin konsultasi acara dengan simulasi kalkulator:\n- Lokasi: ${city}\n- Jenis Acara: ${typeText}\n- Jumlah Tamu: ${guestText}\n- Kebutuhan Venue: ${venue}\n- Estimasi Awal: Rp ${lowEst} - ${highEst} Juta.\nMohon info ketersediaan tanggal & proposal rincinya. Terima kasih!`;
-        waBtn.href = `https://wa.me/6281234567890?text=${encodeURIComponent(msg)}`;
+        waBtn.href = `https://wa.me/${waNumber}?text=${encodeURIComponent(msg)}`;
       }
     }
 

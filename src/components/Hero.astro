@@ -2,12 +2,14 @@
 import { businessInfo } from '../data/business';
 ---
 
-<section class="max-w-[1240px] mx-auto px-4 sm:px-6 lg:px-8 pt-1 sm:pt-2 pb-8">
-  <!-- Outer Hero Card Wrapper with entrance animation -->
-  <div class="relative w-full animate-hero-reveal">
-
+<section class="max-w-[1240px] mx-auto px-4 sm:px-6 lg:px-8 pt-2 sm:pt-4 pb-8">
+  
+  <!-- ========================================== -->
+  <!-- 1. DESKTOP HERO (Original Card Overlay)     -->
+  <!-- ========================================== -->
+  <div class="hidden sm:block relative w-full animate-hero-reveal">
     <!-- Hero Card Container with Clean Rounded Frame -->
-    <div class="relative w-full h-[520px] sm:h-[580px] lg:h-[620px] rounded-[2rem] sm:rounded-[2.5rem] overflow-hidden shadow-xl bg-[#1a3825]">
+    <div class="relative w-full h-[540px] lg:h-[620px] rounded-3xl sm:rounded-[2.5rem] overflow-hidden shadow-xl bg-[#1a3825]">
       
       <!-- Background Real Image -->
       <img
@@ -22,27 +24,27 @@ import { businessInfo } from '../data/business';
       />
 
       <!-- Elegant Sage & Dark Emerald Gradient Overlay -->
-      <div class="absolute inset-0 bg-gradient-to-t from-[#112418]/95 via-[#183624]/65 to-[#1c3e29]/40 sm:bg-gradient-to-r sm:from-[#112418]/95 sm:via-[#183624]/75 sm:to-transparent"></div>
+      <div class="absolute inset-0 bg-gradient-to-r from-[#112418]/95 via-[#183624]/75 to-transparent"></div>
 
       <!-- Real HTML Content Overlay -->
-      <div class="relative z-10 h-full p-6 sm:p-12 lg:p-16 flex flex-col justify-end sm:justify-center max-w-2xl text-white">
+      <div class="relative z-10 h-full p-10 lg:p-16 flex flex-col justify-center max-w-2xl text-white">
         
         <!-- Main Headline -->
-        <h1 class="text-[1.75rem] sm:text-5xl lg:text-[3.75rem] font-extrabold tracking-tight leading-[1.15] mb-4 text-white break-words">
-          Discover Your <br class="hidden sm:inline" />
+        <h1 class="text-4xl lg:text-[3.75rem] font-extrabold tracking-tight leading-[1.18] mb-4 text-white break-words">
+          Discover Your <br />
           <span class="text-emerald-300 font-sans italic font-normal">Extraordinary</span> Event.
         </h1>
 
         <!-- Subheadline / Value Proposition -->
-        <p class="text-sm sm:text-base text-emerald-100/90 font-normal leading-relaxed mb-8 max-w-lg">
+        <p class="text-sm lg:text-base text-emerald-100/90 font-normal leading-relaxed mb-8 max-w-lg">
           Wujudkan momen berharga tanpa rasa cemas. Dari Corporate Gathering di Kota Wisata Batu, Konferensi Nasional di Malang, hingga Wedding & Gala Dinner megah di Kediri.
         </p>
 
         <!-- CTA Buttons -->
-        <div class="flex flex-wrap items-center gap-3">
+        <div class="flex items-center gap-3">
           <a
             href="/kontak"
-            class="inline-flex items-center gap-2 px-6 py-3.5 rounded-full bg-[#2d553b] hover:bg-[#1f3f2a] text-white text-sm font-semibold transition-all shadow-md hover:shadow-lg hover:scale-102 border border-emerald-400/30"
+            class="inline-flex items-center justify-center gap-2 px-6 py-3.5 rounded-full bg-[#2d553b] hover:bg-[#1f3f2a] text-white text-sm font-semibold transition-all shadow-md hover:shadow-lg border border-emerald-400/30 text-center"
           >
             <span>Ajukan Rencana Acara</span>
             <svg class="w-4 h-4 text-emerald-200" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
@@ -52,7 +54,7 @@ import { businessInfo } from '../data/business';
 
           <a
             href="/portofolio"
-            class="inline-flex items-center gap-2 px-6 py-3.5 rounded-full bg-white/95 hover:bg-white text-[#1b3825] text-sm font-semibold transition-all backdrop-blur-md shadow-xs hover:scale-102"
+            class="inline-flex items-center justify-center gap-2 px-6 py-3.5 rounded-full bg-white/95 hover:bg-white text-[#1b3825] text-sm font-semibold transition-all backdrop-blur-md shadow-xs text-center"
           >
             <span>Lihat Portofolio</span>
           </a>
@@ -61,6 +63,69 @@ import { businessInfo } from '../data/business';
       </div>
 
     </div>
-
   </div>
+
+  <!-- ========================================== -->
+  <!-- 2. MOBILE HERO (Judul di atas gambar)      -->
+  <!-- ========================================== -->
+  <div class="block sm:hidden animate-hero-reveal">
+    <div class="mb-4 text-left">
+      <!-- Trust Badge -->
+      <div class="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-[#eef5f0] border border-[#d5e7d9] text-[#2d553b] text-[11px] font-semibold mb-3">
+        <span class="w-2 h-2 rounded-full bg-emerald-500 animate-pulse"></span>
+        <span>Event Organizer Malang & Kediri</span>
+      </div>
+
+      <!-- Main Headline -->
+      <h1 class="text-2xl font-extrabold tracking-tight leading-[1.2] text-[#1b3825] mb-2.5 break-words">
+        Discover Your <br />
+        <span class="text-[#2d553b] italic font-serif">Extraordinary</span> Event.
+      </h1>
+
+      <!-- Subheadline / Value Proposition -->
+      <p class="text-xs text-[#4e6b56] font-normal leading-relaxed mb-4">
+        Wujudkan momen berharga tanpa rasa cemas. Dari Corporate Gathering di Kota Wisata Batu, Konferensi Nasional di Malang, hingga Wedding & Gala Dinner megah di Kediri.
+      </p>
+
+      <!-- CTA Buttons -->
+      <div class="flex flex-col gap-2.5 mb-4">
+        <a
+          href="/kontak"
+          class="w-full inline-flex items-center justify-center gap-2 px-5 py-3 rounded-full bg-[#2d553b] hover:bg-[#1f3f2a] text-white text-xs font-semibold transition-all shadow-md text-center"
+        >
+          <span>Ajukan Rencana Acara</span>
+          <svg class="w-4 h-4 text-emerald-200" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+            <path stroke-linecap="round" stroke-linejoin="round" d="M14 5l7 7m0 0l-7 7m7-7H3" />
+          </svg>
+        </a>
+
+        <a
+          href="/portofolio"
+          class="w-full inline-flex items-center justify-center gap-2 px-5 py-3 rounded-full bg-white hover:bg-[#f3f7f4] text-[#1b3825] text-xs font-semibold transition-all border border-[#d2e2d6] shadow-xs text-center"
+        >
+          <span>Lihat Portofolio</span>
+        </a>
+      </div>
+    </div>
+
+    <!-- Hero Stage Image Showcase Banner for Mobile -->
+    <div class="relative w-full h-[230px] rounded-2xl overflow-hidden shadow-md border border-[#e2ece4] bg-[#1a3825]">
+      <img
+        src="/images/hero-stage.webp"
+        alt="Panggung Acara Modern & Profesional Halo Malang di Malang dan Kediri"
+        class="w-full h-full object-cover object-center"
+        loading="eager"
+        fetchpriority="high"
+        decoding="async"
+        width="1280"
+        height="714"
+      />
+      <div class="absolute inset-0 bg-gradient-to-t from-black/30 via-transparent to-transparent pointer-events-none"></div>
+      <div class="absolute bottom-2.5 left-2.5 z-10 flex items-center gap-1.5 px-2.5 py-1 rounded-full bg-white/90 backdrop-blur-md border border-white/40 shadow-xs text-[#1b3825] text-[10px] font-semibold">
+        <span class="w-1.5 h-1.5 rounded-full bg-emerald-500"></span>
+        <span>Stage & Lighting — Halo Malang</span>
+      </div>
+    </div>
+  </div>
+
 </section>
