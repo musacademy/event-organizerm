@@ -189,13 +189,14 @@ const galleryItems = [
       role="dialog"
       aria-modal="true"
       aria-label="Inspeksi Foto Dokumentasi Acara"
-      class="hidden fixed inset-0 z-[100] flex flex-col justify-between bg-black/95 backdrop-blur-md text-white select-none transition-opacity duration-200"
+      class="hidden fixed inset-0 top-0 left-0 w-screen h-screen h-[100dvh] max-h-[100dvh] z-[99999] flex flex-col justify-between bg-black/95 backdrop-blur-md text-white select-none transition-opacity duration-200 overflow-hidden m-0 p-0"
+      style="position: fixed !important; top: 0 !important; left: 0 !important; width: 100vw !important; height: 100vh !important; height: 100dvh !important; z-index: 99999 !important;"
     >
       <!-- Dedicated Backdrop to cleanly catch outside clicks -->
       <div id="lightbox-backdrop" class="absolute inset-0 z-0 cursor-pointer" aria-hidden="true"></div>
 
       <!-- Top Toolbar -->
-      <div class="relative z-10 flex items-center justify-between px-4 sm:px-6 py-3 bg-black/60 border-b border-white/10 backdrop-blur-sm">
+      <div class="relative z-10 flex items-center justify-between px-4 sm:px-6 py-3 bg-black/75 border-b border-white/10 backdrop-blur-sm shrink-0">
         <div class="flex items-center gap-2 sm:gap-3">
           <span id="lightbox-counter" class="text-xs font-mono font-bold bg-white/15 px-2.5 py-1 rounded-full text-white">
             1 / {galleryItems.length}
@@ -280,7 +281,7 @@ const galleryItems = [
       </div>
 
       <!-- Main Stage Viewport -->
-      <div class="relative z-10 flex-1 flex items-center justify-center overflow-hidden p-2 sm:p-4">
+      <div class="relative z-10 flex-1 flex items-center justify-center overflow-hidden p-2 sm:p-4 min-h-0 w-full">
         <!-- Prev Button -->
         <button
           id="lightbox-prev"
@@ -310,20 +311,20 @@ const galleryItems = [
         <!-- Image Container with Zoom & Pan Support -->
         <div
           id="lightbox-viewport"
-          class="relative max-w-full max-h-full flex items-center justify-center overflow-hidden touch-none"
+          class="relative w-full h-full flex items-center justify-center overflow-hidden touch-none"
         >
           <img
             id="lightbox-img"
             src=""
             alt="Detail foto"
-            class="max-h-[66vh] sm:max-h-[74vh] max-w-[86vw] sm:max-w-[82vw] object-contain rounded-xl shadow-2xl transition-transform duration-100 select-none cursor-zoom-in"
+            class="max-h-[68vh] sm:max-h-[76vh] max-w-[88vw] sm:max-w-[82vw] object-contain rounded-xl shadow-2xl transition-transform duration-100 select-none cursor-zoom-in"
             draggable="false"
           />
         </div>
       </div>
 
       <!-- Bottom Info Bar -->
-      <div class="relative z-10 px-4 sm:px-6 py-3 bg-black/60 border-t border-white/10 backdrop-blur-sm flex flex-col sm:flex-row items-center justify-between gap-3 text-center sm:text-left">
+      <div class="relative z-10 px-4 sm:px-6 py-3 bg-black/75 border-t border-white/10 backdrop-blur-sm flex flex-col sm:flex-row items-center justify-between gap-3 text-center sm:text-left shrink-0">
         <div class="max-w-xl">
           <h3 id="lightbox-title" class="text-sm sm:text-base font-bold text-white leading-tight"></h3>
           <p class="text-[11px] text-gray-400 mt-1 hidden md:block">
@@ -486,9 +487,15 @@ const galleryItems = [
       const els = getElements();
       if (!els.modal) return;
 
+      // Teleport modal directly to document.body to ensure it is always attached to viewport
+      if (els.modal.parentElement !== document.body) {
+        document.body.appendChild(els.modal);
+      }
+
       currentIndex = Math.max(0, Math.min(index, currentFilteredCards.length - 1));
       updateModalContent();
       els.modal.classList.remove('hidden');
+      document.documentElement.style.overflow = 'hidden';
       document.body.style.overflow = 'hidden';
     }
 
@@ -497,6 +504,7 @@ const galleryItems = [
       if (!els.modal) return;
 
       els.modal.classList.add('hidden');
+      document.documentElement.style.overflow = '';
       document.body.style.overflow = '';
       resetZoom();
 
@@ -551,6 +559,11 @@ const galleryItems = [
     function initGallery() {
       const els = getElements();
       if (!els.modal) return;
+
+      // Teleport modal to document.body on initialization
+      if (els.modal.parentElement !== document.body) {
+        document.body.appendChild(els.modal);
+      }
 
       filterGallery('all');
 

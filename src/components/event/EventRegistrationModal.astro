@@ -324,8 +324,12 @@ const isRunningEvent = event.categorySlug === 'running';
     // Modal open handlers
     function openModal() {
       if (!modal) return;
+      if (modal.parentElement !== document.body) {
+        document.body.appendChild(modal);
+      }
       modal.classList.remove('hidden');
       modal.classList.add('flex');
+      document.documentElement.style.overflow = 'hidden';
       document.body.style.overflow = 'hidden';
       updateCalc();
     }
@@ -334,6 +338,7 @@ const isRunningEvent = event.categorySlug === 'running';
       if (!modal) return;
       modal.classList.add('hidden');
       modal.classList.remove('flex');
+      document.documentElement.style.overflow = '';
       document.body.style.overflow = '';
       if (formWrapper && succWrapper) {
         formWrapper.classList.remove('hidden');
